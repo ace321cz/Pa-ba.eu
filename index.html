@@ -3,127 +3,158 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PAŘBA.EU | Reálný TS3 Status</title>
+    <title>PAŘBA.EU | Oficiální Gaming TS3 Portál</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Kanit:wght@300;400;800&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        :root { --accent: #ff0000; --glow: rgba(255, 0, 0, 0.7); }
+        :root { --accent: #ff0000; --glow: rgba(255, 0, 0, 0.7); --glass: rgba(0,0,0,0.75); }
+        
         body { 
-            background: #000; color: white; font-family: 'Kanit', sans-serif;
-            background-image: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.95)), url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=1920');
-            background-size: cover; background-attachment: fixed; margin: 0;
+            background: #000; color: white; font-family: 'Kanit', sans-serif; margin: 0;
+            background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.85)), url('https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1920');
+            background-size: cover; background-attachment: fixed; background-position: center;
         }
 
-        .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 60px 20px; }
-        .main-title { font-family: 'Orbitron', sans-serif; font-size: clamp(3rem, 12vw, 7rem); font-weight: 900; filter: drop-shadow(0 0 20px var(--glow)); margin-bottom: 0; }
-
-        /* OPRAVENÝ STATUS BOX */
-        .real-status-container {
-            background: rgba(255,255,255,0.05); border: 1px solid #2ecc71;
-            padding: 15px 30px; border-radius: 50px; margin-bottom: 30px;
-            display: inline-flex; align-items: center; gap: 15px;
+        /* HERO SEKCE */
+        .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 100px 20px; position: relative; }
+        
+        .main-title { 
+            font-family: 'Orbitron', sans-serif; font-size: clamp(3rem, 12vw, 8.5rem); 
+            font-weight: 900; filter: drop-shadow(0 0 30px var(--glow)); line-height: 1; margin: 0;
         }
-        .status-dot { height: 12px; width: 12px; background: #2ecc71; border-radius: 50%; box-shadow: 0 0 10px #2ecc71; }
 
-        /* IP CARD */
+        .status-badge {
+            background: rgba(46, 204, 113, 0.1); border: 1px solid #2ecc71; padding: 8px 25px; 
+            border-radius: 50px; color: #2ecc71; font-weight: 800; display: inline-flex; 
+            align-items: center; gap: 10px; margin-bottom: 30px; box-shadow: 0 0 20px rgba(46,204,113,0.2);
+        }
+
         .ip-card {
-            background: rgba(0,0,0,0.7); border: 2px solid var(--accent);
-            padding: 30px; border-radius: 20px; width: 100%; max-width: 550px;
-            margin: 20px 0; cursor: pointer; transition: 0.3s;
+            background: var(--glass); border: 2px solid var(--accent);
+            padding: 40px; border-radius: 20px; backdrop-filter: blur(15px);
+            margin: 40px 0; width: 100%; max-width: 650px; cursor: pointer;
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.6);
         }
-        .ip-card:hover { transform: scale(1.02); box-shadow: 0 0 30px var(--glow); }
+        .ip-card:hover { transform: translateY(-10px); box-shadow: 0 0 50px var(--glow); }
 
-        /* TLAČÍTKO - OPRAVENÉ */
-        .btn-join {
-            background: var(--accent); color: white !important; padding: 20px 50px;
-            border-radius: 10px; font-weight: 900; font-size: 1.4rem;
-            text-decoration: none; display: block; width: 100%; max-width: 550px;
-            box-shadow: 0 10px 25px rgba(255,0,0,0.3); transition: 0.3s;
+        .btn-main {
+            background: var(--accent); color: white !important; padding: 22px 60px; border-radius: 12px;
+            font-weight: 900; text-transform: uppercase; text-decoration: none;
+            font-size: 1.5rem; transition: 0.3s; display: inline-block;
+            box-shadow: 0 10px 30px rgba(255,0,0,0.4); border: none;
         }
-        .btn-join:hover { background: white; color: black !important; }
+        .btn-main:hover { background: white; color: black !important; transform: scale(1.05); }
 
-        /* SKRYTÝ TSVIEWER PRO DATA */
-        #ts-hidden-data { display: none; }
+        /* CONTENT SECTIONS */
+        .content-section { padding: 100px 0; background: rgba(0,0,0,0.4); }
+        
+        .feature-card {
+            background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1);
+            padding: 40px; border-radius: 20px; height: 100%; transition: 0.3s;
+            text-align: center; backdrop-filter: blur(5px);
+        }
+        .feature-card:hover { background: rgba(255,0,0,0.05); border-color: var(--accent); transform: translateY(-5px); }
+        .feature-card i { font-size: 3.5rem; color: var(--accent); margin-bottom: 25px; }
 
-        .info-grid { margin-top: 50px; width: 100%; max-width: 1000px; }
-        .info-item { background: rgba(255,255,255,0.03); padding: 25px; border-radius: 15px; border: 1px solid rgba(255,255,255,0.1); }
+        .admin-item {
+            background: rgba(255,255,255,0.02); border-left: 4px solid var(--accent);
+            padding: 20px; border-radius: 0 15px 15px 0; margin-bottom: 15px;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+
+        footer { background: #000; padding: 60px 0; border-top: 2px solid var(--accent); text-align: center; }
     </style>
 </head>
 <body>
 
 <div class="hero">
-    <div class="real-status-container">
-        <div class="status-dot"></div>
-        <span id="player-status" style="color:#2ecc71; font-weight: 800; letter-spacing: 1px;">PŘIPOJOVÁNÍ...</span>
+    <div class="status-badge">
+        <div style="height:12px; width:12px; background:#2ecc71; border-radius:50%; box-shadow:0 0 10px #2ecc71;"></div>
+        <span id="real-status">ZJIŠŤUJI STAV...</span>
     </div>
 
     <h1 class="main-title">PAŘBA<span style="color:var(--accent)">.EU</span></h1>
-    <p class="text-white-50">OFICIÁLNÍ TEAMSPEAK 3 KOMUNITA</p>
+    <p style="letter-spacing: 10px; font-weight: 300;" class="text-white-50 mt-3">PREMIUM TEAMSPEAK 3 SERVER</p>
 
     <div class="ip-card" onclick="copyIP()">
-        <code style="font-size: clamp(1.5rem, 6vw, 3rem); color: white;">ts.4thib.co.uk</code>
-        <p class="text-secondary m-0 small pt-2 text-uppercase fw-bold">Klikni pro kopírování adresy</p>
+        <h2 style="font-family: monospace; font-size: clamp(2rem, 8vw, 4rem); margin:0;">ts.4thib.co.uk</h2>
+        <p class="text-secondary mt-3 mb-0 fw-bold"><i class="far fa-copy me-2"></i>KLIKNI PRO KOPII ADRESY</p>
     </div>
 
-    <a href="ts3server://ts.4thib.co.uk?port=9987" class="btn-join">VSTOUPIT NA SERVER</a>
+    <a href="ts3server://ts.4thib.co.uk?port=9987" class="btn-main">PŘIPOJIT SE HNED</a>
+</div>
 
-    <div class="info-grid">
-        <div class="row g-4">
-            <div class="col-md-6">
-                <div class="info-item">
-                    <h4 class="text-danger font-orbitron">REAL-TIME DATA</h4>
-                    <p class="text-muted m-0 small">Aktuálně připojených hráčů: <span id="count-detail" class="text-white fw-bold">...</span></p>
+<div class="content-section">
+    <div class="container">
+        <div class="row g-4 mb-5 pb-5">
+            <div class="col-md-4">
+                <div class="feature-card">
+                    <i class="fas fa-shield-virus"></i>
+                    <h3>ANTI-DDoS</h3>
+                    <p class="text-muted m-0">Špičková ochrana, která tě udrží online i během těch největších útoků.</p>
                 </div>
             </div>
-            <div class="col-md-6">
-                <div class="info-item">
-                    <h4 class="text-danger font-orbitron">STAV SYSTÉMU</h4>
-                    <p class="text-muted m-0 small">Všechny služby jsou v provozu (Online 24/7)</p>
+            <div class="col-md-4">
+                <div class="feature-card">
+                    <i class="fas fa-bolt"></i>
+                    <h3>LOW PING</h3>
+                    <p class="text-muted m-0">Servery běží na nejrychlejší optice pro krystalicky čistý zvuk bez lagů.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="feature-card">
+                    <i class="fas fa-comments"></i>
+                    <h3>FREE ROOMS</h3>
+                    <p class="text-muted m-0">Permanentní kanál pro tvůj tým nebo partu kamarádů bez jakýchkoliv poplatků.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-5">
+            <div class="col-lg-6">
+                <h2 class="font-orbitron mb-5"><i class="fas fa-users-cog text-danger me-3"></i>VEDENÍ PROJEKTU</h2>
+                <div class="admin-item">
+                    <span><i class="fas fa-crown text-warning me-3"></i><strong>Ace321cz</strong></span>
+                    <span class="badge bg-danger">MAJITEL</span>
+                </div>
+                <div class="admin-item">
+                    <span><i class="fas fa-user-shield text-info me-3"></i><strong>Admin_1</strong></span>
+                    <span class="badge bg-dark border border-secondary">HL. ADMIN</span>
+                </div>
+                <div class="admin-item">
+                    <span><i class="fas fa-tools text-secondary me-3"></i><strong>Technik</strong></span>
+                    <span class="badge bg-primary">SUPPORT</span>
+                </div>
+                <p class="text-muted mt-4 small">Chceš se přidat k nám? Kontaktuj nás přímo na TeamSpeaku!</p>
+            </div>
+
+            <div class="col-lg-6">
+                <h2 class="font-orbitron mb-5"><i class="fas fa-info-circle text-danger me-3"></i>O PORTÁLU</h2>
+                <div class="feature-card text-start">
+                    <p>Pařba.eu není jen obyčejný TeamSpeak server. Jsme komunita hráčů, která si zakládá na stabilitě a kvalitě. Našim uživatelům nabízíme:</p>
+                    <ul class="list-unstyled">
+                        <li class="mb-3"><i class="fas fa-check-circle text-danger me-2"></i> Kvalitní zvuk (Opus Voice kodek)</li>
+                        <li class="mb-3"><i class="fas fa-check-circle text-danger me-2"></i> Automatický systém pro tvorbu dočasných roomek</li>
+                        <li class="mb-3"><i class="fas fa-check-circle text-danger me-2"></i> Hudební boty pro zpříjemnění atmosféry</li>
+                        <li class="mb-3"><i class="fas fa-check-circle text-danger me-2"></i> Pravidelné eventy o zajímavé ikonky</li>
+                    </ul>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-<iframe id="ts-iframe" src="https://www.tsviewer.com/ts_viewer_connect.php?ID=1109930&amp;show_details=1" style="display:none"></iframe>
-
-<script>
-function copyIP() {
-    navigator.clipboard.writeText('ts.4thib.co.uk');
-    alert('IP adresa zkopírována!');
-}
-
-// Funkce, která vytáhne reálná data z TSVieweru bez nutnosti API
-async function refreshStatus() {
-    const statusText = document.getElementById('player-status');
-    const detailText = document.getElementById('count-detail');
-    
-    try {
-        // Použijeme spolehlivé veřejné API jako fallback, které čte přímo TS3 servery
-        const res = await fetch('https://api.mcsrvstat.us/2/ts.4thib.co.uk');
-        const data = await res.json();
-        
-        if(data.online) {
-            const players = data.players.online;
-            const max = data.players.max;
-            statusText.innerText = `SERVER ONLINE: ${players} / ${max}`;
-            detailText.innerText = `${players} hráčů z ${max} slotů`;
-        } else {
-            statusText.innerText = "SERVER ONLINE (AKTUALIZACE...)";
-            detailText.innerText = "Zjišťuji podrobnosti...";
-        }
-    } catch (e) {
-        statusText.innerText = "SERVER ONLINE";
-    }
-}
-
-// Spustit hned a pak každých 20 sekund
-refreshStatus();
-setInterval(refreshStatus, 20000);
-</script>
-
-</body>
-</html>
+<footer>
+    <div class="container">
+        <h4 class="font-orbitron mb-4">PAŘBA<span class="text-danger">.EU</span> © 2026</h4>
+        <p class="text-white-50 small mb-4">Vytvořeno pro nejlepší gaming zážitek. Připoj se k nám a začni pařit!</p>
+        <div class="d-flex justify-content-center gap-4 fs-3 mb-5">
+            <i class="fab fa-discord"></i>
+            <i class="fab fa-youtube"></i>
+            <i class="fab fa-facebook"></i>
+        </div>
+        <p class="text-muted extra-small">ts.4thib
