@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PAŘBA.EU | Oficiální TS3 Portál</title>
+    <title>PAŘBA.EU | Profesionální TS3 Komunita</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Kanit:wght@300;400;800&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -20,13 +20,14 @@
         .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 80px 20px; }
         .main-title { font-family: 'Orbitron', sans-serif; font-size: clamp(3.5rem, 15vw, 8.5rem); font-weight: 900; filter: drop-shadow(0 0 25px var(--glow)); line-height: 1; margin: 0; text-transform: uppercase; }
         
-        /* STATUS PILL */
+        /* STATUS PILL S IKONKOU */
         .status-pill {
             background: rgba(0,0,0,0.8); border: 2px solid #00ff6a; padding: 12px 35px; border-radius: 50px;
-            color: #00ff6a; font-weight: 900; display: inline-flex; align-items: center; gap: 12px; margin-bottom: 40px;
+            color: #00ff6a; font-weight: 900; display: inline-flex; align-items: center; gap: 15px; margin-bottom: 40px;
             box-shadow: 0 0 20px rgba(0,255,106,0.3); font-size: 1.1rem;
         }
-        .dot { height: 12px; width: 12px; background: #00ff6a; border-radius: 50%; box-shadow: 0 0 10px #00ff6a; animation: pulse 2s infinite; }
+        .ts-logo-small { height: 24px; filter: drop-shadow(0 0 5px #00ff6a); }
+        .dot { height: 10px; width: 10px; background: #00ff6a; border-radius: 50%; animation: pulse 2s infinite; }
         @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
 
         .ip-card {
@@ -43,8 +44,10 @@
             box-shadow: 0 10px 30px rgba(255,0,0,0.4); border: none;
         }
 
-        .content-box { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); padding: 35px; border-radius: 20px; height: 100%; margin-bottom: 20px; }
-        .feature-icon { font-size: 3rem; color: var(--accent); margin-bottom: 20px; }
+        /* SEKCE A IKONY */
+        .content-box { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); padding: 35px; border-radius: 20px; height: 100%; transition: 0.3s; }
+        .content-box:hover { border-color: var(--accent); transform: scale(1.02); }
+        .feature-icon { font-size: 3rem; color: var(--accent); margin-bottom: 20px; text-shadow: 0 0 15px var(--glow); }
         .admin-line { background: rgba(255,0,0,0.05); border-left: 4px solid var(--accent); padding: 15px 25px; border-radius: 0 12px 12px 0; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; }
 
         footer { background: #000; padding: 60px 0; border-top: 2px solid var(--accent); text-align: center; margin-top: 80px; }
@@ -54,37 +57,41 @@
 
 <div class="hero">
     <div class="status-pill">
-        <div class="dot"></div> <span id="ts-status">AKTUALIZACE...</span>
+        <i class="fab fa-teamspeak"></i>
+        <div class="dot"></div> 
+        <span id="ts-status">AKTUALIZACE...</span>
     </div>
 
     <h1 class="main-title">PAŘBA<span style="color:var(--accent)">.EU</span></h1>
-    <p style="letter-spacing: 10px;" class="text-white-50 mt-3 fs-5 text-uppercase">PREMIUM VOICE PORTAL</p>
+    <p style="letter-spacing: 8px;" class="text-white-50 mt-3 fs-5 text-uppercase">TeamSpeak server pro každého</p>
 
     <div class="ip-card" onclick="copyIP()">
-        <h2 style="font-family: monospace; font-size: clamp(2rem, 8vw, 4rem); margin:0;">gamegym.cz</h2>
+        <h2 style="font-family: monospace; font-size: clamp(2rem, 8vw, 4rem); margin:0;">ts3.parba.eu</h2>
         <p class="text-secondary mt-3 mb-0 fw-bold small"><i class="far fa-copy me-2 text-danger"></i>KLIKNI PRO KOPII ADRESY</p>
     </div>
 
-    <a href="ts3server://gamegym.cz?port=9987" class="btn-join">PŘIPOJIT SE TEĎ</a>
+    <a href="ts3server://ts3.parba.eu?port=9987" class="btn-join">PŘIPOJIT SE TEĎ</a>
 
     <div class="container mt-5 pt-5">
         <div class="row g-4 mb-5">
-            <div class="col-md-4"><div class="content-box"><i class="fas fa-shield-alt feature-icon"></i><h4>ANTI-DDoS</h4><p class="text-muted small">Profesionální ochrana Fakaheda.</p></div></div>
-            <div class="col-md-4"><div class="content-box"><i class="fas fa-bolt feature-icon"></i><h4>LOW PING</h4><p class="text-muted small">Okamžitá odezva a čistý hlas.</p></div></div>
-            <div class="col-md-4"><div class="content-box"><i class="fas fa-comments feature-icon"></i><h4>FREE ROOMS</h4><p class="text-muted small">Vlastní kanály pro tvůj tým.</p></div></div>
+            <div class="col-md-4"><div class="content-box"><i class="fas fa-shield-virus feature-icon"></i><h4>ANTI-DDoS</h4><p class="text-muted small">Pokročilá filtrace provozu pro maximální stabilitu.</p></div></div>
+            <div class="col-md-4"><div class="content-box"><i class="fas fa-tachometer-alt feature-icon"></i><h4>VÝKON</h4><p class="text-muted small">Nízká odezva a 99.9% dostupnost díky Fakahedě.</p></div></div>
+            <div class="col-md-4"><div class="content-box"><i class="fas fa-crown feature-icon"></i><h4>VIP SYSTÉM</h4><p class="text-muted small">Speciální ikonky a výhody pro aktivní členy.</p></div></div>
         </div>
 
         <div class="row g-5 text-start">
             <div class="col-lg-6">
-                <h3 class="font-orbitron text-danger mb-4">VEDENÍ SERVERU</h3>
+                <h3 class="font-orbitron text-danger mb-4"><i class="fas fa-users-cog me-3"></i>VEDENÍ SERVERU</h3>
                 <div class="admin-line"><span>Ace321cz</span> <span class="badge bg-danger">MAJITEL</span></div>
                 <div class="admin-line"><span>Admin_1</span> <span class="badge bg-dark border">HL. ADMIN</span></div>
+                <div class="admin-line"><span>Moderátor</span> <span class="badge bg-success">NÁBOR</span></div>
             </div>
             <div class="col-lg-6">
-                <h3 class="font-orbitron text-danger mb-4">PRAVIDLA</h3>
+                <h3 class="font-orbitron text-danger mb-4"><i class="fas fa-gavel me-3"></i>PRAVIDLA</h3>
                 <div class="content-box">
-                    <p><i class="fas fa-check text-danger me-2"></i> Žádné urážky ani nevhodné chování.</p>
-                    <p><i class="fas fa-check text-danger me-2"></i> Zákaz reklamy na jiné portály.</p>
+                    <p><i class="fas fa-check text-danger me-2"></i> Zákaz používání nevhodných jmen a avatarů.</p>
+                    <p><i class="fas fa-check text-danger me-2"></i> Respektuj ostatní uživatele v místnostech.</p>
+                    <p><i class="fas fa-check text-danger me-2"></i> Žádný spam ani reklama v chatu.</p>
                 </div>
             </div>
         </div>
@@ -92,14 +99,21 @@
 </div>
 
 <footer>
-    <h3 class="font-orbitron">PAŘBA.EU © 2026</h3>
-    <p class="text-muted small">Váš domov pro komunikaci</p>
+    <div class="container">
+        <h3 class="font-orbitron">PAŘBA.EU © 2026</h3>
+        <p class="text-muted small mt-2">Oficiální komunita a hlasový portál</p>
+        <div class="fs-4 mt-3">
+            <i class="fab fa-teamspeak me-3"></i>
+            <i class="fab fa-discord me-3"></i>
+            <i class="fab fa-facebook"></i>
+        </div>
+    </div>
 </footer>
 
 <script>
 function copyIP() {
-    navigator.clipboard.writeText('gamegym.cz');
-    alert('IP gamegym.cz byla zkopírována!');
+    navigator.clipboard.writeText('ts3.parba.eu');
+    alert('IP ts3.parba.eu byla zkopírována! Těšíme se na tebe.');
 }
 
 async function getFakahedaStatus() {
