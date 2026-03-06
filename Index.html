@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pařba.eu | Team Speak server zdarma</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Kanit:wght@400;800&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root { 
+            --accent: #ff0000; 
+            --bg: #050505;
+            --glass: rgba(255, 255, 255, 0.03);
+        }
+        
+        body { 
+            background: var(--bg); 
+            color: white; 
+            font-family: 'Kanit', sans-serif;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        /* ANIMOVANÉ POZADÍ */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.9)), 
+                        url('https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=1920');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            border-bottom: 3px solid var(--accent);
+        }
+
+        .main-logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(3rem, 12vw, 8rem);
+            font-weight: 900;
+            text-transform: uppercase;
+            background: linear-gradient(to bottom, #fff, #555);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 20px rgba(255,0,0,0.5));
+        }
+
+        .ip-card {
+            background: var(--glass);
+            border: 2px solid var(--accent);
+            padding: 2rem 4rem;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: 0.3s;
+            backdrop-filter: blur(10px);
+            margin: 2rem 0;
+        }
+
+        .ip-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 40px rgba(255,0,0,0.3);
+        }
+
+        .feature-card {
+            background: var(--glass);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 3rem 1.5rem;
+            border-radius: 20px;
+            transition: 0.3s;
+            height: 100%;
+        }
+
+        .feature-card:hover {
+            border-color: var(--accent);
+            background: rgba(255,0,0,0.05);
+        }
+
+        .status-badge {
+            position: absolute; top: 20px; right: 20px;
+            background: rgba(0,0,0,0.7);
+            padding: 10px 20px;
+            border-radius: 50px;
+            border: 1px solid #333;
+            font-weight: bold;
+        }
+
+        .btn-connect {
+            background: var(--accent);
+            color: white;
+            padding: 1.2rem 3.5rem;
+            border-radius: 5px;
+            font-weight: 800;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: 0.3s;
+            display: inline-block;
+        }
+
+        .btn-connect:hover {
+            background: white; color: black; transform: translateY(-5px);
+        }
+
+        footer { padding: 4rem 0; border-top: 1px solid #222; background: #000; }
+    </style>
+</head>
+<body>
+
+<header class="hero">
+    <div class="status-badge" id="status">
+        <i class="fas fa-circle text-success me-2"></i> SERVER ONLINE
+    </div>
+
+    <img src="https://upload.wikimedia.org/wikipedia/commons/f/f9/TS_Logo_Horizontal_White.png" height="40" class="mb-4" alt="TS3 Logo">
+    <h1 class="main-logo">Pařba.eu</h1>
+    <p class="fs-4 text-uppercase text-danger fw-bold" style="letter-spacing: 5px;">Team Speak server zdarma</p>
+
+    <div class="ip-card" onclick="copyIP()">
+        <h2 class="display-3 fw-bold m-0">ts.4thib.co.uk</h2>
+        <small class="text-secondary">KLIKNI PRO ZKOPIROVÁNÍ IP</small>
+    </div>
+
+    <a href="ts3server://ts.4thib.co.uk" class="btn-connect shadow-lg">VSTOUPIT DO HRY</a>
+</header>
+
+<section class="container py-5 my-5">
+    <div class="row g-4 text-center">
+        <div class="col-md-4">
+            <div class="feature-card">
+                <i class="fas fa-crosshairs fa-4x text-danger mb-4"></i>
+                <h3 class="fw-bold">GAMING KOMUNITA</h3>
+                <p class="text-secondary">Najdi parťáky na CS2, League of Legends nebo Valorant v našich veřejných místnostech.</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="feature-card">
+                <i class="fas fa-shield-alt fa-4x text-danger mb-4"></i>
+                <h3 class="fw-bold">DDOS PROTECTION</h3>
+                <p class="text-secondary">Naše servery jsou chráněny proti útokům, aby tvůj hlas zůstal čistý i během boje.</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="feature-card">
+                <i class="fas fa-headset fa-4x text-danger mb-4"></i>
+                <h3 class="fw-bold">MÍSTNOSTI ZDARMA</h3>
+                <p class="text-secondary">Získej permanentní klanovou místnost pro sebe a své přátele zcela bez poplatků.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="text-center">
+    <div class="container">
+        <h4 class="fw-bold mb-4 text-danger">PAŘBA.EU</h4>
+        <div class="fs-2 mb-4">
+            <i class="fab fa-discord mx-3 text-secondary"></i>
+            <i class="fab fa-facebook mx-3 text-secondary"></i>
+            <i class="fab fa-youtube mx-3 text-secondary"></i>
+        </div>
+        <p class="text-muted small">&copy; 2026 Pařba.eu Team Speak server zdarma</p>
+    </div>
+</footer>
+
+<script>
+function copyIP() {
+    navigator.clipboard.writeText('ts.4thib.co.uk');
+    alert('IP adresa zkopírována! Teď ji vlož do TeamSpeaku.');
+}
+
+async function getStatus() {
+    const el = document.getElementById('status');
+    try {
+        const res = await fetch('https://api.ts3index.com/v1/server/info/?id=147630');
+        const d = await res.json();
+        if(d.status === "online") {
+            el.innerHTML = `<i class="fas fa-circle text-success me-2"></i> ONLINE: ${d.users_online} / ${d.slots}`;
+        }
+    } catch(e) {
+        el.innerHTML = `<i class="fas fa-circle text-success me-2"></i> SERVER ONLINE`;
+    }
+}
+getStatus();
+</
