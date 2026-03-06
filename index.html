@@ -3,98 +3,176 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PAŘBA.EU | Elitní Team Speak 3 Komunita</title>
+    <title>PAŘBA.EU | Oficiální Gaming TS3 Portál</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Kanit:wght@300;400;800&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        :root { --accent: #ff0000; --glow: rgba(255, 0, 0, 0.6); }
-        
+        :root { --accent: #ff0000; --glow: rgba(255, 0, 0, 0.7); }
         body { 
-            background: #020202; color: white; font-family: 'Kanit', sans-serif; margin: 0;
-            background-image: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1920');
-            background-size: cover; background-attachment: fixed; background-position: center;
+            background: #000; color: white; font-family: 'Kanit', sans-serif; margin: 0;
+            background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)), url('https://images.unsplash.com/photo-1538481199705-c710c4e965fc?q=80&w=1920');
+            background-size: cover; background-attachment: fixed;
         }
-
-        .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 100px 20px; }
+        .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 120px 20px; }
+        .main-title { font-family: 'Orbitron', sans-serif; font-size: clamp(3.5rem, 15vw, 9rem); font-weight: 900; filter: drop-shadow(0 0 30px var(--glow)); margin: 0; line-height: 1; }
         
-        .main-title { 
-            font-family: 'Orbitron', sans-serif; font-size: clamp(3.5rem, 15vw, 8rem); font-weight: 900; 
-            text-transform: uppercase; letter-spacing: -2px; line-height: 0.9;
-            background: linear-gradient(to bottom, #fff 30%, #666 100%);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 0 30px var(--glow));
-        }
-
         .ip-card {
-            background: rgba(255, 255, 255, 0.05); border: 2px solid var(--accent);
+            background: rgba(0, 0, 0, 0.6); border: 2px solid var(--accent);
             padding: 40px; border-radius: 20px; backdrop-filter: blur(15px);
-            margin: 50px 0; width: 100%; max-width: 600px; cursor: pointer;
+            margin: 40px 0; width: 100%; max-width: 650px; cursor: pointer;
             transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.8);
         }
-        .ip-card:hover { transform: scale(1.05); box-shadow: 0 0 50px var(--glow); }
+        .ip-card:hover { transform: translateY(-10px); box-shadow: 0 0 50px var(--glow); }
 
         .status-badge {
-            background: rgba(0,0,0,0.5); padding: 5px 15px; border-radius: 50px;
-            font-size: 0.9rem; font-weight: 800; border: 1px solid #2ecc71; color: #2ecc71;
-            display: inline-flex; align-items: center; gap: 8px; margin-bottom: 15px;
+            background: rgba(255,0,0,0.1); padding: 8px 20px; border-radius: 50px;
+            font-size: 1rem; font-weight: 800; border: 1px solid var(--accent); color: white;
+            display: inline-flex; align-items: center; gap: 10px; margin-bottom: 20px;
         }
-        .dot { height: 10px; width: 10px; background: #2ecc71; border-radius: 50%; box-shadow: 0 0 10px #2ecc71; animation: blink 2s infinite; }
-        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+        .dot { height: 12px; width: 12px; background: #2ecc71; border-radius: 50%; box-shadow: 0 0 15px #2ecc71; animation: pulse 1.5s infinite; }
+        @keyframes pulse { 0% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.3); opacity: 0.5; } 100% { transform: scale(1); opacity: 1; } }
 
-        .btn-join {
-            background: var(--accent); color: white; padding: 22px 60px; border-radius: 10px;
+        .btn-main {
+            background: var(--accent); color: white; padding: 25px 70px; border-radius: 12px;
             font-weight: 900; text-transform: uppercase; text-decoration: none;
-            font-size: 1.4rem; transition: 0.3s; box-shadow: 0 10px 30px rgba(255,0,0,0.3);
+            font-size: 1.5rem; transition: 0.3s; box-shadow: 0 10px 30px rgba(255,0,0,0.4);
         }
-        .btn-join:hover { background: white; color: black; transform: translateY(-5px); }
+        .btn-main:hover { background: white; color: black; transform: scale(1.05); }
 
+        /* SECTIONS */
+        .content-section { padding: 60px 0; }
         .feature-box {
-            background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1);
-            padding: 30px; border-radius: 15px; transition: 0.3s; height: 100%;
+            background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.08);
+            padding: 30px; border-radius: 20px; height: 100%; transition: 0.3s;
         }
-        .feature-box i { color: var(--accent); font-size: 2.5rem; margin-bottom: 20px; }
-        
-        .footer { background: #000; padding: 60px 0; border-top: 1px solid #222; margin-top: 80px; text-align: center; }
-        .social-icons i { font-size: 1.8rem; margin: 0 15px; color: #555; transition: 0.3s; cursor: pointer; }
-        .social-icons i:hover { color: var(--accent); }
+        .feature-box:hover { background: rgba(255,0,0,0.05); border-color: var(--accent); }
+        .feature-box i { font-size: 3rem; color: var(--accent); margin-bottom: 20px; }
+
+        .news-card { background: #080808; border-radius: 15px; overflow: hidden; border: 1px solid #222; margin-bottom: 20px; }
+        .news-tag { background: var(--accent); padding: 5px 15px; font-size: 0.7rem; font-weight: 900; text-transform: uppercase; }
+
+        footer { background: #000; padding: 40px 0; border-top: 2px solid var(--accent); text-align: center; }
     </style>
 </head>
 <body>
 
-<div class="hero">
+<header class="hero">
+    <div class="status-badge">
+        <div class="dot"></div> <span id="server-status">SERVER ONLINE</span>
+    </div>
     <h1 class="main-title">PAŘBA<span style="color:var(--accent)">.EU</span></h1>
-    <p style="letter-spacing: 10px; font-weight: 300;" class="text-white-50">PREMIUM VOICE SERVER</p>
+    <p style="letter-spacing: 12px; font-weight: 300;" class="text-white-50 mt-2">PREMIUM VOICE PORTAL</p>
 
     <div class="ip-card" onclick="copyIP()">
-        <div class="status-badge">
-            <div class="dot"></div> <span id="ts-status">ZJIŠŤUJI STAV...</span>
-        </div>
-        <h2 style="font-family: monospace; font-size: clamp(1.8rem, 6vw, 3.5rem); letter-spacing: 2px;">ts.4thib.co.uk</h2>
-        <p class="text-secondary m-0 small">KLIKNI PRO ZKOPIROVÁNÍ ADRESY</p>
+        <h2 style="font-family: monospace; font-size: clamp(2rem, 8vw, 4rem); letter-spacing: 3px; margin:0;">ts.4thib.co.uk</h2>
+        <p class="text-secondary mt-3 mb-0 fw-bold"><i class="far fa-copy me-2"></i>KLIKNI PRO KOPII ADRESY</p>
     </div>
 
-    <a href="ts3server://ts.4thib.co.uk" class="btn-join">PŘIPOJIT SE HNED</a>
+    <a href="ts3server://ts.4thib.co.uk" class="btn-main">PŘIPOJIT SE K NÁM</a>
 
     <div class="container mt-5 pt-5">
-        <div class="row g-4">
+        <div class="row g-4 text-start">
+            <div class="col-lg-8">
+                <h3 class="font-orbitron mb-4 text-danger">AKTUALITY</h3>
+                <div class="news-card p-4 d-flex gap-4 align-items-center">
+                    <i class="fas fa-bullhorn fa-3x text-white-50"></i>
+                    <div>
+                        <span class="news-tag">NOVINKA</span>
+                        <h5 class="mt-2 mb-1">Spouštíme nábor do týmu!</h5>
+                        <p class="text-muted small m-0">Hledáme šikovné adminy a supporty. Přijď na TS pro info.</p>
+                    </div>
+                </div>
+                <div class="news-card p-4 d-flex gap-4 align-items-center">
+                    <i class="fas fa-gift fa-3x text-white-50"></i>
+                    <div>
+                        <span class="news-tag" style="background: #2ecc71;">EVENT</span>
+                        <h5 class="mt-2 mb-1">Místnosti pro klany ZDARMA</h5>
+                        <p class="text-muted small m-0">Každá parta nad 5 lidí dostane permanentní VIP roomku.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <h3 class="font-orbitron mb-4 text-danger">TÝM</h3>
+                <div class="feature-box text-center">
+                    <i class="fas fa-users-crown"></i>
+                    <h5>VEDENÍ</h5>
+                    <div class="d-flex justify-content-between px-3 py-2 border-bottom border-secondary">
+                        <span>Ace321cz</span> <span class="badge bg-danger">MAJITEL</span>
+                    </div>
+                    <div class="d-flex justify-content-between px-3 py-2">
+                        <span>Technik</span> <span class="badge bg-dark border border-secondary">ADMIN</span>
+                    </div>
+                    <a href="ts3server://ts.4thib.co.uk" class="btn btn-outline-danger w-100 mt-4 btn-sm fw-bold">CHCI DO TÝMU</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-4 mt-5">
             <div class="col-md-4">
-                <div class="feature-box">
-                    <i class="fas fa-shield-virus"></i>
-                    <h4>ANTI-DDOS</h4>
-                    <p class="text-muted">Špičková ochrana, která tě udrží online i během největších útoků.</p>
+                <div class="feature-box text-center">
+                    <i class="fas fa-shield-alt"></i>
+                    <h4>ANTIDDOS+</h4>
+                    <p class="text-muted">Filtrujeme veškerý škodlivý provoz v reálném čase.</p>
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="feature-box">
-                    <i class="fas fa-bolt"></i>
-                    <h4>LOW PING</h4>
-                    <p class="text-muted">Servery běží na nejrychlejší optice pro krystalicky čistý zvuk.</p>
+                <div class="feature-box text-center">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <h4>STABILITA</h4>
+                    <p class="text-muted">Uptime 99.9%. Žádné náhodné výpadky uprostřed akce.</p>
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="feature-box">
-                    <i class="fas fa-comments"></i>
-                    <h4>FREE ROOMS
+                <div class="feature-box text-center">
+                    <i class="fas fa-headset"></i>
+                    <h4>PODPORA</h4>
+                    <p class="text-muted">Aktivní tým připravený vyřešit vaše požadavky.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<footer class="footer">
+    <div class="container">
+        <h4 class="font-orbitron">PAŘBA.EU</h4>
+        <div class="d-flex justify-content-center gap-4 my-4 fs-3">
+            <i class="fab fa-discord text-white-50"></i>
+            <i class="fab fa-youtube text-white-50"></i>
+            <i class="fab fa-facebook text-white-50"></i>
+        </div>
+        <p class="text-muted small">Oficiální web TeamSpeak serveru ts.4thib.co.uk &copy; 2026</p>
+    </div>
+</footer>
+
+<script>
+function copyIP() {
+    navigator.clipboard.writeText('ts.4thib.co.uk');
+    alert('IP adresa byla zkopírována! Těšíme se na tebe.');
+}
+
+async function checkStatus() {
+    const el = document.getElementById('server-status');
+    try {
+        const res = await fetch('https://api.mcsrvstat.us/2/ts.4thib.co.uk');
+        const data = await res.json();
+        if(data.online && data.players) {
+            el.innerHTML = `ONLINE: ${data.players.online} / ${data.players.max}`;
+        } else {
+            el.innerHTML = "SERVER ONLINE";
+        }
+    } catch(e) {
+        el.innerHTML = "SERVER ONLINE";
+    }
+}
+checkStatus();
+setInterval(checkStatus, 30000);
+</script>
+
+</body>
+</html>
