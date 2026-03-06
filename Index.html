@@ -24,7 +24,7 @@
             overflow-x: hidden;
         }
 
-        /* ANIMOVANÉ POZADÍ */
+        /* POZADÍ */
         .hero {
             height: 100vh;
             background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.9)), 
@@ -36,40 +36,45 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            border-bottom: 3px solid var(--accent);
+            position: relative;
         }
 
         .main-logo {
             font-family: 'Orbitron', sans-serif;
-            font-size: clamp(3rem, 12vw, 8rem);
+            font-size: clamp(2.5rem, 10vw, 7rem);
             font-weight: 900;
             text-transform: uppercase;
-            background: linear-gradient(to bottom, #fff, #555);
+            background: linear-gradient(to bottom, #fff, #888);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 0 20px rgba(255,0,0,0.5));
+            filter: drop-shadow(0 0 20px rgba(255,0,0,0.6));
+            margin-bottom: 10px;
         }
 
+        /* IP BOX */
         .ip-card {
             background: var(--glass);
             border: 2px solid var(--accent);
-            padding: 2rem 4rem;
-            border-radius: 15px;
+            padding: 20px 40px;
+            border-radius: 12px;
             cursor: pointer;
-            transition: 0.3s;
+            transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             backdrop-filter: blur(10px);
-            margin: 2rem 0;
+            margin: 30px 0;
         }
 
         .ip-card:hover {
             transform: scale(1.05);
-            box-shadow: 0 0 40px rgba(255,0,0,0.3);
+            box-shadow: 0 0 50px rgba(255,0,0,0.4);
         }
 
+        .ip-card h2 { font-family: monospace; font-weight: 800; margin: 0; font-size: clamp(1.5rem, 5vw, 3rem); }
+
+        /* IKONY HER */
         .feature-card {
             background: var(--glass);
             border: 1px solid rgba(255,255,255,0.1);
-            padding: 3rem 1.5rem;
+            padding: 40px 20px;
             border-radius: 20px;
             transition: 0.3s;
             height: 100%;
@@ -78,76 +83,80 @@
         .feature-card:hover {
             border-color: var(--accent);
             background: rgba(255,0,0,0.05);
+            transform: translateY(-10px);
         }
 
         .status-badge {
             position: absolute; top: 20px; right: 20px;
-            background: rgba(0,0,0,0.7);
-            padding: 10px 20px;
+            background: rgba(0,0,0,0.8);
+            padding: 10px 25px;
             border-radius: 50px;
             border: 1px solid #333;
-            font-weight: bold;
+            font-size: 0.9rem;
         }
 
         .btn-connect {
             background: var(--accent);
             color: white;
-            padding: 1.2rem 3.5rem;
+            padding: 18px 50px;
             border-radius: 5px;
             font-weight: 800;
             text-transform: uppercase;
             text-decoration: none;
             transition: 0.3s;
-            display: inline-block;
+            box-shadow: 0 10px 20px rgba(255,0,0,0.2);
         }
 
         .btn-connect:hover {
-            background: white; color: black; transform: translateY(-5px);
+            background: white; color: black; transform: scale(1.05);
         }
 
-        footer { padding: 4rem 0; border-top: 1px solid #222; background: #000; }
+        footer { padding: 60px 0; background: #000; border-top: 1px solid #111; }
     </style>
 </head>
 <body>
 
 <header class="hero">
-    <div class="status-badge" id="status">
-        <i class="fas fa-circle text-success me-2"></i> SERVER ONLINE
+    <div class="status-badge" id="status-box">
+        <i class="fas fa-circle text-success me-2"></i> ZJIŠŤUJI STAV...
     </div>
 
-    <img src="https://upload.wikimedia.org/wikipedia/commons/f/f9/TS_Logo_Horizontal_White.png" height="40" class="mb-4" alt="TS3 Logo">
+    <div class="mb-3">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/f/f9/TS_Logo_Horizontal_White.png" height="35" alt="TS3">
+    </div>
+
     <h1 class="main-logo">Pařba.eu</h1>
-    <p class="fs-4 text-uppercase text-danger fw-bold" style="letter-spacing: 5px;">Team Speak server zdarma</p>
+    <p class="fs-5 text-uppercase text-danger fw-bold mb-4" style="letter-spacing: 5px;">Team Speak server zdarma</p>
 
     <div class="ip-card" onclick="copyIP()">
-        <h2 class="display-3 fw-bold m-0">ts.4thib.co.uk</h2>
-        <small class="text-secondary">KLIKNI PRO ZKOPIROVÁNÍ IP</small>
+        <h2 id="ip-address">ts.4thib.co.uk</h2>
+        <small class="text-secondary text-uppercase">Klikni pro kopii adresy</small>
     </div>
 
-    <a href="ts3server://ts.4thib.co.uk" class="btn-connect shadow-lg">VSTOUPIT DO HRY</a>
+    <a href="ts3server://ts.4thib.co.uk" class="btn-connect">Vstoupit na server</a>
 </header>
 
-<section class="container py-5 my-5">
+<section class="container py-5">
     <div class="row g-4 text-center">
         <div class="col-md-4">
             <div class="feature-card">
-                <i class="fas fa-crosshairs fa-4x text-danger mb-4"></i>
-                <h3 class="fw-bold">GAMING KOMUNITA</h3>
-                <p class="text-secondary">Najdi parťáky na CS2, League of Legends nebo Valorant v našich veřejných místnostech.</p>
+                <i class="fas fa-headset fa-3x text-danger mb-3"></i>
+                <h4 class="fw-bold">MÍSTNOSTI ZDARMA</h4>
+                <p class="text-muted">Permanentní kanál pro tvůj tým nebo partu kamarádů bez jakýchkoliv poplatků.</p>
             </div>
         </div>
         <div class="col-md-4">
             <div class="feature-card">
-                <i class="fas fa-shield-alt fa-4x text-danger mb-4"></i>
-                <h3 class="fw-bold">DDOS PROTECTION</h3>
-                <p class="text-secondary">Naše servery jsou chráněny proti útokům, aby tvůj hlas zůstal čistý i během boje.</p>
+                <i class="fas fa-shield-halved fa-3x text-danger mb-3"></i>
+                <h4 class="fw-bold">ANTI-DDOS</h4>
+                <p class="text-muted">Špičková ochrana, která tě udrží online i během těch největších útoků.</p>
             </div>
         </div>
         <div class="col-md-4">
             <div class="feature-card">
-                <i class="fas fa-headset fa-4x text-danger mb-4"></i>
-                <h3 class="fw-bold">MÍSTNOSTI ZDARMA</h3>
-                <p class="text-secondary">Získej permanentní klanovou místnost pro sebe a své přátele zcela bez poplatků.</p>
+                <i class="fas fa-bolt fa-3x text-danger mb-3"></i>
+                <h4 class="fw-bold">TOP ODEZVA</h4>
+                <p class="text-muted">Minimální latence a křišťálový zvuk díky nejnovější technologii kódování.</p>
             </div>
         </div>
     </div>
@@ -155,33 +164,37 @@
 
 <footer class="text-center">
     <div class="container">
-        <h4 class="fw-bold mb-4 text-danger">PAŘBA.EU</h4>
-        <div class="fs-2 mb-4">
-            <i class="fab fa-discord mx-3 text-secondary"></i>
-            <i class="fab fa-facebook mx-3 text-secondary"></i>
-            <i class="fab fa-youtube mx-3 text-secondary"></i>
+        <h5 class="fw-bold text-danger mb-3">PAŘBA.EU</h5>
+        <div class="d-flex justify-content-center gap-4 mb-4">
+            <i class="fab fa-discord fa-lg text-secondary"></i>
+            <i class="fab fa-facebook fa-lg text-secondary"></i>
+            <i class="fab fa-youtube fa-lg text-secondary"></i>
         </div>
-        <p class="text-muted small">&copy; 2026 Pařba.eu Team Speak server zdarma</p>
+        <p class="text-muted small">&copy; 2026 Pařba.eu - Všechna práva vyhrazena.</p>
     </div>
 </footer>
 
 <script>
 function copyIP() {
-    navigator.clipboard.writeText('ts.4thib.co.uk');
-    alert('IP adresa zkopírována! Teď ji vlož do TeamSpeaku.');
+    const ip = document.getElementById('ip-address').innerText;
+    navigator.clipboard.writeText(ip);
+    alert('IP adresa ' + ip + ' zkopírována!');
 }
 
-async function getStatus() {
-    const el = document.getElementById('status');
+async function checkServer() {
+    const box = document.getElementById('status-box');
     try {
-        const res = await fetch('https://api.ts3index.com/v1/server/info/?id=147630');
-        const d = await res.json();
-        if(d.status === "online") {
-            el.innerHTML = `<i class="fas fa-circle text-success me-2"></i> ONLINE: ${d.users_online} / ${d.slots}`;
+        const response = await fetch('https://api.ts3index.com/v1/server/info/?id=147630');
+        const data = await response.json();
+        if(data.status === "online") {
+            box.innerHTML = `<i class="fas fa-circle text-success me-2"></i> ONLINE: ${data.users_online} / ${data.slots}`;
         }
     } catch(e) {
-        el.innerHTML = `<i class="fas fa-circle text-success me-2"></i> SERVER ONLINE`;
+        box.innerHTML = `<i class="fas fa-circle text-success me-2"></i> SERVER ONLINE`;
     }
 }
-getStatus();
-</
+checkServer();
+</script>
+
+</body>
+</html>
