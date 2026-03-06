@@ -3,210 +3,168 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PAŘBA.EU | Elite Voice & Gaming</title>
+    <title>PAŘBA.EU | Elite Gaming Portal</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Kanit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Kanit:wght@300;500;700;800&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         :root { 
-            --orange: #ff6a00; 
-            --orange-glow: rgba(255, 106, 0, 0.5);
-            --dark-gray: #121212;
-            --card-gray: rgba(25, 25, 25, 0.9);
-            --text-white: #ffffff;
-            --text-gray: #d1d1d1; /* Zvýšený kontrast pro čitelnost */
+            --accent: #ff6a00; 
+            --accent-glow: rgba(255, 106, 0, 0.6);
+            --bg-dark: #050505;
+            --card-bg: rgba(20, 20, 20, 0.95);
+            --text-bright: #ffffff;
+            --text-readable: #f0f0f0; /* Oprava: Mnohem světlejší pro čitelnost */
+            --text-dim: #bbbbbb;
         }
         
-        body { 
-            background-color: #050505; 
-            color: var(--text-white); 
-            font-family: 'Kanit', sans-serif; 
-            margin: 0; 
-            overflow-x: hidden;
-        }
+        body { background: var(--bg-dark); color: var(--text-bright); font-family: 'Kanit', sans-serif; margin: 0; }
 
-        /* DYNAMICKÉ HERNÍ POZADÍ */
-        .bg-manager {
+        /* DYNAMICKÉ POZADÍ */
+        .game-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2;
-            background-size: cover; background-position: center; filter: brightness(20%) saturate(130%);
-            transition: background-image 1.5s ease;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                        url('https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1920');
+            background-size: cover; background-position: center;
         }
-        .overlay-fx { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background: radial-gradient(circle, transparent 20%, #000 100%); }
 
-        /* --- GRAFICKÉ LOGO SEKCE --- */
-        .logo-container {
-            display: flex; align-items: center; justify-content: center; gap: 20px;
-            margin-bottom: 30px; position: relative;
-        }
-        .logo-icon-wrapper {
-            position: relative; font-size: 5rem; color: var(--orange);
-            filter: drop-shadow(0 0 20px var(--orange-glow));
-        }
-        .mic-icon { position: absolute; bottom: 0; right: -10px; font-size: 2rem; color: #fff; }
+        /* GRAFICKÉ LOGO */
+        .main-logo { display: flex; align-items: center; gap: 15px; margin-bottom: 20px; }
+        .logo-icon { font-size: 5rem; color: var(--accent); filter: drop-shadow(0 0 15px var(--accent-glow)); position: relative; }
+        .logo-icon .fa-microphone-lines { position: absolute; bottom: 5px; right: -5px; font-size: 2rem; color: #fff; }
         
-        .brand-text { font-family: 'Orbitron', sans-serif; text-align: left; }
-        .brand-text h1 { 
-            font-size: clamp(3rem, 10vw, 7rem); font-weight: 900; margin: 0; line-height: 0.8;
-            letter-spacing: -2px; text-transform: uppercase;
+        .logo-text h1 { 
+            font-family: 'Orbitron'; font-size: clamp(3rem, 10vw, 6.5rem); font-weight: 900; 
+            margin: 0; line-height: 0.8; letter-spacing: -2px;
         }
-        .brand-text h1 span { color: var(--orange); }
-        .brand-tagline { 
-            font-size: 1.1rem; letter-spacing: 8px; color: var(--text-gray); 
-            text-transform: uppercase; margin-top: 10px; display: block;
+        .logo-text h1 span { color: var(--accent); }
+        .tagline { display: block; letter-spacing: 8px; font-size: 1rem; color: var(--text-dim); text-transform: uppercase; margin-top: 10px; }
+
+        /* STATUS PILL */
+        .status-pill {
+            background: rgba(0,0,0,0.8); border: 2px solid #00ff88; padding: 10px 25px; border-radius: 50px;
+            display: inline-flex; align-items: center; gap: 12px; margin-bottom: 40px;
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.2);
         }
+        .dot { width: 12px; height: 12px; background: #00ff88; border-radius: 50%; animation: pulse 2s infinite; }
+        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
 
-        /* STATUS */
-        .live-indicator {
-            background: rgba(0,0,0,0.8); border: 1px solid var(--orange); padding: 8px 25px;
-            border-radius: 4px; display: inline-flex; align-items: center; gap: 15px;
-            box-shadow: 0 0 20px var(--orange-glow); margin-bottom: 40px;
+        /* IP BOX - ČISTÁ ČITELNOST */
+        .ip-container {
+            background: var(--card-bg); border: 1px solid rgba(255,255,255,0.1); border-left: 6px solid var(--accent);
+            padding: 40px; border-radius: 12px; width: 100%; max-width: 750px; text-align: center;
+            cursor: pointer; transition: 0.3s; backdrop-filter: blur(10px); margin-bottom: 30px;
         }
-        .status-pulse { width: 12px; height: 12px; background: #00ff88; border-radius: 50%; box-shadow: 0 0 15px #00ff88; animation: pulse 2s infinite; }
-        @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(0.8); } }
+        .ip-container:hover { transform: translateY(-5px); border-color: var(--accent); box-shadow: 0 20px 50px rgba(0,0,0,0.9); }
+        .ip-container h2 { font-family: 'Orbitron'; font-size: clamp(2rem, 7vw, 4.5rem); margin: 10px 0; color: #fff; }
+        .ip-container p { color: var(--accent); font-weight: 800; letter-spacing: 2px; margin: 0; }
 
-        /* IP ADRESA KARTA */
-        .ip-card-pro {
-            background: var(--card-gray); border: 1px solid rgba(255,255,255,0.05); border-top: 5px solid var(--orange);
-            padding: 40px; border-radius: 8px; max-width: 750px; width: 100%; backdrop-filter: blur(10px);
-            cursor: pointer; transition: 0.3s; position: relative; text-align: center;
+        /* VLASTNOSTI - OPRAVA KONTRASTU */
+        .feature-card {
+            background: rgba(30, 30, 30, 0.8); border: 1px solid rgba(255,255,255,0.05);
+            padding: 45px 30px; border-radius: 15px; height: 100%; transition: 0.3s;
         }
-        .ip-card-pro:hover { transform: translateY(-5px); border-color: #fff; box-shadow: 0 20px 60px rgba(0,0,0,0.8); }
-        .ip-card-pro h2 { font-family: 'Orbitron'; font-size: clamp(1.8rem, 6vw, 4rem); margin: 10px 0; color: #fff; }
-        .ip-card-pro p { color: var(--orange); font-weight: 800; text-transform: uppercase; letter-spacing: 3px; margin: 0; }
+        .feature-card:hover { background: rgba(40, 40, 40, 0.95); border-color: var(--accent); }
+        .feature-icon { font-size: 3.5rem; color: var(--accent); margin-bottom: 25px; filter: drop-shadow(0 0 10px var(--accent-glow)); }
+        .feature-card h4 { font-family: 'Orbitron'; font-size: 1.5rem; color: #fff; margin-bottom: 15px; }
+        .feature-card p { color: var(--text-readable); font-size: 1.1rem; line-height: 1.6; } /* Světlejší text */
 
-        /* KARTY VLASTNOSTÍ */
-        .feature-box {
-            background: var(--card-gray); border: 1px solid rgba(255,255,255,0.05); padding: 40px;
-            border-radius: 12px; height: 100%; transition: 0.3s;
+        /* SEKCE SCREENSHOTŮ - FIX PRO CHYBU */
+        .screen-box {
+            position: relative; border-radius: 12px; overflow: hidden; border: 2px solid rgba(255,255,255,0.1);
+            aspect-ratio: 16/9; margin-bottom: 20px; background: #1a1a1a; /* Náhradní barva, pokud obr. chybí */
         }
-        .feature-box:hover { border-color: var(--orange); background: rgba(35,35,35,0.95); }
-        .f-icon { font-size: 3.5rem; color: var(--orange); margin-bottom: 25px; display: block; }
-        .feature-box h4 { font-family: 'Orbitron'; font-size: 1.5rem; margin-bottom: 15px; color: #fff; }
-        .feature-box p { color: var(--text-gray); font-size: 1.05rem; line-height: 1.6; }
+        .screen-box img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+        .screen-box:hover img { transform: scale(1.1); }
+        .screen-info { position: absolute; top: 15px; right: 15px; background: var(--accent); padding: 4px 15px; border-radius: 4px; font-weight: 800; font-size: 0.8rem; }
 
-        /* GALERIE SCREENSHOTŮ */
-        .screen-thumb {
-            position: relative; border-radius: 8px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1);
-            aspect-ratio: 16/9; margin-bottom: 20px;
+        .btn-join {
+            background: var(--accent); color: #fff !important; padding: 22px 60px; border-radius: 6px;
+            font-weight: 900; text-transform: uppercase; text-decoration: none; font-size: 1.5rem;
+            display: inline-block; transition: 0.3s; box-shadow: 0 10px 30px var(--accent-glow); border: none;
         }
-        .screen-thumb img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; filter: grayscale(30%); }
-        .screen-thumb:hover img { filter: grayscale(0%) scale(1.1); }
-        .screen-tag { position: absolute; top: 15px; right: 15px; background: var(--orange); color: #fff; padding: 2px 12px; border-radius: 4px; font-size: 0.7rem; font-weight: 800; }
+        .btn-join:hover { background: #fff; color: var(--accent) !important; transform: scale(1.05); }
 
-        .btn-action {
-            background: var(--orange); color: #fff !important; padding: 20px 50px; border-radius: 4px;
-            font-weight: 900; text-transform: uppercase; text-decoration: none; font-size: 1.4rem;
-            display: inline-block; margin-top: 30px; transition: 0.3s; box-shadow: 0 10px 30px var(--orange-glow);
-        }
-        .btn-action:hover { background: #fff; color: var(--orange) !important; transform: scale(1.05); }
-
-        .section-title { font-family: 'Orbitron'; font-size: clamp(2rem, 5vw, 3.5rem); text-align: center; margin-bottom: 60px; }
-        .section-title span { color: var(--orange); }
-
-        footer { background: #000; padding: 80px 0 40px; border-top: 2px solid var(--orange); text-align: center; margin-top: 100px; }
+        footer { background: #000; padding: 60px 0; border-top: 3px solid var(--accent); text-align: center; margin-top: 80px; }
     </style>
 </head>
 <body>
 
-<div class="bg-manager" id="bgSlider"></div>
-<div class="overlay-fx"></div>
+<div class="game-overlay"></div>
 
-<div class="container-fluid min-vh-100 d-flex flex-column justify-content-center align-items-center p-4">
+<div class="container min-vh-100 d-flex flex-column justify-content-center align-items-center py-5">
     
-    <div class="live-indicator">
-        <div class="status-pulse"></div>
-        <span id="server-status" style="font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">NAČÍTÁNÍ PORTÁLU...</span>
+    <div class="status-pill">
+        <div class="dot"></div>
+        <span id="live-status" style="font-weight: 800; color: #00ff88; letter-spacing: 1px;">ZJIŠŤUJI STAV...</span>
     </div>
 
-    <div class="logo-container">
-        <div class="logo-icon-wrapper">
-            <i class="fas fa-headset"></i> <i class="fas fa-microphone-alt mic-icon"></i> </div>
-        <div class="brand-text">
+    <div class="main-logo">
+        <div class="logo-icon">
+            <i class="fas fa-headset"></i>
+            <i class="fas fa-microphone-lines"></i>
+        </div>
+        <div class="logo-text">
             <h1>PAŘBA<span>.EU</span></h1>
-            <span class="brand-tagline">Premium Gaming Voice</span>
+            <span class="tagline">Premium Voice Portal</span>
         </div>
     </div>
 
-    <div class="ip-card-pro" onclick="copyIP()">
-        <p>OFICIÁLNÍ TEAMSPEAK ADRESA</p>
-        <h2>ts3.parba.eu</h2>
-        <small style="color:var(--text-gray)"><i class="far fa-copy me-2"></i>KLIKNI PRO RYCHLÉ ZKOPÍROVÁNÍ</small>
+    <div class="ip-container" onclick="copyIP()">
+        <p>OFICIÁLNÍ ADRESA SERVERU</p>
+        <h2>gamegym.cz</h2>
+        <small style="color:var(--text-dim)"><i class="far fa-copy me-2"></i>KLIKNI PRO ZKOPÍROVÁNÍ</small>
     </div>
 
-    <a href="ts3server://ts3.parba.eu?port=9987" class="btn-action">PŘIPOJIT SE DO HRY</a>
+    <a href="ts3server://gamegym.cz" class="btn-join">PŘIPOJIT SE TEĎ</a>
 </div>
 
-<div class="container py-5">
-    
-    <h2 class="section-title">PROČ HRÁT U <span>NÁS?</span></h2>
-    <div class="row g-4 mb-5">
+<div class="container pb-5">
+    <h2 class="text-center font-orbitron mb-5" style="font-size: 2.5rem;">NAŠE <span>TECHNOLOGIE</span></h2>
+    <div class="row g-4">
         <div class="col-lg-4">
-            <div class="feature-box">
-                <i class="fas fa-tachometer-alt f-icon"></i>
+            <div class="feature-card text-center">
+                <i class="fas fa-gauge-high feature-icon"></i>
                 <h4>LOW PING HW</h4>
-                <p>Naše servery běží na high-end NVMe discích a procesorech s vysokým taktem pro minimální latenci.</p>
+                <p>Servery hostované v Praze zajišťují nejnižší možnou odezvu pro CZ/SK komunitu. Žádné lagy v rankedu.</p>
             </div>
         </div>
         <div class="col-lg-4">
-            <div class="feature-box">
-                <i class="fas fa-shield-virus f-icon"></i>
+            <div class="feature-card text-center">
+                <i class="fas fa-shield-halved feature-icon"></i>
                 <h4>DDoS PROTECTION</h4>
-                <p>Fakaheda.eu infrastruktura nás chrání před všemi běžnými typy útoků. Tvůj hlas bude vždy slyšet.</p>
+                <p>Pokročilá filtrace provozu chrání vaši komunikaci před útoky. Stabilita 99.9% je náš standard.</p>
             </div>
         </div>
         <div class="col-lg-4">
-            <div class="feature-box">
-                <i class="fas fa-headphones-alt f-icon"></i>
-                <h4>HD AUDIO KVALITA</h4>
-                <p>Používáme nejnovější Opus Voice kodeky pro krystalicky čistý zvuk bez zkreslení.</p>
+            <div class="feature-card text-center">
+                <i class="fas fa-microchip feature-icon"></i>
+                <h4>HIGH SLOTS</h4>
+                <p>Kapacita 140 slotů umožňuje bezproblémový chod pro velké klany i náhodné hráče.</p>
             </div>
         </div>
     </div>
 
-    <h2 class="section-title mt-5">ŽIVĚ ZE <span>SERVERU</span></h2>
+    <h2 class="text-center font-orbitron my-5 pt-5">ŽIVĚ ZE <span>SERVERU</span></h2>
     <div class="row g-4">
         <div class="col-md-4">
-            <div class="screen-thumb">
-                <img src="4088.jpg" alt="TS3 Stats">
-                <span class="screen-tag">STATISTIKY</span>
+            <div class="screen-box">
+                <img src="4088.jpg" alt="Status Serveru">
+                <div class="screen-info">STATISTIKY</div>
             </div>
         </div>
         <div class="col-md-4">
-            <div class="screen-thumb">
+            <div class="screen-box">
                 <img src="4084.jpg" alt="Mobile UI">
-                <span class="screen-tag">MOBILNÍ PŘÍSTUP</span>
+                <div class="screen-info">MOBILE</div>
             </div>
         </div>
         <div class="col-md-4">
-            <div class="screen-thumb">
+            <div class="screen-box">
                 <img src="4090.jpg" alt="HW Specs">
-                <span class="screen-tag">TECHNOLOGIE</span>
-            </div>
-        </div>
-    </div>
-
-    <div class="row mt-5 pt-5 align-items-center">
-        <div class="col-lg-6">
-            <h2 class="section-title text-start">AKTIVNÍ <span>KOMUNITY</span></h2>
-            <div class="d-flex align-items-center mb-3">
-                <i class="fas fa-crosshairs me-3 text-orange fs-2"></i>
-                <span class="fs-4 fw-bold">Counter-Strike 2 (Ranked & Mix)</span>
-            </div>
-            <div class="d-flex align-items-center mb-3">
-                <i class="fas fa-car-side me-3 text-orange fs-2"></i>
-                <span class="fs-4 fw-bold">GTA V: Roleplay & FiveM</span>
-            </div>
-            <div class="d-flex align-items-center">
-                <i class="fas fa-robot me-3 text-orange fs-2"></i>
-                <span class="fs-4 fw-bold">League of Legends & Valorant</span>
-            </div>
-        </div>
-        <div class="col-lg-6">
-            <div class="feature-box" style="border-left: 4px solid var(--orange);">
-                <h4>STÁLÁ MÍSTNOST ZDARMA</h4>
-                <p>Chceš pro svůj tým vlastní kout? Stačí se připojit a v Lobby požádat o trvalý kanál. Dostaneš plná práva i vlastní ikony.</p>
+                <div class="screen-info">TECHNOLOGIE</div>
             </div>
         </div>
     </div>
@@ -214,44 +172,29 @@
 
 <footer>
     <div class="container">
-        <h2 class="brand-text text-center mb-4">PAŘBA<span>.EU</span></h2>
-        <a href="mailto:ace321cz@gmail.com" class="text-white text-decoration-none fs-3 fw-bold">ace321cz@gmail.com</a>
-        <p class="mt-4 text-muted">© 2026 Oficiální TeamSpeak Komunita. Powered by Fakaheda.</p>
+        <h3 class="font-orbitron mb-4">PAŘBA<span>.EU</span></h3>
+        <p class="mb-4">Máš dotaz? Piš na: <a href="mailto:ace321cz@gmail.com" style="color:var(--accent); text-decoration: none; font-weight: 700;">ace321cz@gmail.com</a></p>
+        <p class="text-muted small">© 2026 PAŘBA.EU | Powered by Fakaheda.eu infrastructure.</p>
     </div>
 </footer>
 
 <script>
-// SEZNAM HERNÍCH POZADÍ (STŘÍDÁNÍ)
-const bgImages = [
-    'https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1920',
-    'https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=1920',
-    'https://images.unsplash.com/photo-1552820728-8b83bb6b773f?q=80&w=1920'
-];
-let currentIdx = 0;
-function rotateBg() {
-    document.getElementById('bgSlider').style.backgroundImage = `url(${bgImages[currentIdx]})`;
-    currentIdx = (currentIdx + 1) % bgImages.length;
-}
-setInterval(rotateBg, 7000); rotateBg();
-
-// KOPIE IP
 function copyIP() {
-    navigator.clipboard.writeText('ts3.parba.eu');
-    alert('IP Adresa ts3.parba.eu byla zkopírována!');
+    navigator.clipboard.writeText('gamegym.cz');
+    alert('Adresa gamegym.cz byla zkopírována!');
 }
 
-// LIVE DATA Z FAKAHEDY
-async function fetchServer() {
-    const statusText = document.getElementById('server-status');
+async function updateStatus() {
+    const el = document.getElementById('live-status');
     try {
-        const response = await fetch('https://query.fakaheda.eu/82.208.17.97:6647.feed');
-        const data = await response.json();
+        const res = await fetch('https://query.fakaheda.eu/82.208.17.97:6647.feed');
+        const data = await res.json();
         if(data.status === "Online") {
-            statusText.innerHTML = `LIVE: ${data.players} / ${data.slots} HRÁČŮ ONLINE`;
+            el.innerHTML = `ONLINE: ${data.players} / ${data.slots} HRÁČŮ`;
         }
-    } catch(e) { statusText.innerHTML = "SERVER ONLINE (PŘIPOJ SE)"; }
+    } catch(e) { el.innerHTML = "SERVER ONLINE"; }
 }
-fetchServer(); setInterval(fetchServer, 30000);
+updateStatus(); setInterval(updateStatus, 30000);
 </script>
 
 </body>
