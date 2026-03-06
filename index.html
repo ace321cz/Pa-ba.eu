@@ -3,177 +3,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PAŘBA.EU | Elitní TeamSpeak 3 Komunita</title>
+    <title>PAŘBA.EU | Elitní TS3 Portál</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Kanit:wght@300;400;800&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        :root { --accent: #ff0000; --glow: rgba(255, 0, 0, 0.8); --glass: rgba(255,255,255,0.03); }
+        :root { --accent: #ff0000; --glow: rgba(255, 0, 0, 0.8); }
         body { 
             background: #000; color: white; font-family: 'Kanit', sans-serif; margin: 0;
             background-image: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.95)), url('https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1920');
             background-size: cover; background-attachment: fixed; background-position: center;
         }
 
-        /* HERO SEKCE */
-        .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 100px 20px; }
-        .main-title { font-family: 'Orbitron', sans-serif; font-size: clamp(3.5rem, 15vw, 9rem); font-weight: 900; filter: drop-shadow(0 0 30px var(--glow)); line-height: 0.9; margin: 0; text-transform: uppercase; }
+        .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 80px 20px; }
+        .main-title { font-family: 'Orbitron', sans-serif; font-size: clamp(3.5rem, 15vw, 8.5rem); font-weight: 900; filter: drop-shadow(0 0 25px var(--glow)); line-height: 1; margin: 0; text-transform: uppercase; }
         
+        /* STATUS PILL */
         .status-pill {
-            background: rgba(0,0,0,0.7); border: 1px solid #00ff6a; padding: 12px 30px; border-radius: 50px;
-            color: #00ff6a; font-weight: 800; display: inline-flex; align-items: center; gap: 12px; margin-bottom: 40px;
-            box-shadow: 0 0 20px rgba(0,255,106,0.2);
+            background: rgba(0,0,0,0.8); border: 2px solid #00ff6a; padding: 12px 35px; border-radius: 50px;
+            color: #00ff6a; font-weight: 900; display: inline-flex; align-items: center; gap: 12px; margin-bottom: 40px;
+            box-shadow: 0 0 20px rgba(0,255,106,0.3);
         }
         .dot { height: 12px; width: 12px; background: #00ff6a; border-radius: 50%; box-shadow: 0 0 10px #00ff6a; animation: pulse 2s infinite; }
-        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
+        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
 
         .ip-card {
-            background: var(--glass); border: 2px solid var(--accent);
+            background: rgba(255,255,255,0.03); border: 2px solid var(--accent);
             padding: 40px; border-radius: 20px; backdrop-filter: blur(15px);
-            margin: 40px 0; width: 100%; max-width: 650px; cursor: pointer; transition: 0.4s;
-            box-shadow: 0 15px 50px rgba(0,0,0,0.6);
+            margin: 35px 0; width: 100%; max-width: 650px; cursor: pointer; transition: 0.4s;
         }
-        .ip-card:hover { transform: translateY(-10px); box-shadow: 0 0 50px var(--glow); }
+        .ip-card:hover { transform: translateY(-8px); box-shadow: 0 0 50px var(--glow); }
 
         .btn-join {
             background: var(--accent); color: white !important; padding: 22px 60px; border-radius: 12px;
             font-weight: 900; text-transform: uppercase; text-decoration: none;
-            font-size: 1.5rem; transition: 0.3s; display: inline-block;
+            font-size: 1.6rem; transition: 0.3s; display: inline-block;
             box-shadow: 0 10px 30px rgba(255,0,0,0.4); border: none;
         }
-        .btn-join:hover { background: white; color: black !important; transform: scale(1.05); }
 
-        /* SECTIONS */
-        .section-title { font-family: 'Orbitron', sans-serif; color: var(--accent); margin-bottom: 40px; text-transform: uppercase; letter-spacing: 3px; }
-        .content-box { background: var(--glass); border: 1px solid rgba(255,255,255,0.1); padding: 35px; border-radius: 20px; height: 100%; transition: 0.3s; }
-        .content-box:hover { border-color: var(--accent); background: rgba(255,0,0,0.05); }
+        .content-box { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); padding: 35px; border-radius: 20px; height: 100%; margin-bottom: 20px; }
         .feature-icon { font-size: 3rem; color: var(--accent); margin-bottom: 20px; }
+        .admin-line { background: rgba(255,0,0,0.05); border-left: 4px solid var(--accent); padding: 15px 25px; border-radius: 0 12px 12px 0; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; }
 
-        /* VEDENÍ LIST */
-        .admin-line { 
-            background: rgba(255,0,0,0.05); border-left: 4px solid var(--accent); 
-            padding: 15px 25px; border-radius: 0 12px 12px 0; margin-bottom: 12px; 
-            display: flex; justify-content: space-between; align-items: center; 
-        }
-
-        /* FAQ */
-        .faq-item { border-bottom: 1px solid rgba(255,255,255,0.1); padding: 15px 0; }
-        .faq-q { color: var(--accent); font-weight: 800; margin-bottom: 5px; }
-
-        footer { background: #000; padding: 80px 0; border-top: 2px solid var(--accent); text-align: center; margin-top: 100px; }
+        footer { background: #000; padding: 60px 0; border-top: 2px solid var(--accent); text-align: center; margin-top: 80px; }
     </style>
 </head>
 <body>
 
 <div class="hero">
     <div class="status-pill">
-        <div class="dot"></div> <span id="player-status">SERVER ONLINE</span>
+        <div class="dot"></div> <span id="ts-status">PŘIPOJOVÁNÍ...</span>
     </div>
 
     <h1 class="main-title">PAŘBA<span style="color:var(--accent)">.EU</span></h1>
-    <p style="letter-spacing: 12px; font-weight: 300;" class="text-white-50 mt-3 fs-5">PREMIUM VOICE PORTAL</p>
+    <p style="letter-spacing: 10px;" class="text-white-50 mt-3 fs-5 text-uppercase">Oficiální TeamSpeak Portál</p>
 
     <div class="ip-card" onclick="copyIP()">
         <h2 style="font-family: monospace; font-size: clamp(2rem, 8vw, 4rem); margin:0;">gamegym.cz</h2>
-        <p class="text-secondary mt-3 mb-0 fw-bold"><i class="far fa-copy me-2 text-danger"></i>KLIKNI PRO KOPII ADRESY</p>
+        <p class="text-secondary mt-3 mb-0 fw-bold small"><i class="far fa-copy me-2 text-danger"></i>KLIKNI PRO KOPII ADRESY</p>
     </div>
 
-    <a href="ts3server://gamegym.cz?port=9987" class="btn-join">PŘIPOJIT SE TEĎ</a>
+    <a href="ts3server://gamegym.cz?port=9987" class="btn-join">VSTOUPIT NA SERVER</a>
 
     <div class="container mt-5 pt-5">
         <div class="row g-4 mb-5">
-            <div class="col-md-4">
-                <div class="content-box">
-                    <i class="fas fa-shield-alt feature-icon"></i>
-                    <h4>ANTI-DDoS+</h4>
-                    <p class="text-muted">Filtrujeme veškerý škodlivý provoz pro váš klidný zážitek.</p>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="content-box">
-                    <i class="fas fa-bolt feature-icon"></i>
-                    <h4>LOW PING</h4>
-                    <p class="text-muted">Křišťálově čistý zvuk díky dedikované optické síti.</p>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="content-box">
-                    <i class="fas fa-comments feature-icon"></i>
-                    <h4>FREE ROOMS</h4>
-                    <p class="text-muted">Vlastní permanentní místnosti pro každého zcela zdarma.</p>
-                </div>
-            </div>
+            <div class="col-md-4"><div class="content-box"><i class="fas fa-shield-alt feature-icon"></i><h4>ANTI-DDoS</h4><p class="text-muted small">Ochrana na úrovni Fakaheda.eu.</p></div></div>
+            <div class="col-md-4"><div class="col-md-4-inner content-box"><i class="fas fa-bolt feature-icon"></i><h4>LOW PING</h4><p class="text-muted small">Okamžitá odezva v rámci ČR/SK.</p></div></div>
+            <div class="col-md-4"><div class="content-box"><i class="fas fa-comments feature-icon"></i><h4>FREE ROOMS</h4><p class="text-muted small">Permanentní místnosti pro tvůj tým.</p></div></div>
         </div>
 
-        <div class="row g-5 mt-5 text-start">
+        <div class="row g-5 text-start">
             <div class="col-lg-6">
-                <h2 class="section-title">VEDENÍ PROJEKTU</h2>
+                <h3 class="font-orbitron text-danger mb-4 text-uppercase">Vedení Projektu</h3>
                 <div class="admin-line"><span>Ace321cz</span> <span class="badge bg-danger">MAJITEL</span></div>
                 <div class="admin-line"><span>Admin_1</span> <span class="badge bg-dark border">HL. ADMIN</span></div>
-                <div class="admin-line"><span>Technik</span> <span class="badge bg-primary">SUPPORT</span></div>
-                <div class="admin-line"><span>Moderátor</span> <span class="badge bg-success">NÁBOR</span></div>
+                <div class="admin-line"><span>Technik</span> <span class="badge bg-primary">TECHNIK</span></div>
             </div>
             <div class="col-lg-6">
-                <h2 class="section-title">PRAVIDLA SERVERU</h2>
+                <h3 class="font-orbitron text-danger mb-4 text-uppercase">Pravidla</h3>
                 <div class="content-box">
-                    <div class="mb-3"><i class="fas fa-check text-danger me-2"></i> Slušné chování a respekt k ostatním.</div>
-                    <div class="mb-3"><i class="fas fa-check text-danger me-2"></i> Zákaz reklamy na cizí weby a servery.</div>
-                    <div class="mb-3"><i class="fas fa-check text-danger me-2"></i> Nespamování poke a soukromých zpráv.</div>
-                    <div class="mb-3"><i class="fas fa-check text-danger me-2"></i> Zákaz používání měničů hlasu.</div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row mt-5 pt-5 text-start">
-            <div class="col-12">
-                <h2 class="section-title text-center">JAK SE PŘIPOJIT?</h2>
-                <div class="row g-4 mt-2">
-                    <div class="col-md-3">
-                        <div class="content-box text-center">
-                            <h2 class="text-danger">1</h2>
-                            <p>Stáhni si klienta TeamSpeak 3.</p>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="content-box text-center">
-                            <h2 class="text-danger">2</h2>
-                            <p>Klikni na tlačítko "Connections".</p>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="content-box text-center">
-                            <h2 class="text-danger">3</h2>
-                            <p>Zadej naši IP: <b>gamegym.cz</b></p>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="content-box text-center">
-                            <h2 class="text-danger">4</h2>
-                            <p>Užívej si kvalitní zvuk!</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row mt-5 pt-5 text-start">
-            <div class="col-12">
-                <h2 class="section-title">ČASTÉ DOTAZY (FAQ)</h2>
-                <div class="content-box">
-                    <div class="faq-item">
-                        <div class="faq-q">Jak získám vlastní místnost?</div>
-                        <div class="faq-a text-muted">Stačí napsat komukoliv z vedení nebo využít automatický bot v "Lobby".</div>
-                    </div>
-                    <div class="faq-item">
-                        <div class="faq-q">Je server opravdu zdarma?</div>
-                        <div class="faq-a text-muted">Ano, veškeré služby, ikonky a kanály jsou pro komunitu bez poplatků.</div>
-                    </div>
-                    <div class="faq-item">
-                        <div class="faq-q">Můžu se stát členem týmu?</div>
-                        <div class="faq-a text-muted">Nábory probíhají pravidelně, sleduj novinky v Lobby kanálu.</div>
-                    </div>
+                    <p><i class="fas fa-check text-danger me-2"></i> Žádné urážky ani nevhodné chování.</p>
+                    <p><i class="fas fa-check text-danger me-2"></i> Zákaz reklamy v jakékoliv podobě.</p>
+                    <p><i class="fas fa-check text-danger me-2"></i> Respektuj pokyny administrátorů.</p>
                 </div>
             </div>
         </div>
@@ -181,40 +94,40 @@
 </div>
 
 <footer>
-    <div class="container">
-        <h2 class="font-orbitron mb-4">PAŘBA.EU</h2>
-        <div class="d-flex justify-content-center gap-4 mb-4 fs-2">
-            <i class="fab fa-discord" style="cursor:pointer"></i>
-            <i class="fab fa-youtube" style="cursor:pointer"></i>
-            <i class="fab fa-facebook" style="cursor:pointer"></i>
-        </div>
-        <p class="text-muted small">© 2026 Oficiální TeamSpeak Portál Pařba.eu. Všechna práva vyhrazena.</p>
-    </div>
+    <h3 class="font-orbitron">PAŘBA.EU © 2026</h3>
+    <p class="text-muted small mt-2">Vytvořeno pro komunitu</p>
 </footer>
 
 <script>
 function copyIP() {
     navigator.clipboard.writeText('gamegym.cz');
-    alert('IP gamegym.cz byla zkopírována! Těšíme se na tebe.');
+    alert('IP gamegym.cz byla zkopírována!');
 }
 
-async function updateStatus() {
-    const el = document.getElementById('player-status');
+// FAKAHEDA JSON QUERY SCRIPT
+async function getFakahedaStatus() {
+    const el = document.getElementById('ts-status');
+    // U Fakahedy musíš mít v Control Panelu povolený "JSON Status"
+    // Port 29987 je u Fakahedy standardní pro Query, pokud máš jiný, přepiš ho
+    const url = "https://www.fakaheda.eu/api/server-status/gamegym.cz:9987.json";
+
     try {
-        const response = await fetch('https://api.mcsrvstat.us/2/gamegym.cz');
+        const response = await fetch(url);
         const data = await response.json();
         
-        if (data.online && data.players) {
-            el.innerHTML = `ONLINE: ${data.players.online} / ${data.players.max}`;
+        if (data && data.status === "online") {
+            el.innerHTML = `ONLINE: ${data.players} / ${data.slots}`;
         } else {
             el.innerHTML = "SERVER ONLINE";
         }
     } catch (e) {
+        // Fallback pokud Fakaheda API zrovna neodpovídá
         el.innerHTML = "SERVER ONLINE";
     }
 }
-updateStatus();
-setInterval(updateStatus, 30000);
+
+getFakahedaStatus();
+setInterval(getFakahedaStatus, 30000);
 </script>
 
 </body>
