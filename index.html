@@ -17,26 +17,20 @@
             background-size: cover; background-attachment: fixed;
         }
 
-        /* HERO SEKCE */
         .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 100px 20px; }
         .main-title { font-family: 'Orbitron', sans-serif; font-size: clamp(3rem, 12vw, 8rem); font-weight: 900; filter: drop-shadow(0 0 30px var(--glow)); line-height: 1; margin: 0; text-transform: uppercase; }
-        .sub-title { letter-spacing: 8px; font-weight: 300; color: rgba(255,255,255,0.6); margin-top: 10px; text-transform: uppercase; }
-
-        /* STATUS */
-        .status-badge {
-            background: rgba(0,0,0,0.8); border: 1px solid #00ff6a; padding: 8px 20px; border-radius: 50px;
-            color: #00ff6a; font-weight: 800; display: inline-flex; align-items: center; gap: 10px; margin-bottom: 30px;
-            box-shadow: 0 0 15px rgba(0,255,106,0.3);
+        
+        /* OPRAVENÝ STATUS BOX */
+        .status-container {
+            background: rgba(0,0,0,0.8); border: 1px solid #00ff6a; padding: 15px; border-radius: 15px;
+            margin-bottom: 30px; min-width: 280px; box-shadow: 0 0 20px rgba(0,255,106,0.2);
         }
-        .dot { height: 10px; width: 10px; background: #00ff6a; border-radius: 50%; box-shadow: 0 0 10px #00ff6a; animation: pulse 2s infinite; }
-        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
 
-        /* IP BOX */
         .ip-box {
             background: var(--glass); border: 2px solid var(--accent);
             padding: 35px; border-radius: 15px; backdrop-filter: blur(10px);
             margin: 30px 0; width: 100%; max-width: 600px; cursor: pointer;
-            transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: 0.3s;
         }
         .ip-box:hover { transform: scale(1.02); box-shadow: 0 0 40px var(--glow); }
 
@@ -46,133 +40,56 @@
             font-size: 1.4rem; transition: 0.3s; display: inline-block;
             box-shadow: 0 10px 25px rgba(255,0,0,0.4); border: none;
         }
-        .btn-join:hover { background: white; color: black !important; transform: translateY(-3px); }
 
-        /* KARTY VLASTNOSTÍ */
-        .feature-card { background: var(--glass); border: 1px solid rgba(255,255,255,0.1); padding: 30px; border-radius: 20px; height: 100%; transition: 0.3s; }
-        .feature-card:hover { border-color: var(--accent); background: rgba(255,0,0,0.05); }
-        .feature-card i { font-size: 2.5rem; color: var(--accent); margin-bottom: 15px; }
-
-        /* VEDENÍ A PRAVIDLA */
         .content-card { background: rgba(255,255,255,0.03); border-radius: 20px; padding: 30px; border: 1px solid rgba(255,255,255,0.1); height: 100%; }
         .admin-row { background: rgba(255,0,0,0.05); padding: 12px 20px; border-radius: 10px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; border-left: 3px solid var(--accent); }
-        .rule-item { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; color: rgba(255,255,255,0.8); }
-        .rule-item i { color: var(--accent); }
-
-        footer { background: #000; padding: 50px 0; border-top: 1px solid var(--accent); text-align: center; margin-top: 80px; }
     </style>
 </head>
 <body>
 
 <div class="hero">
-    <div class="status-badge">
-        <div class="dot"></div> <span id="player-count">ZJIŠŤUJI STAV...</span>
+    <div class="status-container">
+        <div style="color: #00ff6a; font-weight: bold; margin-bottom: 5px; font-size: 0.8rem; letter-spacing: 2px;">LIVE STATUS</div>
+        <iframe src="https://www.tsviewer.com/promotion/viewer_compact.php?ID=1109930&bg=transparent&text=00ff6a&text_h=ffffff" 
+                style="width:100%; max-width:200px; height:30px; border:none; overflow:hidden;"></iframe>
     </div>
 
     <h1 class="main-title">PAŘBA<span style="color:var(--accent)">.EU</span></h1>
-    <p class="sub-title">Premium Voice Portal</p>
 
     <div class="ip-box" onclick="copyIP()">
         <h2 style="font-family: monospace; font-size: clamp(1.8rem, 6vw, 3.5rem); margin:0;">gamegym.cz</h2>
         <p class="text-secondary mt-2 mb-0 small text-uppercase fw-bold">Klikni pro zkopírování adresy</p>
     </div>
 
-    <a href="ts3server://gamegym.cz?port=9987" class="btn-join">Vstoupit na server</a>
+    <a href="ts3server://gamegym.cz?port=9987" class="btn-join">PŘIPOJIT SE TEĎ</a>
 
     <div class="container mt-5 pt-4">
-        <div class="row g-4 mb-5">
-            <div class="col-md-4">
-                <div class="feature-card">
-                    <i class="fas fa-headset"></i>
-                    <h4>Místnosti zdarma</h4>
-                    <p class="text-muted small">Permanentní kanály pro tvůj tým bez jakýchkoliv poplatků.</p>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="feature-card">
-                    <i class="fas fa-shield-virus"></i>
-                    <h4>Anti-DDoS</h4>
-                    <p class="text-muted small">Špičková ochrana, která tě udrží online i během útoků.</p>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="feature-card">
-                    <i class="fas fa-bolt"></i>
-                    <h4>Low Ping</h4>
-                    <p class="text-muted small">Servery běží na nejrychlejší optice pro čistý zvuk.</p>
-                </div>
-            </div>
-        </div>
-
         <div class="row g-4 text-start">
             <div class="col-lg-6">
                 <div class="content-card">
-                    <h3 class="mb-4 font-orbitron"><i class="fas fa-users-cog me-2 text-danger"></i> Vedení</h3>
-                    <div class="admin-row">
-                        <span><strong>Ace321cz</strong></span> <span class="badge bg-danger">MAJITEL</span>
-                    </div>
-                    <div class="admin-row">
-                        <span><strong>Admin_1</strong></span> <span class="badge bg-dark border">HL. ADMIN</span>
-                    </div>
-                    <div class="admin-row">
-                        <span><strong>Technik</strong></span> <span class="badge bg-primary">SUPPORT</span>
-                    </div>
+                    <h3 class="mb-4 font-orbitron">VEDENÍ</h3>
+                    <div class="admin-row"><span>Ace321cz</span> <span class="badge bg-danger">MAJITEL</span></div>
+                    <div class="admin-row"><span>Admin_1</span> <span class="badge bg-dark">HL. ADMIN</span></div>
+                    <div class="admin-row"><span>Technik</span> <span class="badge bg-primary">SUPPORT</span></div>
                 </div>
             </div>
             <div class="col-lg-6">
                 <div class="content-card">
-                    <h3 class="mb-4 font-orbitron"><i class="fas fa-gavel me-2 text-danger"></i> Pravidla</h3>
-                    <div class="rule-item"><i class="fas fa-check"></i> Slušné chování k ostatním.</div>
-                    <div class="rule-item"><i class="fas fa-check"></i> Zákaz reklamy na jiné weby/servery.</div>
-                    <div class="rule-item"><i class="fas fa-check"></i> Nespamovat poke/zprávy adminům.</div>
-                    <div class="rule-item"><i class="fas fa-check"></i> Vlastní místnosti jsou zdarma.</div>
+                    <h3 class="mb-4 font-orbitron">PRAVIDLA</h3>
+                    <div class="mb-2"><i class="fas fa-check text-danger me-2"></i> Slušné chování.</div>
+                    <div class="mb-2"><i class="fas fa-check text-danger me-2"></i> Žádná reklama.</div>
+                    <div class="mb-2"><i class="fas fa-check text-danger me-2"></i> Místnosti zdarma.</div>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-<footer>
-    <h4 class="font-orbitron">PAŘBA.EU © 2026</h4>
-    <p class="text-muted small mt-2">Vytvořeno pro nejlepší gaming zážitek</p>
-</footer>
-
 <script>
 function copyIP() {
     navigator.clipboard.writeText('gamegym.cz');
-    alert('IP gamegym.cz byla zkopírována do schránky!');
+    alert('IP gamegym.cz byla zkopírována!');
 }
-
-// AKTUALIZACE STAVU PŘES ALTERNATIVNÍ API (RYCHLEJŠÍ)
-async function updateStatus() {
-    const el = document.getElementById('player-count');
-    const ip = 'gamegym.cz';
-
-    try {
-        // Zkoušíme první API (Minetools)
-        const response = await fetch(`https://api.minetools.eu/query/${ip}/9987`);
-        const data = await response.json();
-        
-        if (data.status === "OK") {
-            el.innerHTML = `ONLINE: ${data.Players} / ${data.MaxPlayers}`;
-        } else {
-            // Pokud selže, zkusíme záložní API mcsrvstat (s tvojí adresou)
-            const res2 = await fetch(`https://api.mcsrvstat.us/2/${ip}`);
-            const data2 = await res2.json();
-            
-            if (data2.online && data2.players) {
-                el.innerHTML = `ONLINE: ${data2.players.online} / ${data2.players.max}`;
-            } else {
-                el.innerHTML = "SERVER ONLINE"; 
-            }
-        }
-    } catch (e) {
-        el.innerHTML = "SERVER ONLINE";
-    }
-}
-
-updateStatus();
-setInterval(updateStatus, 45000); // Kontrola každých 45s
 </script>
 
 </body>
