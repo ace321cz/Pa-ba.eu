@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PAŘBA.EU | Elitní TS3 Portál</title>
+    <title>PAŘBA.EU | Oficiální TS3 Portál</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Kanit:wght@300;400;800&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -24,7 +24,7 @@
         .status-pill {
             background: rgba(0,0,0,0.8); border: 2px solid #00ff6a; padding: 12px 35px; border-radius: 50px;
             color: #00ff6a; font-weight: 900; display: inline-flex; align-items: center; gap: 12px; margin-bottom: 40px;
-            box-shadow: 0 0 20px rgba(0,255,106,0.3);
+            box-shadow: 0 0 20px rgba(0,255,106,0.3); font-size: 1.1rem;
         }
         .dot { height: 12px; width: 12px; background: #00ff6a; border-radius: 50%; box-shadow: 0 0 10px #00ff6a; animation: pulse 2s infinite; }
         @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
@@ -54,39 +54,37 @@
 
 <div class="hero">
     <div class="status-pill">
-        <div class="dot"></div> <span id="ts-status">PŘIPOJOVÁNÍ...</span>
+        <div class="dot"></div> <span id="ts-status">AKTUALIZACE...</span>
     </div>
 
     <h1 class="main-title">PAŘBA<span style="color:var(--accent)">.EU</span></h1>
-    <p style="letter-spacing: 10px;" class="text-white-50 mt-3 fs-5 text-uppercase">Oficiální TeamSpeak Portál</p>
+    <p style="letter-spacing: 10px;" class="text-white-50 mt-3 fs-5 text-uppercase">PREMIUM VOICE PORTAL</p>
 
     <div class="ip-card" onclick="copyIP()">
         <h2 style="font-family: monospace; font-size: clamp(2rem, 8vw, 4rem); margin:0;">gamegym.cz</h2>
         <p class="text-secondary mt-3 mb-0 fw-bold small"><i class="far fa-copy me-2 text-danger"></i>KLIKNI PRO KOPII ADRESY</p>
     </div>
 
-    <a href="ts3server://gamegym.cz?port=9987" class="btn-join">VSTOUPIT NA SERVER</a>
+    <a href="ts3server://gamegym.cz?port=9987" class="btn-join">PŘIPOJIT SE TEĎ</a>
 
     <div class="container mt-5 pt-5">
         <div class="row g-4 mb-5">
-            <div class="col-md-4"><div class="content-box"><i class="fas fa-shield-alt feature-icon"></i><h4>ANTI-DDoS</h4><p class="text-muted small">Ochrana na úrovni Fakaheda.eu.</p></div></div>
-            <div class="col-md-4"><div class="col-md-4-inner content-box"><i class="fas fa-bolt feature-icon"></i><h4>LOW PING</h4><p class="text-muted small">Okamžitá odezva v rámci ČR/SK.</p></div></div>
-            <div class="col-md-4"><div class="content-box"><i class="fas fa-comments feature-icon"></i><h4>FREE ROOMS</h4><p class="text-muted small">Permanentní místnosti pro tvůj tým.</p></div></div>
+            <div class="col-md-4"><div class="content-box"><i class="fas fa-shield-alt feature-icon"></i><h4>ANTI-DDoS</h4><p class="text-muted small">Profesionální ochrana Fakaheda.</p></div></div>
+            <div class="col-md-4"><div class="content-box"><i class="fas fa-bolt feature-icon"></i><h4>LOW PING</h4><p class="text-muted small">Okamžitá odezva a čistý hlas.</p></div></div>
+            <div class="col-md-4"><div class="content-box"><i class="fas fa-comments feature-icon"></i><h4>FREE ROOMS</h4><p class="text-muted small">Vlastní kanály pro tvůj tým.</p></div></div>
         </div>
 
         <div class="row g-5 text-start">
             <div class="col-lg-6">
-                <h3 class="font-orbitron text-danger mb-4 text-uppercase">Vedení Projektu</h3>
+                <h3 class="font-orbitron text-danger mb-4">VEDENÍ SERVERU</h3>
                 <div class="admin-line"><span>Ace321cz</span> <span class="badge bg-danger">MAJITEL</span></div>
                 <div class="admin-line"><span>Admin_1</span> <span class="badge bg-dark border">HL. ADMIN</span></div>
-                <div class="admin-line"><span>Technik</span> <span class="badge bg-primary">TECHNIK</span></div>
             </div>
             <div class="col-lg-6">
-                <h3 class="font-orbitron text-danger mb-4 text-uppercase">Pravidla</h3>
+                <h3 class="font-orbitron text-danger mb-4">PRAVIDLA</h3>
                 <div class="content-box">
                     <p><i class="fas fa-check text-danger me-2"></i> Žádné urážky ani nevhodné chování.</p>
-                    <p><i class="fas fa-check text-danger me-2"></i> Zákaz reklamy v jakékoliv podobě.</p>
-                    <p><i class="fas fa-check text-danger me-2"></i> Respektuj pokyny administrátorů.</p>
+                    <p><i class="fas fa-check text-danger me-2"></i> Zákaz reklamy na jiné portály.</p>
                 </div>
             </div>
         </div>
@@ -95,7 +93,7 @@
 
 <footer>
     <h3 class="font-orbitron">PAŘBA.EU © 2026</h3>
-    <p class="text-muted small mt-2">Vytvořeno pro komunitu</p>
+    <p class="text-muted small">Váš domov pro komunikaci</p>
 </footer>
 
 <script>
@@ -104,24 +102,20 @@ function copyIP() {
     alert('IP gamegym.cz byla zkopírována!');
 }
 
-// FAKAHEDA JSON QUERY SCRIPT
 async function getFakahedaStatus() {
     const el = document.getElementById('ts-status');
-    // U Fakahedy musíš mít v Control Panelu povolený "JSON Status"
-    // Port 29987 je u Fakahedy standardní pro Query, pokud máš jiný, přepiš ho
-    const url = "https://www.fakaheda.eu/api/server-status/gamegym.cz:9987.json";
+    const url = "https://query.fakaheda.eu/82.208.17.97:6647.feed";
 
     try {
         const response = await fetch(url);
         const data = await response.json();
         
-        if (data && data.status === "online") {
+        if (data && data.status === "Online") {
             el.innerHTML = `ONLINE: ${data.players} / ${data.slots}`;
         } else {
-            el.innerHTML = "SERVER ONLINE";
+            el.innerHTML = "SERVER OFFLINE";
         }
     } catch (e) {
-        // Fallback pokud Fakaheda API zrovna neodpovídá
         el.innerHTML = "SERVER ONLINE";
     }
 }
