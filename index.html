@@ -2,361 +2,228 @@
 <html lang="cs">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>PAŘBA.EU | Teamspeak server pro každého zdarma!</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Kanit:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Kanit:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         :root { 
             --orange: #ff6a00; 
-            --orange-rgb: 255, 106, 0;
             --orange-glow: rgba(255, 106, 0, 0.4);
-            --bg-deep: #030303;
-            --card-bg: rgba(10, 10, 10, 0.9);
         }
         
-        /* ZÁKLADNÍ STYLING */
-        body { 
-            background-color: var(--bg-deep); 
-            color: #ffffff; 
+        /* OPRAVA ŠOUPÁNÍ DO STRAN */
+        html, body { 
+            max-width: 100%;
+            overflow-x: hidden;
+            background-color: #050505; 
+            color: #fff; 
             font-family: 'Kanit', sans-serif; 
             margin: 0; 
-            overflow-x: hidden;
-            letter-spacing: 0.5px;
+            padding: 0;
         }
 
-        /* DYNAMICKÉ POZADÍ PŘES CELÝ WEB */
-        .background-overlay {
+        .main-bg {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2;
             background: url('https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1920') center/cover no-repeat;
-            filter: brightness(12%) contrast(110%);
-        }
-        .vignette {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
-            background: radial-gradient(circle, transparent 20%, #000 110%);
+            filter: brightness(15%);
         }
 
-        /* HERO SEKCE - HLAVNÍ OBRAZOVKA */
         .hero { 
             min-height: 100vh; 
             display: flex; 
             flex-direction: column; 
             justify-content: center; 
             align-items: center; 
-            padding: 100px 20px; 
+            padding: 40px 15px; 
             text-align: center;
         }
 
-        /* STATUS BAR */
-        .status-container {
-            background: rgba(0,0,0,0.9);
-            border: 1px solid var(--orange);
-            padding: 10px 25px;
-            border-radius: 4px;
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 50px;
-            box-shadow: 0 0 25px var(--orange-glow);
-            text-transform: uppercase;
+        /* STATUS */
+        .status-badge {
+            border: 1px solid var(--orange); 
+            background: rgba(0,0,0,0.8);
+            padding: 8px 20px; 
+            border-radius: 4px; 
+            display: inline-flex; 
+            align-items: center; 
+            gap: 10px;
+            margin-bottom: 30px; 
+            box-shadow: 0 0 15px var(--orange-glow);
         }
-        .status-dot { 
-            width: 10px; height: 10px; background: #00ff88; border-radius: 50%; 
-            box-shadow: 0 0 12px #00ff88; animation: pulse 2s infinite; 
-        }
-        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
-        .status-label { font-family: 'Orbitron'; font-size: 0.85rem; font-weight: 700; letter-spacing: 2px; }
+        .dot { width: 8px; height: 8px; background: #00ff88; border-radius: 50%; box-shadow: 0 0 8px #00ff88; }
 
-        /* LOGO A TEXTY */
-        .main-logo-area { margin-bottom: 40px; }
-        .brand-name { 
-            font-family: 'Orbitron'; 
-            font-size: clamp(3.5rem, 15vw, 8rem); 
-            font-weight: 900; 
-            line-height: 0.85;
-            text-transform: uppercase;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .brand-name i { color: var(--orange); margin-right: 25px; filter: drop-shadow(0 0 20px var(--orange-glow)); }
-        .brand-name span { color: var(--orange); }
-        .brand-tagline { 
-            color: var(--orange); 
-            font-weight: 800; 
-            text-transform: uppercase; 
-            letter-spacing: 4px; 
-            font-size: 1.2rem; 
-            margin-top: 20px;
-            display: block;
-        }
+        /* LOGO */
+        .logo-main { font-family: 'Orbitron'; font-size: clamp(2.8rem, 10vw, 7rem); font-weight: 900; line-height: 1; }
+        .logo-main span { color: var(--orange); }
+        .logo-tagline { color: var(--orange); font-weight: 800; text-transform: uppercase; letter-spacing: 1px; font-size: clamp(0.9rem, 3vw, 1.2rem); margin-top: 15px; }
 
-        /* IP ADRESA BOX */
-        .ip-box-full {
-            background: var(--card-bg);
-            border: 1px solid #1a1a1a;
-            border-left: 6px solid var(--orange);
-            padding: 50px 80px;
-            border-radius: 4px;
-            margin: 40px 0;
-            cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            max-width: 850px;
+        /* IP BOX */
+        .ip-card {
+            background: rgba(15,15,15,0.95); 
+            border: 1px solid #222; 
+            border-left: 5px solid var(--orange);
+            padding: 40px 20px; 
+            border-radius: 4px; 
+            margin: 40px 0; 
+            cursor: pointer; 
+            max-width: 800px; 
             width: 100%;
-            backdrop-filter: blur(10px);
         }
-        .ip-box-full:hover { 
-            transform: translateY(-10px) scale(1.02); 
-            border-color: var(--orange); 
-            box-shadow: 0 25px 60px rgba(0,0,0,0.9);
-        }
-        .ip-top-text { text-transform: uppercase; color: var(--orange); font-weight: 800; font-size: 1rem; letter-spacing: 3px; margin-bottom: 10px; }
-        .ip-main-text { font-size: clamp(2.5rem, 10vw, 5.5rem); font-weight: 900; margin: 0; letter-spacing: 2px; }
-        .ip-sub-text { font-size: 0.8rem; color: #444; text-transform: uppercase; font-weight: 700; margin-top: 15px; display: block; }
+        .ip-address { font-size: clamp(1.8rem, 8vw, 4.5rem); font-weight: 800; margin: 5px 0; word-break: break-all; }
 
-        .join-trigger {
-            background: var(--orange); 
-            color: #fff !important; 
-            padding: 25px 80px; 
-            border-radius: 4px;
-            font-weight: 900; 
-            text-transform: uppercase; 
-            text-decoration: none; 
-            font-size: 1.7rem;
-            box-shadow: 0 10px 40px var(--orange-glow); 
-            transition: 0.4s;
-            display: inline-block;
-            margin-top: 30px;
-            border: none;
+        .btn-action {
+            background: var(--orange); color: #fff !important; padding: 20px 40px; border-radius: 4px;
+            font-weight: 800; text-transform: uppercase; text-decoration: none; font-size: 1.3rem;
+            box-shadow: 0 5px 25px var(--orange-glow); transition: 0.3s;
+            width: fit-content;
         }
-        .join-trigger:hover { background: #fff; color: var(--orange) !important; transform: translateY(-5px); box-shadow: 0 15px 50px rgba(255,255,255,0.2); }
 
-        /* SEKCE OBSAHU */
-        .main-content-wrap { padding: 120px 0; }
-        .section-headline { 
+        /* SJEDNOCENÍ ZAROVNÁNÍ NA STŘED */
+        .section-hdr { 
             font-family: 'Orbitron'; 
-            font-size: clamp(2.5rem, 6vw, 4rem); 
+            font-size: clamp(2rem, 5vw, 3rem); 
             font-weight: 900; 
             text-transform: uppercase; 
             text-align: center; 
-            margin-bottom: 80px;
-            letter-spacing: 2px;
+            margin: 100px 0 50px; 
         }
-        .section-headline span { color: var(--orange); }
+        .section-hdr span { color: var(--orange); }
 
-        /* KARTY TECHNOLOGIÍ */
-        .feature-item {
-            background: linear-gradient(145deg, rgba(20,20,20,0.8), rgba(10,10,10,0.9));
-            padding: 60px 40px;
-            border-radius: 12px;
-            text-align: center;
-            height: 100%;
-            border: 1px solid rgba(255,255,255,0.05);
-            transition: 0.4s;
+        .feature-box { 
+            background: rgba(20,20,20,0.6); 
+            padding: 40px 25px; 
+            border-radius: 8px; 
+            text-align: center; /* Vše veprostřed */
+            height: 100%; 
+            border: 1px solid rgba(255,255,255,0.03); 
         }
-        .feature-item:hover { transform: translateY(-15px); border-color: var(--orange); background: rgba(25,25,25,0.95); }
-        .feature-icon { font-size: 4.5rem; color: var(--orange); margin-bottom: 35px; display: block; filter: drop-shadow(0 0 15px var(--orange-glow)); }
-        .feature-item h4 { font-family: 'Orbitron'; font-weight: 800; font-size: 1.6rem; margin-bottom: 20px; }
-        .feature-item p { color: #aaa; font-size: 1.1rem; line-height: 1.7; font-weight: 300; }
+        .feature-icon { font-size: 3rem; color: var(--orange); margin-bottom: 20px; display: block; }
 
-        /* LISTY HRY A KODEX */
-        .data-list-box { 
-            background: var(--card-bg); 
-            padding: 60px; 
+        /* LISTY - OPRAVA ZAROVNÁNÍ */
+        .list-wrap { 
+            background: rgba(15,15,15,0.95); 
+            padding: 40px 20px; 
             border-radius: 4px; 
             border: 1px solid #111;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            text-align: center; /* Vše veprostřed */
         }
-        .data-row { 
+        .list-row { 
             display: flex; 
             align-items: center; 
-            gap: 25px; 
-            padding: 22px 0; 
-            border-bottom: 1px solid rgba(255,255,255,0.05); 
-            font-size: 1.4rem; 
+            justify-content: center; /* Ikona i text do středu */
+            gap: 15px; 
+            padding: 15px 0; 
+            border-bottom: 1px solid #1a1a1a; 
+            font-size: 1.1rem; 
             font-weight: 600; 
         }
-        .data-row i { color: var(--orange); font-size: 1.8rem; width: 40px; text-align: center; }
-        .data-row-last { color: var(--orange); font-style: italic; border: none !important; margin-top: 10px; }
+        .list-row i { color: var(--orange); font-size: 1.2rem; }
 
-        /* ADMIN TÝM */
+        /* VEDENÍ */
         .staff-card { 
-            background: #0a0a0a; 
-            padding: 45px 30px; 
-            border-radius: 6px; 
+            background: #111; 
+            padding: 30px; 
+            border-radius: 4px; 
             text-align: center; 
-            border: 1px solid #1a1a1a;
-            position: relative;
-            overflow: hidden;
-            transition: 0.3s;
+            border: 1px solid #222; 
         }
-        .staff-card:hover { border-color: var(--orange); background: #111; }
-        .staff-card h5 { font-family: 'Orbitron'; font-size: 1.8rem; margin-bottom: 20px; font-weight: 700; }
-        .staff-role { 
-            background: var(--orange); 
-            padding: 6px 18px; 
-            border-radius: 3px; 
-            font-size: 0.85rem; 
-            font-weight: 900; 
-            text-transform: uppercase; 
-            letter-spacing: 1px;
-        }
+        .staff-role { background: var(--orange); padding: 4px 12px; border-radius: 2px; font-size: 0.75rem; font-weight: 800; text-transform: uppercase; }
 
         /* FOOTER */
-        footer { 
-            padding: 120px 0 80px; 
-            text-align: center; 
-            border-top: 2px solid #111; 
-            margin-top: 150px;
-            background: rgba(0,0,0,0.4);
-        }
-        .social-grid { display: flex; justify-content: center; gap: 25px; margin-bottom: 50px; }
-        .social-btn { 
-            width: 70px; height: 70px; background: #0a0a0a; color: var(--orange); 
-            display: flex; align-items: center; justify-content: center; border-radius: 4px; 
-            font-size: 2rem; text-decoration: none; transition: 0.4s; border: 1px solid #1a1a1a;
-        }
-        .social-btn:hover { 
-            background: var(--orange); color: #fff; transform: scale(1.1) rotate(5deg); 
-            box-shadow: 0 0 30px var(--orange-glow); border-color: var(--orange);
-        }
-        .footer-email { 
-            color: #fff; text-decoration: none; font-family: 'Orbitron'; 
-            font-weight: 900; font-size: 2rem; transition: 0.3s;
-        }
-        .footer-email:hover { color: var(--orange); text-shadow: 0 0 15px var(--orange-glow); }
-        .copyright { color: #333; margin-top: 60px; font-size: 0.9rem; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; }
+        footer { padding: 80px 0; text-align: center; border-top: 1px solid #111; margin-top: 100px; }
+        .soc-links { display: flex; justify-content: center; gap: 15px; margin-bottom: 40px; flex-wrap: wrap; }
+        .soc-item { width: 50px; height: 50px; background: #111; color: var(--orange); display: flex; align-items: center; justify-content: center; border-radius: 4px; font-size: 1.4rem; text-decoration: none; border: 1px solid #222; }
+
+        /* FIX PRO BOOTSTRAP ROWS */
+        .row { margin-left: 0; margin-right: 0; }
     </style>
 </head>
 <body>
 
-<div class="background-overlay"></div>
-<div class="vignette"></div>
+<div class="main-bg"></div>
 
 <div class="hero">
-    <div class="status-container">
-        <div class="status-dot"></div>
-        <span class="status-label" id="live-stat">ZJIŠŤUJI STAV PORTÁLU...</span>
+    <div class="status-badge">
+        <div class="dot"></div>
+        <span id="status-val" style="font-weight: 800; font-size: 0.8rem;">ZJIŠŤUJI STAV SERVERU...</span>
     </div>
 
-    <div class="main-logo-area">
-        <div class="brand-name"><i class="fas fa-headset"></i>PAŘBA<span>.EU</span></div>
-        <span class="brand-tagline">Teamspeak server pro každého zdarma!</span>
+    <div class="logo-main"><i class="fas fa-headset me-2" style="color:var(--orange)"></i>PAŘBA<span>.EU</span></div>
+    <div class="logo-tagline">Teamspeak server pro každého zdarma!</div>
+
+    <div class="ip-card" onclick="navigator.clipboard.writeText('ts3.parba.eu'); alert('Zkopírováno!')">
+        <div style="text-transform: uppercase; color: var(--orange); font-weight: 700; font-size: 0.8rem; letter-spacing: 2px;">Oficiální Teamspeak adresa</div>
+        <div class="ip-address">ts3.parba.eu</div>
+        <div style="font-size:0.7rem; color:#555; text-transform:uppercase">Klikni pro zkopírování</div>
     </div>
 
-    <div class="ip-box-full" onclick="navigator.clipboard.writeText('ts3.parba.eu'); alert('Adresa zkopírována!')">
-        <span class="ip-top-text">Oficiální Teamspeak adresa</span>
-        <h2 class="ip-main-text">ts3.parba.eu</h2>
-        <span class="ip-sub-text"><i class="far fa-copy me-2"></i>Klikni pro okamžité zkopírování</span>
-    </div>
-
-    <a href="ts3server://ts3.parba.eu" class="join-trigger">Vstoupit do lobby</a>
+    <a href="ts3server://ts3.parba.eu" class="btn-action">Vstoupit do lobby</a>
 </div>
 
-<div class="container main-content-wrap">
+<div class="container-fluid px-3">
     
-    <h2 class="section-headline">Naše <span>Technologie</span></h2>
-    <div class="row g-5">
-        <div class="col-lg-4">
-            <div class="feature-item">
-                <i class="fas fa-bolt feature-icon"></i>
-                <h4>LOW PING HW</h4>
-                <p>Naše servery jsou hostované v moderním datacentru v Praze, což zajišťuje bleskovou odezvu pro celou CZ/SK komunitu.</p>
-            </div>
-        </div>
-        <div class="col-lg-4">
-            <div class="feature-item">
-                <i class="fas fa-shield-virus feature-icon"></i>
-                <h4>DDoS OCHRANA</h4>
-                <p>Pokročilá hardwarová filtrace od Fakaheda.eu tě ochrání i před těmi nejsilnějšími útoky během důležitých klanových zápasů.</p>
-            </div>
-        </div>
-        <div class="col-lg-4">
-            <div class="feature-item">
-                <i class="fas fa-microphone-lines feature-icon"></i>
-                <h4>HD AUDIO KVALITA</h4>
-                <p>Využíváme nejnovější audio kodeky s nejvyšším bitratem pro krystalicky čistý zvuk tvého týmu bez jakéhokoliv šumu.</p>
-            </div>
-        </div>
-    </div>
-
-    <div class="row g-5 py-5 mt-5">
-        <div class="col-xl-6">
-            <h2 class="section-headline text-start">Podporované <span>Hry</span></h2>
-            <div class="data-list-box">
-                <div class="data-row"><i class="fas fa-crosshairs"></i> Counter-Strike 2</div>
-                <div class="data-row"><i class="fas fa-car-side"></i> Grand Theft Auto V</div>
-                <div class="data-row"><i class="fas fa-dragon"></i> League of Legends</div>
-                <div class="data-row"><i class="fas fa-cubes"></i> Minecraft Community</div>
-                <div class="data-row data-row-last"><i class="fas fa-plus-circle"></i> ... a desítky dalších herních titulů!</div>
-            </div>
-        </div>
-        <div class="col-xl-6">
-            <h2 class="section-headline text-start">Komunitní <span>Kodex</span></h2>
-            <div class="data-list-box">
-                <div class="data-row"><i class="fas fa-check-circle"></i> Slušnost a respekt k ostatním</div>
-                <div class="data-row"><i class="fas fa-check-circle"></i> Přísný zákaz nevyžádané reklamy</div>
-                <div class="data-row"><i class="fas fa-check-circle"></i> Free trvalé roomky pro všechny party</div>
-                <div class="data-row"><i class="fas fa-check-circle"></i> Aktivní podpora zkušeného admin týmu</div>
-                <div class="data-row data-row-last"><i class="fas fa-shield-heart"></i> Hrajeme fér a bavíme se společně!</div>
-            </div>
-        </div>
-    </div>
-
-    <h2 class="section-headline mt-5">Vedení <span>Portálu</span></h2>
+    <h2 class="section-hdr">Naše <span>Technologie</span></h2>
     <div class="row g-4 justify-content-center">
-        <div class="col-md-4">
-            <div class="staff-card">
-                <h5>Ace321cz</h5>
-                <span class="staff-role">Majitel Projektu</span>
+        <div class="col-md-4"><div class="feature-box"><i class="fas fa-bolt feature-icon"></i><h4>LOW PING HW</h4><p>Servery v Praze pro nejnižší odezvu.</p></div></div>
+        <div class="col-md-4"><div class="feature-box"><i class="fas fa-shield-halved feature-icon"></i><h4>DDoS OCHRANA</h4><p>Fakaheda filtrace tě udrží online.</p></div></div>
+        <div class="col-md-4"><div class="feature-box"><i class="fas fa-microphone feature-icon"></i><h4>HD AUDIO</h4><p>Krystalicky čistý zvuk pro tvůj tým.</p></div></div>
+    </div>
+
+    <div class="row g-4 py-5 mt-4">
+        <div class="col-lg-6">
+            <h2 class="section-hdr">Podporované <span>Hry</span></h2>
+            <div class="list-wrap">
+                <div class="list-row"><i class="fas fa-crosshairs"></i> Counter-Strike 2</div>
+                <div class="list-row"><i class="fas fa-car-side"></i> Grand Theft Auto V</div>
+                <div class="list-row"><i class="fas fa-dragon"></i> League of Legends</div>
+                <div class="list-row"><i class="fas fa-cubes"></i> Minecraft Community</div>
+                <div class="list-row" style="color:var(--orange); border:none"><i>+ ... a mnoho dalších her!</i></div>
             </div>
         </div>
-        <div class="col-md-4">
-            <div class="staff-card">
-                <h5>Admin_Team</h5>
-                <span class="staff-role" style="background:#555">Hlavní Moderace</span>
+        <div class="col-lg-6">
+            <h2 class="section-hdr">Komunitní <span>Kodex</span></h2>
+            <div class="list-wrap">
+                <div class="list-row"><i class="fas fa-check"></i> Slušnost a respekt</div>
+                <div class="list-row"><i class="fas fa-check"></i> Žádná reklama</div>
+                <div class="list-row"><i class="fas fa-check"></i> Free trvalé roomky</div>
+                <div class="list-row"><i class="fas fa-check"></i> Aktivní admin tým</div>
             </div>
         </div>
-        <div class="col-md-4">
-            <div class="staff-card" style="border-style: dashed; border-width: 2px;">
-                <h5>Nábor Otevřen</h5>
-                <span class="staff-role" style="background:#222">Staň se členem</span>
-            </div>
-        </div>
+    </div>
+
+    <h2 class="section-hdr">Vedení <span>Portálu</span></h2>
+    <div class="row g-4 justify-content-center">
+        <div class="col-md-4"><div class="staff-card"><h5>Ace321cz</h5><span class="staff-role">Majitel</span></div></div>
+        <div class="col-md-4"><div class="staff-card"><h5>Admin_Team</h5><span class="staff-role" style="background:#555">Moderace</span></div></div>
+        <div class="col-md-4"><div class="staff-card" style="border-style:dashed"><h5>Nábor</h5><span class="staff-role" style="background:#222">Hledáme tebe</span></div></div>
     </div>
 </div>
 
 <footer>
-    <div class="social-grid">
-        <a href="#" class="social-btn"><i class="fab fa-discord"></i></a>
-        <a href="#" class="social-btn"><i class="fab fa-facebook-f"></i></a>
-        <a href="#" class="social-btn"><i class="fab fa-instagram"></i></a>
-        <a href="#" class="social-btn"><i class="fab fa-youtube"></i></a>
-        <a href="#" class="social-btn"><i class="fab fa-tiktok"></i></a>
+    <div class="soc-links">
+        <a href="#" class="soc-item"><i class="fab fa-discord"></i></a>
+        <a href="#" class="soc-item"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="soc-item"><i class="fab fa-instagram"></i></a>
+        <a href="#" class="soc-item"><i class="fab fa-youtube"></i></a>
+        <a href="#" class="soc-item"><i class="fab fa-tiktok"></i></a>
     </div>
-    
-    <a href="mailto:ace321cz@gmail.com" class="footer-email">ace321cz@gmail.com</a>
-    
-    <p class="copyright">
-        © 2026 PAŘBA.EU | POWERED BY FAKAHEDA.EU<br>
-        VŠE PRO VAŠE POHODLNÉ HRANÍ
-    </p>
+    <a href="mailto:ace321cz@gmail.com" style="color:#fff; text-decoration:none; font-family:'Orbitron'; font-weight:700; font-size:1.3rem; word-break: break-all;">ace321cz@gmail.com</a>
+    <p style="color:#333; margin-top:40px; font-size: 0.8rem;">© 2026 PAŘBA.EU | POWERED BY FAKAHEDA.EU</p>
 </footer>
 
 <script>
-async function getStatus() {
+async function up() {
     try {
         const r = await fetch('https://query.fakaheda.eu/82.208.17.97:6647.feed');
         const d = await r.json();
-        if(d.status === "Online") {
-            document.getElementById('live-stat').innerText = `LIVE: ${d.players} / ${d.slots} HRÁČŮ ONLINE`;
-        }
-    } catch(e) { document.getElementById('live-stat').innerText = "SERVER ONLINE (PŘIPOJ SE)"; }
+        if(d.status === "Online") document.getElementById('status-val').innerText = `LIVE: ${d.players} / ${d.slots} HRÁČŮ ONLINE`;
+    } catch(e) {}
 }
-getStatus(); setInterval(getStatus, 20000);
+up(); setInterval(up, 30000);
 </script>
 
 </body>
