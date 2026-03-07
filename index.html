@@ -35,6 +35,13 @@
         
         .pricing-card { border: 2px solid var(--primary-color); padding: 50px 30px; text-align: center; border-radius: 40px; margin: 80px 0; background: white; box-shadow: 0 20px 40px rgba(0,0,0,0.05); }
         
+        /* Stylování prodejního textu nad formulářem */
+        .sales-pitch { text-align: left; max-width: 700px; margin: 0 auto 40px; }
+        .sales-pitch h2 { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: var(--accent-color); text-align: center; margin-bottom: 25px; }
+        .sales-list { list-style: none; padding: 0; margin: 25px 0; }
+        .sales-list li { padding-left: 35px; position: relative; margin-bottom: 12px; font-weight: 400; }
+        .sales-list li::before { content: '✨'; position: absolute; left: 0; color: var(--secondary-color); }
+
         .faq-section { padding: 100px 0; background: var(--bg-light); }
         .faq-item { background: white; margin-bottom: 20px; padding: 30px; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.03); }
         .faq-item h3 { margin-top: 0; color: var(--secondary-color); font-size: 1.25rem; }
@@ -43,7 +50,11 @@
         .social-icon { display: inline-block; margin-top: 20px; color: var(--secondary-color); transition: transform 0.3s ease; }
         .social-icon:hover { transform: scale(1.2); }
 
-        @media (max-width: 768px) { h1 { font-size: 2.5rem; } .cta-button { width: 90%; padding: 18px 20px; font-size: 1.1rem; } }
+        @media (max-width: 768px) { 
+            h1 { font-size: 2.5rem; } 
+            .cta-button { width: 90%; padding: 18px 20px; font-size: 1.1rem; } 
+            .sales-pitch h2 { font-size: 1.8rem; }
+        }
     </style>
 </head>
 <body>
@@ -96,9 +107,24 @@
 
 <section id="koupit" class="container">
     <div class="pricing-card">
+        <div class="sales-pitch">
+            <h2>Získej hladkou a pevnou pokožku bez lží a drahých krémů! ✨</h2>
+            <p>Většina produktů na celulitidu nefunguje, protože řeší jen povrch. Skutečná změna ale začíná v tvé lymfě a stravě. V mém 30denním manuálu tě naučím přesný postup, jak se jí zbavit zevnitř.</p>
+            
+            <p style="font-weight: 600; margin-top: 20px; color: var(--accent-color);">Co nákupem získáš?</p>
+            <ul class="sales-list">
+                <li>Kompletní manuál s vědecky podloženými postupy.</li>
+                <li>Jídelníček pro kolagen, který zpevní tvé podkoží.</li>
+                <li>Návod na lymfatické rituály, které zvládneš doma.</li>
+                <li><strong>BONUS:</strong> 30denní výzva pro viditelné výsledky.</li>
+            </ul>
+            <p>Žádné zázračné pilulky, jen funkční věda a správné jídlo. Stačí vyplnit údaje níže a můžeš začít hned teď!</p>
+        </div>
+
+        <hr style="border: 0; border-top: 1px solid var(--primary-color); margin: 30px 0; opacity: 0.3;">
+        
         <span class="subtitle">Časově omezená nabídka</span>
-        <h2 style="font-family: 'Playfair Display'; font-size: 2.8rem; margin-bottom: 10px; color: var(--accent-color);">E-book + Bonusy</h2>
-        <div style="font-size: 2.5rem; font-weight: 700; color: var(--secondary-color); margin-bottom: 40px;">299 Kč</div>
+        <div style="font-size: 2.8rem; font-weight: 700; color: var(--secondary-color); margin-bottom: 40px;">299 Kč</div>
         
         <div data-SimpleShopForm="RYDWY" style="max-width: 500px; margin: 0 auto;"><div>Prodejní formulář se načítá...</div></div>
         <script>
@@ -113,7 +139,7 @@
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="green" viewBox="0 0 16 16" style="margin-right: 8px;">
                 <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/>
             </svg>
-            Bezpečný nákup přes SimpleShop (bankovní převod)
+            Bezpečný nákup přes SimpleShop
         </p>
     </div>
 </section>
@@ -161,11 +187,12 @@
         </div>
         
         <div style="margin-top: 50px; font-size: 0.85rem; color: #888; border-top: 1px solid #eee; padding-top: 20px;">
-            <p>&copy; 2026 Pravda o celulitidě. Všechna práva vyhrazena.</p>
+            <p>&copy; 2026 Pravda o celulitidě. Všechna práva enviromentálně vyhrazená.</p>
             <p>Bezpečný nákup | Digitální obsah přes SimpleShop</p>
         </div>
     </div>
 </footer>
 
 </body>
-</html>
+                </html>
+                
