@@ -32,7 +32,7 @@
 
         header {
             background: linear-gradient(135deg, var(--bg-light) 0%, #fde2e4 100%);
-            padding: 100px 20px;
+            padding: 80px 20px;
             text-align: center;
         }
 
@@ -98,6 +98,14 @@
         }
         .faq-item h3 { margin-top: 0; color: var(--secondary-color); font-size: 1.2rem; }
 
+        .feature-img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 15px;
+            margin: 20px 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
         footer { text-align: center; padding: 50px; background: #f1f1f1; color: #777; }
 
         @media (max-width: 768px) {
@@ -125,18 +133,26 @@
 <section class="container" style="padding: 80px 0;">
     <h2 style="text-align:center; font-family: 'Playfair Display'; font-size: 2.5rem;">Co se naučíte uvnitř?</h2>
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; margin-top: 50px;">
-        <div>
+        <div style="text-align: center;">
             <h3 style="color: var(--secondary-color);">1. Skutečná příčina</h3>
             <p>Pochopíte anatomii ženského těla a zjistíte, proč běžné krémy z drogerie jednoduše nemohou fungovat.</p>
         </div>
-        <div>
+        <div style="text-align: center;">
             <h3 style="color: var(--secondary-color);">2. Jídelníček pro kolagen</h3>
+            <img src="IMG_20260307_134320.png" alt="Ukázka jídelníčku" class="feature-img">
             <p>Seznam potravin, které fungují jako "vnitřní žehlička" na vaši pokožku a posilují vazivo.</p>
         </div>
-        <div>
+        <div style="text-align: center;">
             <h3 style="color: var(--secondary-color);">3. Domácí rituály</h3>
+            <img src="IMG_20260307_134335.png" alt="Ukázka rituálů" class="feature-img">
             <p>Návod na suché kartáčování a masáže, které rozproudí lymfu rychleji než drahá ošetření.</p>
         </div>
+    </div>
+
+    <div style="margin-top: 60px; padding: 40px; background: var(--bg-light); border-radius: 30px; text-align: center;">
+        <h3 style="color: var(--secondary-color); font-family: 'Playfair Display'; font-size: 2rem;">BONUS: 30denní tréninkový plán</h3>
+        <img src="IMG_20260307_134355.png" alt="Ukázka tréninkového plánu" style="max-width: 400px; width: 100%; height: auto; border-radius: 15px; margin: 20px 0; box-shadow: 0 8px 25px rgba(0,0,0,0.1);">
+        <p style="max-width: 700px; margin: 0 auto;">Cviky navržené přímo pro zpevnění problematických partií, které zvládnete v pohodlí domova bez drahého vybavení.</p>
     </div>
 </section>
 
@@ -160,7 +176,7 @@
          sss("createForm", "RYDWY");
         </script>
         
-        <p style="margin-top:20px; font-size: 0.8rem; color: #888;">Bezpečné platby kartou nebo převodem.</p>
+        <p style="margin-top:20px; font-size: 0.8rem; color: #888;">Bezpečné platby kartou nebo převodem přes SimpleShop.</p>
     </div>
 </section>
 
@@ -180,7 +196,7 @@
 
 <footer>
     <div class="container">
-        <p>&copy; 2026 Vaše Značka. Všechna práva vyhrazena.</p>
+        <p>&copy; 2026 Pravda o celulitidě. Všechna práva vyhrazena.</p>
     </div>
 </footer>
 
