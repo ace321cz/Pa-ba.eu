@@ -30,7 +30,6 @@
             padding: 0 20px;
         }
 
-        /* Hero Sekce */
         header {
             background: linear-gradient(135deg, var(--bg-light) 0%, #fde2e4 100%);
             padding: 100px 20px;
@@ -60,7 +59,6 @@
             margin: 0 auto 30px;
         }
 
-        /* Tlačítka */
         .cta-button {
             display: inline-block;
             background-color: var(--secondary-color);
@@ -80,46 +78,16 @@
             background-color: #d6684d;
         }
 
-        /* Opt-in Sekce (E-mail zdarma) */
-        .opt-in-section {
-            background-color: var(--accent-color);
-            color: white;
-            padding: 60px 20px;
+        .pricing-card {
+            border: 2px solid var(--primary-color);
+            padding: 40px;
             text-align: center;
-            border-radius: 0;
-            margin: 40px 0;
+            border-radius: 30px;
+            margin: 80px 0;
+            background: white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
         }
 
-        .opt-in-form {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 25px;
-            flex-wrap: wrap;
-        }
-
-        .opt-in-form input {
-            padding: 15px 25px;
-            border-radius: 50px;
-            border: none;
-            width: 300px;
-            font-size: 1rem;
-        }
-
-        .opt-in-btn {
-            background-color: var(--primary-color);
-            color: var(--accent-color);
-            border: none;
-            padding: 15px 30px;
-            border-radius: 50px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .opt-in-btn:hover { background-color: white; }
-
-        /* FAQ Sekce */
         .faq-section { padding: 80px 0; background: var(--bg-light); }
         .faq-item {
             background: white;
@@ -130,24 +98,10 @@
         }
         .faq-item h3 { margin-top: 0; color: var(--secondary-color); font-size: 1.2rem; }
 
-        /* Prodejní sekce */
-        .pricing-card {
-            border: 2px solid var(--primary-color);
-            padding: 60px;
-            text-align: center;
-            border-radius: 30px;
-            margin: 80px 0;
-            background: white;
-        }
-
-        .price-tag { font-size: 4rem; font-weight: 700; color: var(--accent-color); margin: 20px 0; }
-        .old-price { text-decoration: line-through; color: #aaa; font-size: 1.5rem; }
-
         footer { text-align: center; padding: 50px; background: #f1f1f1; color: #777; }
 
         @media (max-width: 768px) {
             h1 { font-size: 2.5rem; }
-            .opt-in-form input { width: 100%; }
         }
     </style>
 </head>
@@ -157,21 +111,16 @@
     <div class="container">
         <span class="subtitle">Vědecky podložený manuál</span>
         <h1>Pravda o celulitidě</h1>
+        
+        <div style="text-align:center; margin-bottom:30px;">
+            <img src="https://googleusercontent.com/image_generation_content/18" alt="E-book Mockup" style="max-width:100%; height:auto; border-radius:15px; max-height: 400px;">
+        </div>
+
         <p class="hero-p">Zjistěte, jak zpevnit pokožku, restartovat lymfu a cítit se skvěle ve vlastním těle – bez lživých slibů a drahých procedur.</p>
-        <a href="#koupit" class="cta-button">KOUPIT E-BOOK + BONUS</a>
+        
+        <a href="#koupit" class="cta-button">KOUPIT E-BOOK (299 Kč)</a>
     </div>
 </header>
-
-<section class="opt-in-section">
-    <div class="container">
-        <h2>Nejste si jistá? Zkuste to zdarma!</h2>
-        <p>Zadejte svůj e-mail a já vám okamžitě pošlu první 3 kapitoly e-booku k nahlédnutí.</p>
-        <form class="opt-in-form">
-            <input type="email" placeholder="Váš nejlepší e-mail..." required>
-            <button type="submit" class="opt-in-btn">CHCI UKÁZKU ZDARMA</button>
-        </form>
-    </div>
-</section>
 
 <section class="container" style="padding: 80px 0;">
     <h2 style="text-align:center; font-family: 'Playfair Display'; font-size: 2.5rem;">Co se naučíte uvnitř?</h2>
@@ -186,50 +135,52 @@
         </div>
         <div>
             <h3 style="color: var(--secondary-color);">3. Domácí rituály</h3>
-            <p>Návod na suché kartáčování a masáže, které rozproudí lymfu rychleji než drahá přístrojová ošetření.</p>
-        </div>
-    </div>
-</section>
-
-<section class="faq-section">
-    <div class="container">
-        <h2 style="text-align:center; font-family: 'Playfair Display'; margin-bottom: 50px;">Často kladené otázky</h2>
-        
-        <div class="faq-item">
-            <h3>Je e-book vhodný i pro začátečníky?</h3>
-            <p>Ano, vše je vysvětleno lidsky a jednoduše. Nepotřebujete žádné předchozí znalosti o fitness nebo výživě.</p>
-        </div>
-        
-        <div class="faq-item">
-            <h3>Kdy uvidím první výsledky?</h3>
-            <p>Při dodržování postupů a bonusového plánu většina žen pozoruje zpevnění pokožky a lepší prokrvení již po 4 týdnech.</p>
-        </div>
-
-        <div class="faq-item">
-            <h3>Musím chodit do posilovny?</h3>
-            <p>Vůbec ne. Cviky v e-booku jsou navrženy tak, aby se daly efektivně cvičit v obýváku jen s vlastní vahou nebo odporovou gumou.</p>
+            <p>Návod na suché kartáčování a masáže, které rozproudí lymfu rychleji než drahá ošetření.</p>
         </div>
     </div>
 </section>
 
 <section id="koupit" class="container">
     <div class="pricing-card">
-        <span class="subtitle">Limitovaná akce</span>
-        <h2 style="font-family: 'Playfair Display'; font-size: 2.5rem;">Kompletní balíček e-booku</h2>
-        <p>E-book + 30denní tréninkový plán + Seznam suplementů</p>
-        <div class="old-price">590 Kč</div>
-        <div class="price-tag">299 Kč</div>
+        <span class="subtitle">Zabezpečená objednávka</span>
+        <h2 style="font-family: 'Playfair Display'; font-size: 2.2rem; margin-bottom: 30px;">Získejte svůj přístup ihned</h2>
         
-        <a href="#" class="cta-button">KOUPIT A OKAMŽITĚ STÁHNOUT</a>
+        <div data-SimpleShopForm="RYDWY"><div>Prodejní formulář se načítá...</div></div>
+        <script>
+         (function(i, s, o, g, r, a, m){
+          i[r] = i[r] || function(){
+           (i[r].q = i[r].q || []).push(arguments)
+          }, i[r].l = 1 * new Date();
+          a = s.createElement(o),
+          m = s.getElementsByTagName(o)[0];
+          a.async = 1;
+          a.src = g;
+          m.parentNode.insertBefore(a, m)
+         })(window, document, "script", "https://form.simpleshop.cz/prj/js/SimpleShopService.js", "sss");
+         sss("createForm", "RYDWY");
+        </script>
         
-        <p style="margin-top:20px; font-size: 0.8rem; color: #888;">Bezpečné platby kartou nebo převodem.</p>
+        <p style="margin-top:20px; font-size: 0.8rem; color: #888;">Platba bankovním převodem. Po potvrzení platby obdržíte e-book do e-mailu.</p>
+    </div>
+</section>
+
+<section class="faq-section">
+    <div class="container">
+        <h2 style="text-align:center; font-family: 'Playfair Display'; margin-bottom: 50px;">Často kladené otázky</h2>
+        <div class="faq-item">
+            <h3>Kdy e-book dostanu?</h3>
+            <p>U platby převodem to trvá 1-2 dny (podle banky). Jakmile platba dorazí, systém vám automaticky pošle odkaz ke stažení.</p>
+        </div>
+        <div class="faq-item">
+            <h3>Můžu si e-book vytisknout?</h3>
+            <p>Ano, e-book je ve formátu PDF, který si můžete snadno vytisknout nebo číst na mobilu i tabletu.</p>
+        </div>
     </div>
 </section>
 
 <footer>
     <div class="container">
         <p>&copy; 2026 Vaše Značka. Všechna práva vyhrazena.</p>
-        <p style="font-size: 0.8rem;">Informace v e-booku jsou pouze vzdělávací. Před zahájením nového cvičení se poraďte se svým lékařem.</p>
     </div>
 </footer>
 
