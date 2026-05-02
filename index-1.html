@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-TRS5RSN');</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pravda o celulitidě | Hladká pokožka bez drahých krémů</title>
+<meta name="description" content="Vědecky podložený 30denní manuál, který ti ukáže jak restartovat lymfu a zbavit se celulitidy zevnitř. Jen 299 Kč.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Tenor+Sans&family=Jost:ital,wght@0,200;0,300;0,400;0,500;1,200;1,300&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#1a0f0a;
+  --parch:#faf5ef;
+  --ivory:#f5ede2;
+  --sand:#e8d5be;
+  --copper:#b87333;
+  --ember:#c94f2c;
+  --blush:#e8a898;
+  --fog:#9e8e83;
+  --white:#fffcf8;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Jost',sans-serif;font-weight:300;background:var(--white);color:var(--ink);overflow-x:hidden;cursor:none}
+.cursor{position:fixed;width:10px;height:10px;background:var(--ember);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);mix-blend-mode:multiply}
+.cursor-ring{position:fixed;width:36px;height:36px;border:1px solid var(--copper);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:all .12s ease;opacity:.6}
+
+/* BAR */
+.bar{background:var(--ink);color:var(--sand);text-align:center;padding:10px 20px;font-size:12px;letter-spacing:2.5px;text-transform:uppercase;display:flex;align-items:center;justify-content:center;gap:12px}
+.bar-dot{width:5px;height:5px;background:var(--ember);border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.4)}}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:rgba(250,245,239,.92);backdrop-filter:blur(20px);border-bottom:1px solid rgba(184,115,51,.15);padding:18px 6vw;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:'Tenor Sans',serif;font-size:17px;letter-spacing:3px;text-transform:uppercase;color:var(--ink);text-decoration:none}
+.nav-logo span{color:var(--copper)}
+.nav-cta{background:var(--ember);color:#fff;text-decoration:none;padding:10px 24px;font-size:12px;letter-spacing:2px;text-transform:uppercase;font-weight:500;transition:all .25s;border:1px solid transparent}
+.nav-cta:hover{background:transparent;color:var(--ember);border-color:var(--ember)}
+
+/* HERO */
+.hero{min-height:100svh;display:grid;grid-template-columns:1fr 1fr;position:relative;overflow:hidden}
+.hero-left{background:var(--ink);padding:80px 6vw 80px 8vw;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden}
+.hero-left::before{content:'';position:absolute;top:-200px;right:-200px;width:500px;height:500px;background:radial-gradient(circle,rgba(201,79,44,.18) 0%,transparent 65%);pointer-events:none}
+.hero-left::after{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='.035'/%3E%3C/svg%3E") repeat;pointer-events:none;opacity:.6}
+.hero-tag{display:inline-flex;align-items:center;gap:8px;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--copper);margin-bottom:32px;font-weight:400;position:relative;z-index:1}
+.hero-tag::before{content:'';width:30px;height:1px;background:var(--copper)}
+.hero h1{font-family:'Tenor Sans',serif;font-size:clamp(38px,4.5vw,62px);line-height:1.08;color:#fff;margin-bottom:28px;position:relative;z-index:1;font-weight:400}
+.hero h1 .accent{color:transparent;-webkit-text-stroke:1px var(--copper);display:block}
+.hero h1 .italic{font-style:italic;color:var(--blush);display:block}
+.hero-desc{font-size:15px;line-height:1.85;color:rgba(255,255,255,.55);max-width:400px;margin-bottom:44px;position:relative;z-index:1;font-weight:300}
+.hero-btn{display:inline-flex;align-items:center;gap:14px;background:linear-gradient(135deg,var(--ember),#a03820);color:#fff;text-decoration:none;padding:20px 40px;font-size:13px;letter-spacing:2px;text-transform:uppercase;font-weight:500;position:relative;z-index:1;transition:all .3s;box-shadow:0 16px 48px rgba(201,79,44,.4);width:fit-content}
+.hero-btn::after{content:'→';font-size:16px;transition:transform .3s}
+.hero-btn:hover{box-shadow:0 20px 60px rgba(201,79,44,.6);transform:translateY(-2px)}
+.hero-btn:hover::after{transform:translateX(5px)}
+.hero-meta{display:flex;gap:28px;margin-top:36px;position:relative;z-index:1}
+.hero-meta-item{display:flex;flex-direction:column;gap:3px}
+.hero-meta-item strong{font-family:'Tenor Sans',serif;font-size:22px;color:#fff;font-weight:400}
+.hero-meta-item span{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.35)}
+.hero-right{background:var(--parch);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:60px 5vw;position:relative;overflow:hidden}
+.hero-right::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(232,213,190,.6) 0%,transparent 60%),radial-gradient(ellipse 60% 80% at 80% 100%,rgba(184,115,51,.08) 0%,transparent 60%)}
+.book-scene{position:relative;width:clamp(240px,26vw,340px);animation:levitate 6s ease-in-out infinite;z-index:1}
+@keyframes levitate{0%,100%{transform:translateY(0) rotate(-1.5deg)}50%{transform:translateY(-18px) rotate(-1.5deg)}}
+.book-scene img{width:100%;border-radius:8px;box-shadow:0 40px 80px rgba(26,15,10,.22),0 0 0 1px rgba(184,115,51,.2);display:block}
+.book-shadow{position:absolute;bottom:-30px;left:50%;transform:translateX(-50%);width:75%;height:24px;background:radial-gradient(ellipse,rgba(26,15,10,.25) 0%,transparent 70%);filter:blur(8px);animation:shadowpulse 6s ease-in-out infinite}
+@keyframes shadowpulse{0%,100%{opacity:1;transform:translateX(-50%) scaleX(1)}50%{opacity:.5;transform:translateX(-50%) scaleX(.7)}}
+.badge-price{position:absolute;top:20px;right:-20px;z-index:2;background:var(--ember);color:#fff;width:90px;height:90px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 8px 24px rgba(201,79,44,.45);animation:wiggle 4s ease-in-out infinite}
+@keyframes wiggle{0%,100%{transform:rotate(-5deg)}50%{transform:rotate(5deg)}}
+.badge-price .amt{font-family:'Tenor Sans',serif;font-size:24px;line-height:1}
+.badge-price .kc{font-size:10px;letter-spacing:1px;opacity:.8}
+.trust-row{display:flex;flex-direction:column;gap:10px;margin-top:40px;z-index:1;width:100%;max-width:280px}
+.trust-item{display:flex;align-items:center;gap:10px;font-size:12px;color:var(--fog);letter-spacing:.5px}
+
+/* PROOF */
+.proof{background:var(--ink);padding:28px 6vw;display:flex;align-items:center;justify-content:center;gap:48px;flex-wrap:wrap}
+.proof-item{display:flex;flex-direction:column;align-items:center;gap:4px;color:#fff}
+.proof-item strong{font-family:'Tenor Sans',serif;font-size:28px;font-weight:400;color:var(--copper)}
+.proof-item span{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.4)}
+
+/* SECTIONS */
+.s{padding:100px 6vw}
+.s-inner{max-width:1120px;margin:0 auto}
+.s-label{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--copper);margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.s-label::after{content:'';flex:1;max-width:40px;height:1px;background:var(--copper)}
+.s-h{font-family:'Tenor Sans',serif;font-size:clamp(30px,3.8vw,50px);line-height:1.1;color:var(--ink);margin-bottom:18px;font-weight:400}
+.s-h em{font-style:italic;color:var(--ember)}
+.s-p{font-size:16px;line-height:1.9;color:var(--fog);font-weight:300;max-width:580px}
+
+/* CHAPTERS */
+.chapters-bg{background:var(--ivory)}
+.chapters{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:2px;margin-top:60px}
+.chapter{background:var(--white);overflow:hidden;position:relative;transition:transform .3s}
+.chapter:hover{transform:translateY(-4px);z-index:2}
+.ch-img-wrap{position:relative;overflow:hidden;aspect-ratio:3/2}
+.ch-img-wrap img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease;display:block}
+.chapter:hover .ch-img-wrap img{transform:scale(1.06)}
+.ch-num{position:absolute;top:16px;left:16px;font-family:'Tenor Sans',serif;font-size:13px;background:var(--ink);color:var(--copper);padding:4px 12px;letter-spacing:2px}
+.ch-body{padding:28px 28px 32px}
+.ch-title{font-family:'Tenor Sans',serif;font-size:20px;color:var(--ink);margin-bottom:10px;font-weight:400}
+.ch-text{font-size:14px;line-height:1.75;color:var(--fog);font-weight:300}
+.ch-bonus{border:2px solid var(--copper)}
+.ch-bonus .ch-num{background:var(--copper);color:#fff}
+.bonus-badge{display:inline-flex;align-items:center;gap:6px;background:var(--copper);color:#fff;font-size:10px;letter-spacing:2px;text-transform:uppercase;padding:5px 14px;margin-bottom:14px}
+
+/* WHY */
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;margin-top:60px}
+.why-img{position:relative}
+.why-img img{width:100%;border-radius:4px;box-shadow:0 32px 64px rgba(26,15,10,.12);display:block}
+.why-frame{position:absolute;top:-20px;left:-20px;right:20px;bottom:20px;border:1px solid var(--sand);border-radius:4px;z-index:-1}
+.why-stats{position:absolute;bottom:-24px;right:-24px;background:var(--ink);color:#fff;padding:20px 28px}
+.why-stats strong{font-family:'Tenor Sans',serif;font-size:32px;color:var(--copper);display:block}
+.why-stats span{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.5)}
+.pillars{margin-top:40px;display:flex;flex-direction:column;gap:0}
+.pillar{display:flex;gap:20px;align-items:flex-start;padding:22px 0;border-bottom:1px solid rgba(26,15,10,.06)}
+.pillar:first-child{border-top:1px solid rgba(26,15,10,.06)}
+.pillar-icon{width:48px;height:48px;flex-shrink:0;background:var(--ivory);display:flex;align-items:center;justify-content:center;font-size:22px;border:1px solid var(--sand)}
+.pillar h4{font-family:'Tenor Sans',serif;font-size:18px;color:var(--ink);margin-bottom:5px;font-weight:400}
+.pillar p{font-size:14px;line-height:1.7;color:var(--fog);font-weight:300}
+
+/* TESTIMONIALS */
+.testi-bg{background:var(--ink)}
+.testi-bg .s-label{color:var(--copper)}
+.testi-bg .s-h{color:#fff}
+.testis{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;margin-top:60px}
+.testi{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);padding:36px;position:relative;transition:border-color .3s}
+.testi:hover{border-color:rgba(184,115,51,.4)}
+.testi::before{content:'\201C';position:absolute;top:20px;right:28px;font-family:'Tenor Sans',serif;font-size:80px;color:var(--copper);opacity:.25;line-height:1}
+.testi-stars{color:var(--copper);font-size:14px;margin-bottom:16px;letter-spacing:2px}
+.testi-text{font-size:15px;line-height:1.85;color:rgba(255,255,255,.7);font-weight:300;font-style:italic;margin-bottom:24px}
+.testi-author{display:flex;align-items:center;gap:14px}
+.testi-avatar{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--copper),var(--ember));display:flex;align-items:center;justify-content:center;font-family:'Tenor Sans',serif;font-size:16px;color:#fff;flex-shrink:0}
+.testi-name{font-size:13px;color:#fff;letter-spacing:.5px}
+.testi-loc{font-size:11px;color:rgba(255,255,255,.35);letter-spacing:1px}
+
+/* CTA */
+.cta-block{background:var(--parch)}
+.cta-wrap{background:var(--ink);max-width:860px;margin:0 auto;padding:72px 60px;text-align:center;position:relative;overflow:hidden}
+.cta-wrap::before{content:'';position:absolute;top:-150px;left:50%;transform:translateX(-50%);width:500px;height:500px;background:radial-gradient(circle,rgba(201,79,44,.12) 0%,transparent 65%);pointer-events:none}
+.cta-label{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--copper);margin-bottom:20px;display:flex;align-items:center;justify-content:center;gap:10px}
+.cta-label::before,.cta-label::after{content:'';width:30px;height:1px;background:var(--copper)}
+.cta-h{font-family:'Tenor Sans',serif;font-size:clamp(28px,3.5vw,46px);color:#fff;line-height:1.1;margin-bottom:16px;font-weight:400}
+.cta-h em{font-style:italic;color:var(--blush)}
+.cta-desc{font-size:15px;line-height:1.85;color:rgba(255,255,255,.5);max-width:520px;margin:0 auto 44px;font-weight:300}
+.check-list{list-style:none;display:inline-flex;flex-direction:column;align-items:flex-start;gap:12px;margin-bottom:52px;text-align:left}
+.check-list li{display:flex;align-items:center;gap:14px;font-size:15px;color:rgba(255,255,255,.8);font-weight:300}
+.check-list li::before{content:'✓';width:24px;height:24px;flex-shrink:0;background:linear-gradient(135deg,var(--copper),var(--ember));border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#fff}
+.price-display{display:flex;align-items:baseline;justify-content:center;gap:6px;margin-bottom:12px}
+.price-currency{font-family:'Tenor Sans',serif;font-size:28px;color:rgba(255,255,255,.5)}
+.price-amount{font-family:'Tenor Sans',serif;font-size:72px;color:#fff;line-height:1}
+.price-note{font-size:12px;color:rgba(255,255,255,.3);margin-bottom:36px;letter-spacing:1px}
+.shop-form-wrap{max-width:480px;margin:0 auto;min-height:80px}
+.secure-badges{display:flex;align-items:center;justify-content:center;gap:20px;flex-wrap:wrap;margin-top:20px}
+.secure-badge{display:flex;align-items:center;gap:6px;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.3)}
+
+/* FAQ */
+.faq-list{margin-top:56px}
+.faq-item{border-bottom:1px solid rgba(26,15,10,.08)}
+.faq-item:first-child{border-top:1px solid rgba(26,15,10,.08)}
+.faq-btn{width:100%;display:flex;justify-content:space-between;align-items:center;padding:26px 0;background:none;border:none;cursor:pointer;text-align:left}
+.faq-q{font-family:'Tenor Sans',serif;font-size:19px;color:var(--ink);font-weight:400;padding-right:20px}
+.faq-icon{width:32px;height:32px;border-radius:50%;border:1px solid var(--sand);display:flex;align-items:center;justify-content:center;font-size:18px;color:var(--copper);flex-shrink:0;transition:all .3s;font-weight:300;line-height:1}
+.faq-item.open .faq-icon{background:var(--ember);border-color:var(--ember);color:#fff;transform:rotate(45deg)}
+.faq-answer{max-height:0;overflow:hidden;transition:max-height .4s ease,padding .3s}
+.faq-item.open .faq-answer{max-height:300px;padding-bottom:24px}
+.faq-answer p{font-size:15px;line-height:1.85;color:var(--fog);font-weight:300}
+
+/* FOOTER */
+footer{background:var(--ink);padding:60px 6vw 40px;color:rgba(255,255,255,.3)}
+.footer-top{display:grid;grid-template-columns:1fr 1fr;gap:60px;padding-bottom:50px;border-bottom:1px solid rgba(255,255,255,.07);margin-bottom:36px}
+.footer-brand-name{font-family:'Tenor Sans',serif;font-size:22px;letter-spacing:3px;text-transform:uppercase;color:#fff;margin-bottom:12px;font-weight:400}
+.footer-brand-name span{color:var(--copper)}
+.footer-desc{font-size:13px;line-height:1.8;max-width:320px;margin-bottom:24px}
+.footer-insta{display:inline-flex;align-items:center;gap:8px;color:var(--copper);font-size:12px;letter-spacing:1.5px;text-transform:uppercase;text-decoration:none;transition:opacity .2s}
+.footer-insta:hover{opacity:.7}
+.footer-legal h5{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:12px}
+.footer-legal p{font-size:12px;line-height:1.9;margin-bottom:20px}
+.footer-bottom{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:11px;letter-spacing:1px}
+
+/* REVEAL ANIMATIONS */
+[data-reveal]{opacity:0;transform:translateY(36px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
+[data-reveal].shown{opacity:1;transform:none}
+[data-reveal-delay="1"]{transition-delay:.1s}
+[data-reveal-delay="2"]{transition-delay:.2s}
+[data-reveal-delay="3"]{transition-delay:.3s}
+[data-reveal-delay="4"]{transition-delay:.4s}
+
+/* MOBILE */
+@media(max-width:900px){
+  body{cursor:auto}
+  .cursor,.cursor-ring{display:none}
+  .hero{grid-template-columns:1fr}
+  .hero-left{padding:70px 6vw 60px;text-align:center;align-items:center}
+  .hero-tag{margin-left:auto;margin-right:auto}
+  .hero-desc{margin-left:auto;margin-right:auto}
+  .hero-meta{justify-content:center}
+  .hero-right{padding:60px 6vw 80px}
+  .book-scene{width:220px}
+  .why-grid{grid-template-columns:1fr}
+  .why-img{display:none}
+  .footer-top{grid-template-columns:1fr}
+  .cta-wrap{padding:52px 28px}
+  .proof{gap:28px}
+}
+@media(max-width:600px){
+  .s{padding:72px 5vw}
+  nav{padding:16px 5vw}
+}
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cur"></div>
+<div class="cursor-ring" id="curRing"></div>
+
+<div class="bar">
+  <span class="bar-dot"></span>
+  Časově omezená nabídka &nbsp;·&nbsp; Pouze 299 Kč &nbsp;·&nbsp; Okamžitý přístup po platbě
+  <span class="bar-dot"></span>
+</div>
+
+<nav>
+  <a href="#" class="nav-logo">Pravda o <span>celulitidě</span></a>
+  <a href="#koupit" class="nav-cta">Objednat nyní</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-tag" data-reveal>E-book &amp; 30denní program</div>
+    <h1 data-reveal data-reveal-delay="1">
+      Konec lžím
+      <span class="accent">o drahých krémech.</span>
+      <span class="italic">Začni zevnitř.</span>
+    </h1>
+    <p class="hero-desc" data-reveal data-reveal-delay="2">Vědecky podložený manuál, který ti ukáže jak restartovat lymfu, vyživit tělo a dosáhnout hladké pokožky — bez procedur, bez zbytečných výdajů.</p>
+    <a href="#koupit" class="hero-btn" data-reveal data-reveal-delay="3">Chci hladkou pokožku</a>
+    <div class="hero-meta" data-reveal data-reveal-delay="4">
+      <div class="hero-meta-item"><strong>30</strong><span>Denní plán</span></div>
+      <div class="hero-meta-item"><strong>4</strong><span>Části obsahu</span></div>
+      <div class="hero-meta-item"><strong>299 Kč</strong><span>Jednorázově</span></div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="book-scene" data-reveal data-reveal-delay="2">
+      <img src="https://ace321cz.github.io/Pa-ba.eu/IMG_20260308_165158.png" alt="E-book Pravda o celulitidě">
+      <div class="book-shadow"></div>
+      <div class="badge-price"><span class="amt">299</span><span class="kc">KČ</span></div>
+    </div>
+    <div class="trust-row" data-reveal data-reveal-delay="3">
+      <div class="trust-item">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+        Bezpečná platba přes SimpleShop
+      </div>
+      <div class="trust-item">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+        Okamžitý přístup na jakémkoli zařízení
+      </div>
+      <div class="trust-item">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+        Navrženo ženou pro ženy
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="proof">
+  <div class="proof-item" data-reveal><strong>500+</strong><span>Spokojených zákaznic</span></div>
+  <div class="proof-item" data-reveal data-reveal-delay="1"><strong>4.9★</strong><span>Průměrné hodnocení</span></div>
+  <div class="proof-item" data-reveal data-reveal-delay="2"><strong>30 dní</strong><span>Do viditelných výsledků</span></div>
+  <div class="proof-item" data-reveal data-reveal-delay="3"><strong>100%</strong><span>Domácí metody</span></div>
+</div>
+
+<section class="s chapters-bg">
+  <div class="s-inner">
+    <div data-reveal>
+      <div class="s-label">Obsah manuálu</div>
+      <h2 class="s-h">Co přesně<br><em>získáš?</em></h2>
+      <p class="s-p">Čtyři propracované kapitoly, které ti dají vše potřebné pro skutečnou a trvalou změnu.</p>
+    </div>
+    <div class="chapters">
+      <div class="chapter" data-reveal>
+        <div class="ch-img-wrap"><img src="https://ace321cz.github.io/Pa-ba.eu/IMG_20260308_165158.png" alt="Anatomie úspěchu"><span class="ch-num">01</span></div>
+        <div class="ch-body"><div class="ch-title">Anatomie úspěchu</div><p class="ch-text">Odhalíš tajemství ženského vaziva. Jakmile pochopíš proč celulitida vzniká, žádná reklama tě neopije rohlíkem.</p></div>
+      </div>
+      <div class="chapter" data-reveal data-reveal-delay="1">
+        <div class="ch-img-wrap"><img src="https://ace321cz.github.io/Pa-ba.eu/IMG_20260307_214830.png" alt="Jídelníček pro kolagen"><span class="ch-num">02</span></div>
+        <div class="ch-body"><div class="ch-title">Jídelníček pro kolagen</div><p class="ch-text">Kompletní seznam potravin jako přírodní žehlička na pleť — zpevní podkožní struktury a podpoří tvorbu kolagenu.</p></div>
+      </div>
+      <div class="chapter" data-reveal data-reveal-delay="2">
+        <div class="ch-img-wrap"><img src="https://ace321cz.github.io/Pa-ba.eu/file_00000000a2b07246a98585cf2d5e1b77.png" alt="Domácí SPA rituály"><span class="ch-num">03</span></div>
+        <div class="ch-body"><div class="ch-title">Domácí SPA rituály</div><p class="ch-text">Suché kartáčování a masáže, které probudí lymfu, zbaví tělo zadržované vody a zpevní pokožku zevnitř.</p></div>
+      </div>
+      <div class="chapter ch-bonus" data-reveal data-reveal-delay="3">
+        <div class="ch-img-wrap"><img src="https://ace321cz.github.io/Pa-ba.eu/IMG_20260307_215021.png" alt="30denní výzva"><span class="ch-num">+</span></div>
+        <div class="ch-body"><span class="bonus-badge">✦ Bonus zdarma</span><div class="ch-title">30denní výzva</div><p class="ch-text">Žádné fitko, žádné činky. Cviky navržené ženou pro ženy — přesně tam, kde to nejvíc potřebuješ.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="s">
+  <div class="s-inner">
+    <div class="why-grid">
+      <div class="why-img" data-reveal>
+        <div class="why-frame"></div>
+        <img src="https://ace321cz.github.io/Pa-ba.eu/file_00000000a2b07246a98585cf2d5e1b77.png" alt="Rituály">
+        <div class="why-stats"><strong>3–4 týdny</strong><span>Do prvních výsledků</span></div>
+      </div>
+      <div data-reveal data-reveal-delay="1">
+        <div class="s-label">Proč to funguje</div>
+        <h2 class="s-h">Věda,<br><em>ne marketing</em></h2>
+        <p class="s-p" style="margin-bottom:0">Většina krémů řeší pouze povrch. Skutečná změna začíná v lymfě a ve stravě — tohle ti nikdo v reklamě neřekne.</p>
+        <div class="pillars">
+          <div class="pillar"><div class="pillar-icon">🧬</div><div><h4>Vědecky podloženo</h4><p>Postupy vycházejí z výzkumu o lymfatickém systému, kolagenu a podkožních strukturách.</p></div></div>
+          <div class="pillar"><div class="pillar-icon">🏡</div><div><h4>Vše zvládneš doma</h4><p>Žádné drahé salóny ani speciální vybavení — stačí to, co máš doma.</p></div></div>
+          <div class="pillar"><div class="pillar-icon">📅</div><div><h4>Jasný 30denní plán</h4><p>Strukturovaný postup s konkrétními kroky na každý den. Žádné dohady.</p></div></div>
+          <div class="pillar"><div class="pillar-icon">💛</div><div><h4>Funguje v každém věku</h4><p>Metody pro rozproudění lymfy pracují bez ohledu na věk. Potřeba je jen důslednost.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="s testi-bg">
+  <div class="s-inner">
+    <div data-reveal>
+      <div class="s-label">Recenze</div>
+      <h2 class="s-h">Co říkají<br><em>ostatní?</em></h2>
+    </div>
+    <div class="testis">
+      <div class="testi" data-reveal>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">Zkoušela jsem spoustu věcí, ale nic mi nepomáhalo tak jako tento manuál. Po třech týdnech jsem opravdu viděla rozdíl na stehnech.</p>
+        <div class="testi-author"><div class="testi-avatar">K</div><div><div class="testi-name">Karolína M.</div><div class="testi-loc">Praha · Ověřená zákaznice</div></div></div>
+      </div>
+      <div class="testi" data-reveal data-reveal-delay="1">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">Konečně něco, co vysvětlí proč a ne jen co dělat. Kapitola o lymfě mi otevřela oči. Jídelníček jsem zavedla hned a cítím se lehčí.</p>
+        <div class="testi-author"><div class="testi-avatar">L</div><div><div class="testi-name">Lucie V.</div><div class="testi-loc">Brno · Ověřená zákaznice</div></div></div>
+      </div>
+      <div class="testi" data-reveal data-reveal-delay="2">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">Za 299 Kč jsem čekala málo, ale dostala jsem víc než z knih za stovky. Bonusová výzva je skvělá — 10 minut denně a výsledky přišly.</p>
+        <div class="testi-author"><div class="testi-avatar">M</div><div><div class="testi-name">Markéta H.</div><div class="testi-loc">Ostrava · Ověřená zákaznice</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="s cta-block" id="koupit">
+  <div class="cta-wrap" data-reveal>
+    <div class="cta-label">Začni ještě dnes</div>
+    <h2 class="cta-h">Získej hladkou<br><em>a pevnou pokožku</em></h2>
+    <p class="cta-desc">Žádné zázračné pilulky — jen věda, správné jídlo a jednoduché rituály, které zvládneš doma.</p>
+    <ul class="check-list">
+      <li>Kompletní manuál s vědecky podloženými postupy</li>
+      <li>Jídelníček pro kolagen, který zpevní podkoží</li>
+      <li>Návod na lymfatické rituály zvládnutelné doma</li>
+      <li><strong>BONUS:</strong>&nbsp; 30denní výzva pro viditelné výsledky</li>
+    </ul>
+    <div class="price-display">
+      <span class="price-currency">Kč</span>
+      <span class="price-amount">299</span>
+    </div>
+    <div class="price-note">Jednorázová platba · Okamžitý přístup · Digitální obsah</div>
+    <div class="shop-form-wrap">
+      <div data-SimpleShopForm="RYDWY"><div style="color:rgba(255,255,255,.4);font-size:13px;padding:20px">Prodejní formulář se načítá…</div></div>
+    </div>
+    <script>
+      (function(i,s,o,g,r,a,m){i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)};i[r].l=1*new Date();a=s.createElement(o);m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','https://form.simpleshop.cz/prj/js/SimpleShopService.js','sss');
+      sss('createForm','RYDWY');
+    </script>
+    <div class="secure-badges">
+      <div class="secure-badge"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>Zabezpečená platba</div>
+      <div class="secure-badge"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>Okamžitý přístup</div>
+      <div class="secure-badge"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/></svg>SimpleShop</div>
+    </div>
+  </div>
+</section>
+
+<section class="s">
+  <div class="s-inner" style="max-width:720px">
+    <div data-reveal>
+      <div class="s-label">FAQ</div>
+      <h2 class="s-h">Časté<br><em>otázky</em></h2>
+    </div>
+    <div class="faq-list" data-reveal>
+      <div class="faq-item">
+        <button class="faq-btn"><span class="faq-q">Jak rychle e-book obdržím?</span><span class="faq-icon">+</span></button>
+        <div class="faq-answer"><p>Většina bank dnes podporuje okamžité platby. V takovém případě vám odkaz dorazí do e-mailu během pár minut. U standardního převodu to trvá obvykle 1 pracovní den.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-btn"><span class="faq-q">Funguje to i na starší celulitidu?</span><span class="faq-icon">+</span></button>
+        <div class="faq-answer"><p>Ano! Metody pro rozproudění lymfy a výživu vaziva fungují v každém věku. Výsledky mohou přijít o něco pomaleji, ale při důslednosti jsou zcela viditelné.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-btn"><span class="faq-q">Potřebuji speciální vybavení?</span><span class="faq-icon">+</span></button>
+        <div class="faq-answer"><p>Ne. Všechny metody jsou navrženy tak, aby je šlo zvládnout doma s minimálními náklady. Speciální pomůcky ani fitko nejsou potřeba.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-btn"><span class="faq-q">Co když mi e-book nepomůže?</span><span class="faq-icon">+</span></button>
+        <div class="faq-answer"><p>Vzhledem k povaze digitálního obsahu není možné vrátit peníze po obdržení souboru. Pokud máš otázky před nákupem, neváhej napsat na e-mail a ráda poradím.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-btn"><span class="faq-q">Jak vás kontaktuji?</span><span class="faq-icon">+</span></button>
+        <div class="faq-answer"><p>Jsem tu pro tebe na e-mailu: <a href="mailto:ace321cz@gmail.com" style="color:var(--copper)">ace321cz@gmail.com</a> — odpovím zpravidla do 24 hodin.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-brand-name">Pravda o <span>celulitidě</span></div>
+      <p class="footer-desc">Vědecky podložený manuál pro ženy, které chtějí skutečné výsledky — bez drahých procedur a prázdných slibů.</p>
+      <a href="https://www.instagram.com/stop.celulitide?igsh=MTliM3VzbzE5cW92NA==" class="footer-insta" target="_blank" rel="noopener">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z"/></svg>
+        @stop.celulitide
+      </a>
+    </div>
+    <div class="footer-legal">
+      <h5>Důležité upozornění</h5>
+      <p>Informace jsou pouze edukativního charakteru a nenahrazují odbornou lékařskou pomoc. Před zahájením změn v jídelníčku se vždy poraďte s lékařem.</p>
+      <h5>Obchodní podmínky</h5>
+      <p>Zakoupením e-booku získáváte okamžitý přístup k digitálnímu obsahu. Po doručení obsahu zaniká právo na odstoupení od smlouvy.</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Pravda o celulitidě · <a href="mailto:ace321cz@gmail.com" style="color:inherit">ace321cz@gmail.com</a></span>
+    <span>Bezpečný nákup · Digitální obsah přes SimpleShop</span>
+  </div>
+</footer>
+
+<script>
+// Custom cursor
+const cur=document.getElementById('cur'),ring=document.getElementById('curRing');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px'});
+(function animRing(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animRing)})();
+
+// Scroll reveals
+const ro=new IntersectionObserver(e=>e.forEach(el=>{if(el.isIntersecting)el.target.classList.add('shown')}),{threshold:.1});
+document.querySelectorAll('[data-reveal]').forEach(el=>ro.observe(el));
+
+// FAQ
+document.querySelectorAll('.faq-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const item=btn.closest('.faq-item'),isOpen=item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+    if(!isOpen)item.classList.add('open');
+  });
+});
+</script>
+</body>
+</html>
