@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-TRS5RSN');</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pravda o celulitidě | Hladká pokožka zevnitř</title>
+<meta name="description" content="Vědecky podložený 30denní manuál za 299 Kč. Hladká pokožka bez drahých procedur.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+/* ── RESET & ROOT ── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --c-bg:     #FCF9F6;
+  --c-warm:   #F5EDE3;
+  --c-sand:   #E8D8C8;
+  --c-rose:   #D4756A;
+  --c-rose2:  #C05A4F;
+  --c-gold:   #B8935A;
+  --c-ink:    #1C1410;
+  --c-dark:   #2E1F18;
+  --c-muted:  #8C7B72;
+  --c-white:  #FFFDFB;
+  --r: 0px; /* border-radius base */
+}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Outfit',sans-serif;
+  font-weight:300;
+  background:var(--c-bg);
+  color:var(--c-ink);
+  overflow-x:hidden;
+  line-height:1.65;
+}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--c-warm)}
+::-webkit-scrollbar-thumb{background:var(--c-rose);border-radius:2px}
+
+/* ── TICKER ── */
+.ticker-wrap{
+  background:var(--c-dark);
+  overflow:hidden;
+  padding:11px 0;
+  white-space:nowrap;
+}
+.ticker{
+  display:inline-flex;
+  animation:ticker 28s linear infinite;
+}
+.ticker span{
+  font-size:11px;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  color:rgba(255,255,255,.55);
+  padding:0 32px;
+}
+.ticker span b{color:var(--c-rose);font-weight:400}
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ── NAV ── */
+nav{
+  position:sticky;top:0;z-index:200;
+  background:rgba(252,249,246,.92);
+  backdrop-filter:blur(24px);
+  -webkit-backdrop-filter:blur(24px);
+  border-bottom:1px solid rgba(184,147,90,.18);
+  padding:0 5vw;
+  height:64px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.logo{
+  font-family:'DM Serif Display',serif;
+  font-size:17px;
+  color:var(--c-dark);
+  letter-spacing:.5px;
+}
+.logo em{font-style:italic;color:var(--c-rose)}
+.nav-actions{display:flex;align-items:center;gap:20px}
+.nav-link{
+  font-size:12px;letter-spacing:2px;text-transform:uppercase;
+  color:var(--c-muted);font-weight:400;
+  transition:color .2s;
+}
+.nav-link:hover{color:var(--c-rose)}
+.nav-pill{
+  background:var(--c-rose);color:#fff;
+  padding:10px 26px;
+  font-size:11px;letter-spacing:2.5px;text-transform:uppercase;
+  font-weight:500;
+  border-radius:100px;
+  transition:background .25s,transform .2s,box-shadow .2s;
+  box-shadow:0 4px 20px rgba(212,117,106,.35);
+}
+.nav-pill:hover{background:var(--c-rose2);transform:translateY(-1px);box-shadow:0 8px 28px rgba(212,117,106,.5)}
+
+/* ── HERO ── */
+.hero{
+  min-height:100svh;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  position:relative;
+  overflow:hidden;
+}
+/* LEFT – dark */
+.hero-l{
+  background:var(--c-dark);
+  padding:80px 5vw 80px 8vw;
+  display:flex;flex-direction:column;justify-content:center;
+  position:relative;overflow:hidden;
+}
+/* grain texture overlay */
+.hero-l::after{
+  content:'';position:absolute;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events:none;
+  opacity:.8;
+}
+/* warm glow */
+.hero-glow{
+  position:absolute;top:-100px;right:-60px;
+  width:420px;height:420px;
+  background:radial-gradient(circle,rgba(212,117,106,.2) 0%,transparent 65%);
+  pointer-events:none;
+}
+
+.hero-kicker{
+  display:inline-flex;align-items:center;gap:10px;
+  font-size:10px;letter-spacing:4px;text-transform:uppercase;
+  color:var(--c-gold);font-weight:400;
+  margin-bottom:28px;
+  position:relative;z-index:1;
+}
+.hero-kicker::before{content:'';width:24px;height:1px;background:var(--c-gold)}
+
+.hero-h1{
+  font-family:'DM Serif Display',serif;
+  font-size:clamp(3rem,5vw,5.2rem);
+  line-height:1.0;
+  color:#fff;
+  margin-bottom:30px;
+  position:relative;z-index:1;
+}
+.hero-h1 em{
+  font-style:italic;
+  color:var(--c-rose);
+  display:block;
+}
+.hero-h1 .outline{
+  color:transparent;
+  -webkit-text-stroke:1.5px rgba(255,255,255,.25);
+  display:block;
+}
+
+.hero-desc{
+  font-size:15px;line-height:1.9;
+  color:rgba(255,255,255,.5);
+  max-width:380px;
+  margin-bottom:44px;
+  position:relative;z-index:1;
+  font-weight:300;
+}
+
+.hero-cta{
+  display:inline-flex;align-items:center;gap:12px;
+  background:linear-gradient(135deg,var(--c-rose),var(--c-rose2));
+  color:#fff;
+  padding:18px 40px;
+  font-size:12px;letter-spacing:2.5px;text-transform:uppercase;
+  font-weight:500;
+  border-radius:100px;
+  box-shadow:0 12px 40px rgba(212,117,106,.45);
+  transition:all .3s;
+  position:relative;z-index:1;
+  width:fit-content;
+}
+.hero-cta:hover{transform:translateY(-3px);box-shadow:0 20px 56px rgba(212,117,106,.6)}
+.hero-cta .arrow{
+  width:28px;height:28px;
+  background:rgba(255,255,255,.15);
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:14px;
+  transition:transform .3s;
+}
+.hero-cta:hover .arrow{transform:translateX(4px)}
+
+.hero-facts{
+  display:flex;gap:32px;
+  margin-top:40px;
+  position:relative;z-index:1;
+  padding-top:32px;
+  border-top:1px solid rgba(255,255,255,.08);
+}
+.hero-fact-item{display:flex;flex-direction:column;gap:2px}
+.hero-fact-item strong{
+  font-family:'DM Serif Display',serif;
+  font-size:26px;color:#fff;font-weight:400;
+}
+.hero-fact-item span{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.3)}
+
+/* RIGHT – light */
+.hero-r{
+  background:var(--c-warm);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:60px 6vw;
+  position:relative;overflow:hidden;
+  gap:36px;
+}
+.hero-r::before{
+  content:'';position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 90% 50% at 50% 0%,rgba(232,216,200,.7) 0%,transparent 60%),
+    radial-gradient(ellipse 70% 70% at 100% 100%,rgba(184,147,90,.1) 0%,transparent 60%);
+}
+
+/* big decorative number */
+.hero-r-deco{
+  position:absolute;
+  font-family:'DM Serif Display',serif;
+  font-size:300px;
+  color:rgba(184,147,90,.06);
+  line-height:1;
+  right:-20px;bottom:-40px;
+  pointer-events:none;
+  user-select:none;
+}
+
+.book-float{
+  position:relative;z-index:1;
+  width:clamp(200px,24vw,310px);
+  animation:levitate 5.5s ease-in-out infinite;
+}
+@keyframes levitate{
+  0%,100%{transform:translateY(0px) rotate(-2deg)}
+  50%{transform:translateY(-16px) rotate(-2deg)}
+}
+.book-float img{
+  width:100%;
+  border-radius:12px;
+  box-shadow:0 48px 96px rgba(28,20,16,.25),0 0 0 1px rgba(184,147,90,.2);
+}
+.book-shadow-el{
+  position:absolute;bottom:-20px;left:50%;transform:translateX(-50%);
+  width:70%;height:20px;
+  background:radial-gradient(ellipse,rgba(28,20,16,.3) 0%,transparent 70%);
+  filter:blur(10px);
+  animation:shadow-breathe 5.5s ease-in-out infinite;
+}
+@keyframes shadow-breathe{
+  0%,100%{opacity:1;width:70%}
+  50%{opacity:.4;width:50%}
+}
+
+/* price badge */
+.price-badge{
+  position:absolute;
+  top:28px;right:-16px;z-index:3;
+  width:88px;height:88px;
+  background:linear-gradient(145deg,var(--c-rose),var(--c-rose2));
+  border-radius:50%;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  box-shadow:0 12px 32px rgba(212,117,106,.5);
+  animation:spin-badge 6s ease-in-out infinite alternate;
+}
+@keyframes spin-badge{
+  from{transform:rotate(-6deg) scale(1)}
+  to{transform:rotate(4deg) scale(1.06)}
+}
+.price-badge .p-amt{font-family:'DM Serif Display',serif;font-size:22px;color:#fff;line-height:1}
+.price-badge .p-unit{font-size:10px;color:rgba(255,255,255,.75);letter-spacing:1px}
+
+/* trust pills */
+.trust-pills{
+  display:flex;flex-direction:column;gap:8px;
+  position:relative;z-index:1;
+  width:100%;max-width:280px;
+}
+.trust-pill{
+  display:flex;align-items:center;gap:10px;
+  background:rgba(255,255,255,.6);
+  border:1px solid rgba(184,147,90,.18);
+  padding:10px 16px;
+  border-radius:100px;
+  font-size:12px;color:var(--c-muted);
+  backdrop-filter:blur(8px);
+}
+.trust-pill svg{flex-shrink:0;color:var(--c-gold)}
+
+/* ── SOCIAL PROOF STRIP ── */
+.proof-strip{
+  background:var(--c-dark);
+  display:flex;align-items:center;justify-content:center;
+  gap:0;flex-wrap:wrap;
+  overflow:hidden;
+}
+.proof-item{
+  display:flex;flex-direction:column;align-items:center;gap:3px;
+  padding:28px 48px;
+  position:relative;
+}
+.proof-item::after{
+  content:'';position:absolute;right:0;top:25%;height:50%;
+  width:1px;background:rgba(255,255,255,.08);
+}
+.proof-item:last-child::after{display:none}
+.proof-num{
+  font-family:'DM Serif Display',serif;
+  font-size:32px;color:var(--c-rose);font-weight:400;
+}
+.proof-label{font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,.35)}
+
+/* ── SECTION HELPERS ── */
+.section{padding:110px 5vw}
+.section-inner{max-width:1140px;margin:0 auto}
+.section-warm{background:var(--c-warm)}
+.section-white{background:var(--c-white)}
+
+.eyebrow{
+  font-size:10px;letter-spacing:4px;text-transform:uppercase;
+  color:var(--c-gold);font-weight:400;
+  display:flex;align-items:center;gap:10px;
+  margin-bottom:16px;
+}
+.eyebrow::after{content:'';width:28px;height:1px;background:var(--c-gold)}
+
+h2.sh{
+  font-family:'DM Serif Display',serif;
+  font-size:clamp(2rem,3.8vw,3.2rem);
+  line-height:1.1;
+  color:var(--c-dark);
+  margin-bottom:20px;
+}
+h2.sh em{font-style:italic;color:var(--c-rose)}
+.s-body{font-size:16px;line-height:1.9;color:var(--c-muted);max-width:540px}
+
+/* ── CHAPTERS ── */
+.ch-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  margin-top:64px;
+  border:1px solid var(--c-sand);
+  border-radius:20px;
+  overflow:hidden;
+}
+.ch{
+  background:#fff;
+  position:relative;
+  transition:background .3s;
+  overflow:hidden;
+  border-right:1px solid var(--c-sand);
+}
+.ch:last-child{border-right:none}
+.ch:hover{background:var(--c-warm)}
+
+.ch-img{
+  width:100%;aspect-ratio:3/2;object-fit:cover;
+  transition:transform .5s ease;
+}
+.ch:hover .ch-img{transform:scale(1.05)}
+
+.ch-body{padding:28px 24px 32px}
+.ch-index{
+  font-family:'DM Serif Display',serif;
+  font-size:48px;color:var(--c-sand);
+  line-height:1;margin-bottom:8px;
+  transition:color .3s;
+}
+.ch:hover .ch-index{color:var(--c-rose)}
+.ch-title{
+  font-family:'DM Serif Display',serif;
+  font-size:1.15rem;color:var(--c-dark);
+  margin-bottom:10px;
+}
+.ch-desc{font-size:13px;line-height:1.75;color:var(--c-muted)}
+
+.ch-bonus-tag{
+  position:absolute;top:14px;left:14px;
+  background:var(--c-rose);color:#fff;
+  font-size:9px;letter-spacing:2px;text-transform:uppercase;
+  padding:4px 12px;border-radius:100px;font-weight:500;
+}
+
+/* ── WHY / SCIENCE ── */
+.why-layout{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:80px;align-items:center;
+  margin-top:64px;
+}
+.why-media{position:relative}
+.why-media img{
+  width:100%;border-radius:16px;
+  box-shadow:0 32px 72px rgba(28,20,16,.14);
+  object-fit:cover;
+  aspect-ratio:4/5;
+}
+.why-media-frame{
+  position:absolute;
+  top:-16px;left:-16px;
+  right:16px;bottom:16px;
+  border:1px solid var(--c-sand);
+  border-radius:16px;
+  z-index:-1;
+}
+.why-pullout{
+  position:absolute;bottom:-28px;right:-28px;
+  background:var(--c-dark);
+  padding:22px 28px;border-radius:16px;
+  box-shadow:0 16px 48px rgba(28,20,16,.3);
+}
+.why-pullout strong{
+  font-family:'DM Serif Display',serif;
+  font-size:30px;color:var(--c-rose);
+  display:block;line-height:1;
+}
+.why-pullout span{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.4)}
+
+.why-pillars{margin-top:36px;display:flex;flex-direction:column}
+.pillar{
+  display:flex;gap:18px;align-items:flex-start;
+  padding:20px 0;
+  border-bottom:1px solid rgba(28,20,16,.07);
+}
+.pillar:first-child{border-top:1px solid rgba(28,20,16,.07)}
+.pillar-ico{
+  width:44px;height:44px;flex-shrink:0;
+  background:var(--c-warm);
+  border:1px solid var(--c-sand);
+  border-radius:12px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:19px;
+  transition:background .25s;
+}
+.pillar:hover .pillar-ico{background:rgba(212,117,106,.12)}
+.pillar h4{
+  font-family:'DM Serif Display',serif;
+  font-size:1.05rem;color:var(--c-dark);margin-bottom:3px;
+}
+.pillar p{font-size:13px;color:var(--c-muted);line-height:1.7}
+
+/* ── TESTIMONIALS ── */
+.testi-header{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:20px;margin-bottom:52px}
+.rating-big{
+  font-family:'DM Serif Display',serif;
+  font-size:56px;color:var(--c-rose);
+  line-height:1;
+}
+.rating-stars{color:var(--c-gold);font-size:18px;letter-spacing:3px;margin-bottom:4px}
+.rating-note{font-size:12px;color:var(--c-muted);letter-spacing:1px}
+
+.testi-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:20px;
+}
+.testi-card{
+  background:#fff;
+  border-radius:20px;
+  padding:36px 32px;
+  box-shadow:0 2px 20px rgba(28,20,16,.06);
+  position:relative;
+  overflow:hidden;
+  transition:transform .3s,box-shadow .3s;
+}
+.testi-card:hover{transform:translateY(-5px);box-shadow:0 20px 60px rgba(28,20,16,.12)}
+.testi-card::before{
+  content:'\201C';
+  position:absolute;top:-10px;right:24px;
+  font-family:'DM Serif Display',serif;
+  font-size:120px;color:rgba(212,117,106,.08);
+  line-height:1;pointer-events:none;
+}
+.testi-stars{color:var(--c-gold);font-size:13px;letter-spacing:2px;margin-bottom:16px}
+.testi-text{
+  font-size:15px;line-height:1.85;
+  color:var(--c-dark);font-style:italic;
+  margin-bottom:28px;
+  font-weight:300;
+}
+.testi-author{display:flex;align-items:center;gap:12px}
+.testi-av{
+  width:40px;height:40px;border-radius:50%;flex-shrink:0;
+  background:linear-gradient(135deg,var(--c-rose),var(--c-gold));
+  display:flex;align-items:center;justify-content:center;
+  font-family:'DM Serif Display',serif;font-size:15px;color:#fff;
+}
+.testi-name{font-size:14px;font-weight:500;color:var(--c-dark)}
+.testi-loc{font-size:11px;color:var(--c-muted);letter-spacing:.5px}
+
+/* ── ORDER / FORM SECTION ── */
+#koupit{padding:100px 5vw;background:var(--c-dark);position:relative;overflow:hidden}
+#koupit::before{
+  content:'';position:absolute;inset:0;
+  background:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events:none;
+}
+#koupit::after{
+  content:'';position:absolute;
+  bottom:-200px;right:-200px;
+  width:600px;height:600px;
+  background:radial-gradient(circle,rgba(212,117,106,.12) 0%,transparent 65%);
+  pointer-events:none;
+}
+
+.order-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:80px;align-items:center;
+  max-width:1100px;margin:0 auto;
+  position:relative;z-index:1;
+}
+
+.order-copy .eyebrow{color:var(--c-rose)}
+.order-copy h2.sh{color:#fff}
+.order-copy h2.sh em{color:var(--c-rose)}
+.order-copy .s-body{color:rgba(255,255,255,.45);margin-bottom:36px}
+
+.benefit-items{display:flex;flex-direction:column;gap:12px;margin-bottom:40px}
+.benefit-item{
+  display:flex;align-items:center;gap:14px;
+  font-size:14px;color:rgba(255,255,255,.75);
+  padding:12px 16px;
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.07);
+  border-radius:12px;
+  transition:border-color .2s;
+}
+.benefit-item:hover{border-color:rgba(212,117,106,.35)}
+.bcheck{
+  width:24px;height:24px;flex-shrink:0;
+  background:linear-gradient(135deg,var(--c-rose),var(--c-rose2));
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:11px;color:#fff;
+}
+
+/* FORM BOX */
+.form-panel{
+  background:#fff;
+  border-radius:24px;
+  padding:48px 40px;
+  box-shadow:0 40px 100px rgba(0,0,0,.35);
+  position:relative;
+  overflow:hidden;
+}
+.form-panel::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:4px;
+  background:linear-gradient(90deg,var(--c-rose),var(--c-gold),var(--c-rose));
+}
+.form-top{text-align:center;margin-bottom:28px}
+.form-eyebrow{
+  font-size:10px;letter-spacing:3px;text-transform:uppercase;
+  color:var(--c-gold);margin-bottom:10px;font-weight:400;
+}
+.form-price{
+  font-family:'DM Serif Display',serif;
+  font-size:64px;color:var(--c-rose);line-height:1;
+}
+.form-price sub{font-size:22px;vertical-align:super;font-weight:400}
+.form-sub{font-size:12px;color:var(--c-muted);letter-spacing:1px;margin-top:6px}
+.form-divider{
+  border:none;border-top:1px solid rgba(28,20,16,.07);
+  margin:24px 0;
+}
+/* SimpleShop iframe injected here — white bg guaranteed */
+.shop-target{min-height:80px;background:#fff}
+.form-secure{
+  display:flex;align-items:center;justify-content:center;gap:7px;
+  margin-top:20px;font-size:11px;color:var(--c-muted);
+  letter-spacing:.5px;
+}
+
+/* ── FAQ ── */
+.faq-wrap{max-width:760px;margin:0 auto}
+.faq-grid{margin-top:56px;display:flex;flex-direction:column;gap:2px}
+.faq-item{overflow:hidden;border-radius:0}
+.faq-item:first-child{border-radius:16px 16px 0 0}
+.faq-item:last-child{border-radius:0 0 16px 16px}
+.faq-btn{
+  width:100%;display:flex;justify-content:space-between;align-items:center;
+  padding:24px 28px;background:#fff;border:none;
+  cursor:pointer;text-align:left;gap:20px;
+  border-bottom:1px solid rgba(28,20,16,.06);
+  transition:background .2s;
+}
+.faq-btn:hover{background:var(--c-warm)}
+.faq-q{
+  font-family:'DM Serif Display',serif;
+  font-size:1.05rem;color:var(--c-dark);
+}
+.faq-ico{
+  width:28px;height:28px;flex-shrink:0;
+  border-radius:50%;border:1.5px solid var(--c-sand);
+  display:flex;align-items:center;justify-content:center;
+  font-size:17px;color:var(--c-rose);
+  transition:all .3s;
+}
+.faq-item.open .faq-ico{background:var(--c-rose);color:#fff;border-color:var(--c-rose);transform:rotate(45deg)}
+.faq-body{max-height:0;overflow:hidden;transition:max-height .4s ease,padding .3s;background:#fff;padding:0 28px}
+.faq-item.open .faq-body{max-height:260px;padding:0 28px 24px}
+.faq-body p{font-size:14px;line-height:1.85;color:var(--c-muted)}
+
+/* ── FOOTER ── */
+footer{
+  background:var(--c-ink);
+  padding:72px 5vw 44px;
+  color:rgba(255,255,255,.35);
+}
+.footer-inner{max-width:1100px;margin:0 auto}
+.footer-top{
+  display:grid;grid-template-columns:1.2fr 1fr 1fr;
+  gap:60px;padding-bottom:56px;
+  border-bottom:1px solid rgba(255,255,255,.06);
+  margin-bottom:40px;
+}
+.footer-brand-name{
+  font-family:'DM Serif Display',serif;
+  font-size:22px;color:#fff;margin-bottom:12px;
+}
+.footer-brand-name em{font-style:italic;color:var(--c-rose)}
+.footer-desc{font-size:13px;line-height:1.9;margin-bottom:24px}
+.footer-insta{
+  display:inline-flex;align-items:center;gap:8px;
+  color:var(--c-rose);font-size:12px;letter-spacing:1.5px;text-transform:uppercase;
+  transition:opacity .2s;
+}
+.footer-insta:hover{opacity:.7}
+.footer-col h5{
+  font-size:10px;letter-spacing:3px;text-transform:uppercase;
+  color:rgba(255,255,255,.28);margin-bottom:14px;font-weight:500;
+}
+.footer-col p{font-size:12px;line-height:1.9}
+.footer-col a{color:var(--c-rose);transition:opacity .2s}
+.footer-col a:hover{opacity:.7}
+.footer-bottom{
+  display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;
+  font-size:11px;letter-spacing:1px;
+}
+
+/* ── REVEAL ANIMATIONS ── */
+[data-r]{
+  opacity:0;
+  transform:translateY(32px);
+  transition:opacity .85s cubic-bezier(.16,1,.3,1),transform .85s cubic-bezier(.16,1,.3,1);
+}
+[data-r].on{opacity:1;transform:none}
+[data-r][data-d="1"]{transition-delay:.1s}
+[data-r][data-d="2"]{transition-delay:.2s}
+[data-r][data-d="3"]{transition-delay:.25s}
+[data-r][data-d="4"]{transition-delay:.35s}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1024px){
+  .ch-grid{grid-template-columns:repeat(2,1fr)}
+  .testi-grid{grid-template-columns:1fr 1fr}
+  .footer-top{grid-template-columns:1fr 1fr}
+  .order-grid{grid-template-columns:1fr;gap:52px}
+}
+@media(max-width:800px){
+  .hero{grid-template-columns:1fr}
+  .hero-l{padding:72px 5vw 56px;align-items:center;text-align:center}
+  .hero-kicker,.hero-desc{text-align:center}
+  .hero-kicker{margin-left:auto;margin-right:auto}
+  .hero-desc{margin-left:auto;margin-right:auto}
+  .hero-cta{margin:0 auto}
+  .hero-facts{justify-content:center}
+  .hero-r{padding:56px 5vw 80px}
+  .why-layout{grid-template-columns:1fr}
+  .why-media{display:none}
+  .testi-grid{grid-template-columns:1fr}
+  .footer-top{grid-template-columns:1fr}
+}
+@media(max-width:600px){
+  .ch-grid{grid-template-columns:1fr}
+  .proof-item{padding:22px 28px}
+  .form-panel{padding:36px 22px}
+  nav{padding:0 5vw}
+  .nav-link{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- TICKER -->
+<div class="ticker-wrap" aria-hidden="true">
+  <div class="ticker">
+    <span>✦ Hladká pokožka začíná <b>zevnitř</b></span>
+    <span>✦ 30denní manuál za <b>299 Kč</b></span>
+    <span>✦ Kód <b>KRASNA20</b> = 20% sleva</span>
+    <span>✦ Okamžitý přístup po platbě</span>
+    <span>✦ Navrženo <b>ženou pro ženy</b></span>
+    <span>✦ Hladká pokožka začíná <b>zevnitř</b></span>
+    <span>✦ 30denní manuál za <b>299 Kč</b></span>
+    <span>✦ Kód <b>KRASNA20</b> = 20% sleva</span>
+    <span>✦ Okamžitý přístup po platbě</span>
+    <span>✦ Navrženo <b>ženou pro ženy</b></span>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo">Pravda o <em>celulitidě</em></a>
+  <div class="nav-actions">
+    <a href="#koupit" class="nav-link">Objednat</a>
+    <a href="#koupit" class="nav-pill">Začít nyní</a>
+  </div>
+</nav>
+
+<!-- ═══════════ HERO ═══════════ -->
+<section class="hero">
+  <!-- LEFT -->
+  <div class="hero-l">
+    <div class="hero-glow"></div>
+    <div class="hero-kicker" data-r>E-book &amp; 30denní program</div>
+    <h1 class="hero-h1" data-r data-d="1">
+      Pravda<br>
+      <em>o celulitidě</em>
+      <span class="outline">zevnitř ven.</span>
+    </h1>
+    <p class="hero-desc" data-r data-d="2">
+      Přestaňte vyhazovat peníze za nefunkční krémy. Naučím vás restartovat lymfu a vyživit tělo zevnitř — výsledky uvidíte v zrcadle za pár týdnů.
+    </p>
+    <a href="#koupit" class="hero-cta" data-r data-d="3">
+      Chci hladkou pokožku ✨
+      <span class="arrow">→</span>
+    </a>
+    <div class="hero-facts" data-r data-d="4">
+      <div class="hero-fact-item"><strong>30</strong><span>Denní plán</span></div>
+      <div class="hero-fact-item"><strong>4</strong><span>Kapitoly</span></div>
+      <div class="hero-fact-item"><strong>299 Kč</strong><span>Jednorázově</span></div>
+    </div>
+  </div>
+
+  <!-- RIGHT -->
+  <div class="hero-r">
+    <div class="hero-r-deco" aria-hidden="true">✦</div>
+    <div class="book-float" data-r data-d="2">
+      <img src="IMG_20260308_165158.png" alt="E-book Pravda o celulitidě">
+      <div class="book-shadow-el"></div>
+      <div class="price-badge">
+        <span class="p-amt">299</span>
+        <span class="p-unit">Kč</span>
+      </div>
+    </div>
+    <div class="trust-pills" data-r data-d="3">
+      <div class="trust-pill">
+        <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+        Bezpečná platba · SimpleShop
+      </div>
+      <div class="trust-pill">
+        <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+        Okamžitý přístup · Jakékoli zařízení
+      </div>
+      <div class="trust-pill">
+        <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+        Navrženo ženou pro ženy
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROOF STRIP -->
+<div class="proof-strip">
+  <div class="proof-item" data-r><span class="proof-num">500+</span><span class="proof-label">Spokojených zákaznic</span></div>
+  <div class="proof-item" data-r data-d="1"><span class="proof-num">4.9★</span><span class="proof-label">Průměrné hodnocení</span></div>
+  <div class="proof-item" data-r data-d="2"><span class="proof-num">30 dní</span><span class="proof-label">Do výsledků</span></div>
+  <div class="proof-item" data-r data-d="3"><span class="proof-num">100%</span><span class="proof-label">Domácí metody</span></div>
+</div>
+
+<!-- ═══════════ OBSAH ═══════════ -->
+<section class="section section-white">
+  <div class="section-inner">
+    <div data-r>
+      <div class="eyebrow">Obsah manuálu</div>
+      <h2 class="sh">Co přesně<br><em>získáte?</em></h2>
+      <p class="s-body">Čtyři propracované části, které ti dají vše potřebné pro skutečnou a trvalou změnu pokožky.</p>
+    </div>
+    <div class="ch-grid" data-r data-d="1">
+
+      <div class="ch">
+        <img class="ch-img" src="IMG_20260308_165158.png" alt="Anatomie úspěchu">
+        <div class="ch-body">
+          <div class="ch-index">01</div>
+          <div class="ch-title">Anatomie úspěchu</div>
+          <p class="ch-desc">Odhalíte tajemství ženského vaziva. Jakmile pochopíte proč celulitida vzniká, žádná reklama vás neopije rohlíkem.</p>
+        </div>
+      </div>
+
+      <div class="ch">
+        <img class="ch-img" src="IMG_20260307_214830.png" alt="Jídelníček pro kolagen">
+        <div class="ch-body">
+          <div class="ch-index">02</div>
+          <div class="ch-title">Jídelníček pro kolagen</div>
+          <p class="ch-desc">Kompletní seznam potravin jako přírodní žehlička na pleť — zpevní podkožní struktury a podpoří tvorbu kolagenu.</p>
+        </div>
+      </div>
+
+      <div class="ch">
+        <img class="ch-img" src="file_00000000a2b07246a98585cf2d5e1b77.png" alt="Domácí SPA rituály">
+        <div class="ch-body">
+          <div class="ch-index">03</div>
+          <div class="ch-title">Domácí SPA rituály</div>
+          <p class="ch-desc">Suché kartáčování a masáže, které probudí lymfu a zbaví tělo zadržované vody. Vše zvládnete doma.</p>
+        </div>
+      </div>
+
+      <div class="ch" style="background:rgba(212,117,106,.04)">
+        <div class="ch-bonus-tag">✨ Bonus zdarma</div>
+        <img class="ch-img" src="IMG_20260307_215021.png" alt="30denní výzva">
+        <div class="ch-body">
+          <div class="ch-index" style="color:rgba(212,117,106,.3)">+</div>
+          <div class="ch-title">30denní výzva</div>
+          <p class="ch-desc">Žádné fitko, žádné činky. Cviky navržené ženou pro ženy, přesně tam, kde to nejvíc potřebujete.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ VĚDA ═══════════ -->
+<section class="section section-warm">
+  <div class="section-inner">
+    <div class="why-layout">
+      <div class="why-media" data-r>
+        <div class="why-media-frame"></div>
+        <img src="file_00000000a2b07246a98585cf2d5e1b77.png" alt="SPA rituály">
+        <div class="why-pullout">
+          <strong>3–4 týdny</strong>
+          <span>Do prvních výsledků</span>
+        </div>
+      </div>
+      <div data-r data-d="1">
+        <div class="eyebrow">Proč to funguje</div>
+        <h2 class="sh">Věda,<br><em>ne marketing</em></h2>
+        <p class="s-body">Většina produktů řeší jen povrch. Skutečná změna začíná v lymfě a ve stravě — tohle vám žádná reklama neřekne.</p>
+        <div class="why-pillars">
+          <div class="pillar">
+            <div class="pillar-ico">🧬</div>
+            <div><h4>Vědecky podloženo</h4><p>Postupy vycházejí z výzkumu o lymfatickém systému, kolagenu a podkožních strukturách.</p></div>
+          </div>
+          <div class="pillar">
+            <div class="pillar-ico">🏡</div>
+            <div><h4>Vše zvládneš doma</h4><p>Žádné drahé salóny ani speciální vybavení — stačí to, co máš doma.</p></div>
+          </div>
+          <div class="pillar">
+            <div class="pillar-ico">📅</div>
+            <div><h4>Jasný 30denní plán</h4><p>Strukturovaný postup s konkrétními kroky na každý den. Žádné dohady.</p></div>
+          </div>
+          <div class="pillar">
+            <div class="pillar-ico">💛</div>
+            <div><h4>Funguje v každém věku</h4><p>Metody pro rozproudění lymfy pracují bez ohledu na věk. Potřeba je jen důslednost.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ RECENZE ═══════════ -->
+<section class="section section-white">
+  <div class="section-inner">
+    <div class="testi-header">
+      <div data-r>
+        <div class="eyebrow">Recenze zákaznic</div>
+        <h2 class="sh">Co říkají<br><em>ostatní?</em></h2>
+      </div>
+      <div data-r data-d="1" style="text-align:right">
+        <div class="rating-stars">★★★★★</div>
+        <div class="rating-big">4.9</div>
+        <div class="rating-note">Průměrné hodnocení · 500+ zákaznic</div>
+      </div>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card" data-r>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">Zkoušela jsem spoustu věcí, ale nic mi nepomáhalo tak jako tento manuál. Po třech týdnech jsem opravdu viděla rozdíl na stehnech.</p>
+        <div class="testi-author"><div class="testi-av">K</div><div><div class="testi-name">Karolína M.</div><div class="testi-loc">Praha · Ověřená zákaznice</div></div></div>
+      </div>
+      <div class="testi-card" data-r data-d="1">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">Konečně něco, co vysvětlí proč a ne jen co dělat. Kapitola o lymfě mi otevřela oči. Jídelníček jsem zavedla hned a cítím se lehčí.</p>
+        <div class="testi-author"><div class="testi-av">L</div><div><div class="testi-name">Lucie V.</div><div class="testi-loc">Brno · Ověřená zákaznice</div></div></div>
+      </div>
+      <div class="testi-card" data-r data-d="2">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">Za 299 Kč jsem čekala málo, ale dostala jsem víc než z knih za stovky. Bonusová výzva je skvělá — 10 minut denně a výsledky se dostavily.</p>
+        <div class="testi-author"><div class="testi-av">M</div><div><div class="testi-name">Markéta H.</div><div class="testi-loc">Ostrava · Ověřená zákaznice</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ OBJEDNÁVKA ═══════════ -->
+<section id="koupit">
+  <div class="order-grid">
+    <!-- LEFT copy -->
+    <div class="order-copy" data-r>
+      <div class="eyebrow">Začni ještě dnes</div>
+      <h2 class="sh">Získej hladkou<br><em>a pevnou pokožku</em><br>bez lží a drahých krémů</h2>
+      <p class="s-body">Většina produktů na celulitidu nefunguje, protože řeší jen povrch. Skutečná změna začíná v tvé lymfě a stravě. V mém 30denním manuálu tě naučím přesný postup.</p>
+      <div class="benefit-items">
+        <div class="benefit-item"><span class="bcheck">✓</span>Kompletní manuál s vědecky podloženými postupy</div>
+        <div class="benefit-item"><span class="bcheck">✓</span>Jídelníček pro kolagen, který zpevní tvé podkoží</div>
+        <div class="benefit-item"><span class="bcheck">✓</span>Návod na lymfatické rituály zvládnutelné doma</div>
+        <div class="benefit-item"><span class="bcheck">✓</span><strong style="color:#fff">BONUS:</strong>&nbsp;30denní výzva pro viditelné výsledky</div>
+      </div>
+    </div>
+
+    <!-- RIGHT form panel -->
+    <div class="form-panel" data-r data-d="1">
+      <div class="form-top">
+        <div class="form-eyebrow">Časově omezená nabídka</div>
+        <div class="form-price"><sub>Kč</sub>299</div>
+        <div class="form-sub">Jednorázová platba · Okamžitý přístup · Digitální obsah</div>
+      </div>
+
+      <!-- SLEVOVÝ KÓD -->
+      <div style="background:linear-gradient(135deg,rgba(212,117,106,.08),rgba(184,147,90,.08));border:2px dashed rgba(212,117,106,.5);border-radius:14px;padding:16px 20px;margin:20px 0;text-align:center;">
+        <div style="font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--c-gold);margin-bottom:6px;font-weight:500;">🎁 Kód z Instagramu</div>
+        <div style="font-family:'DM Serif Display',serif;font-size:30px;color:var(--c-rose);letter-spacing:5px;margin-bottom:6px;">KRASNA20</div>
+        <div style="font-size:12px;color:var(--c-muted);">Zadej kód ve formuláři níže a získej <strong style="color:var(--c-rose);">20% slevu</strong> ↓</div>
+      </div>
+
+      <hr class="form-divider">
+
+      <!-- ✅ ORIGINÁLNÍ SIMPLESHOP FORMULÁŘ — zachován beze změny -->
+      <div class="shop-target">
+        <div data-SimpleShopForm="RYDWY"><div style="text-align:center;padding:20px;color:#aaa;font-size:13px">Prodejní formulář se načítá...</div></div>
+      </div>
+      <script>
+       (function(i,s,o,g,r,a,m){
+        i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();
+        a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+       })(window,document,"script","https://form.simpleshop.cz/prj/js/SimpleShopService.js","sss");
+       sss("createForm","RYDWY");
+      </script>
+
+      <div class="form-secure">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="green" viewBox="0 0 16 16"><path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/></svg>
+        Bezpečný nákup přes SimpleShop
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ FAQ ═══════════ -->
+<section class="section section-warm">
+  <div class="section-inner">
+    <div class="faq-wrap">
+      <div data-r style="text-align:center;margin-bottom:0">
+        <div class="eyebrow" style="justify-content:center">Máte otázky?</div>
+        <h2 class="sh">Časté<br><em>dotazy</em></h2>
+      </div>
+      <div class="faq-grid" data-r data-d="1">
+        <div class="faq-item">
+          <button class="faq-btn"><span class="faq-q">Jak rychle e-book obdržím?</span><span class="faq-ico">+</span></button>
+          <div class="faq-body"><p>Většina bank dnes podporuje <strong>okamžité platby</strong>. V takovém případě vám odkaz dorazí do e-mailu během pár minut po odeslání platby. U standardního převodu to trvá obvykle 1 pracovní den.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-btn"><span class="faq-q">Funguje to i na starší celulitidu?</span><span class="faq-ico">+</span></button>
+          <div class="faq-body"><p>Ano! Metody pro rozproudění lymfy a výživu vaziva fungují v každém věku, jen je potřeba trpělivost a důslednost.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-btn"><span class="faq-q">Potřebuji speciální vybavení?</span><span class="faq-ico">+</span></button>
+          <div class="faq-body"><p>Ne. Všechny metody jsou navrženy tak, aby je šlo zvládnout doma s minimálními náklady. Speciální pomůcky ani fitko nejsou potřeba.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-btn"><span class="faq-q">Potřebujete poradit?</span><span class="faq-ico">+</span></button>
+          <div class="faq-body"><p>Jsem tu pro vás na e-mailu: <a href="mailto:ace321cz@gmail.com" style="color:var(--c-rose);font-weight:500">ace321cz@gmail.com</a> — odpovím zpravidla do 24 hodin.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ FOOTER ═══════════ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand-name">Pravda o <em>celulitidě</em></div>
+        <p class="footer-desc">Vědecky podložený manuál pro ženy, které chtějí skutečné výsledky — bez drahých procedur a prázdných slibů.</p>
+        <a href="https://www.instagram.com/stop.celulitide?igsh=MTliM3VzbzE5cW92NA==" class="footer-insta" target="_blank" rel="noopener">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z"/></svg>
+          @stop.celulitide
+        </a>
+      </div>
+      <div class="footer-col">
+        <h5>Důležité upozornění</h5>
+        <p>Informace obsažené na těchto stránkách a v nabízeném e-booku jsou pouze edukativního charakteru a nenahrazují odbornou lékařskou pomoc. Před zahájením jakýchkoli změn v jídelníčku nebo životním stylu se vždy poraďte se svým lékařem.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Obchodní podmínky</h5>
+        <p>Zakoupením e-booku získáváte okamžitý přístup k digitálnímu obsahu. Vzhledem k povaze produktu (digitální stahovatelný soubor) odesláním platby souhlasíte s tím, že po doručení obsahu zaniká právo na odstoupení od smlouvy a vrácení peněz.</p>
+        <p style="margin-top:14px">Dotazy: <a href="mailto:ace321cz@gmail.com">ace321cz@gmail.com</a></p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Pravda o celulitidě. Všechna práva enviromentálně vyhrazená.</span>
+      <span>Bezpečný nákup | Digitální obsah přes SimpleShop</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Scroll reveal
+const ro = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('on') });
+}, { threshold: 0.08 });
+document.querySelectorAll('[data-r]').forEach(el => ro.observe(el));
+
+// FAQ accordion
+document.querySelectorAll('.faq-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const item = btn.closest('.faq-item');
+    const open = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!open) item.classList.add('open');
+  });
+});
+</script>
+</body>
+</html>
