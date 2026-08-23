@@ -3,14 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Milan Kortus | Tvorba jednoduchých a rychlých webů</title>
+    <title>Milan Kortus | Rychlé & Moderní Statické Weby</title>
+
     <style>
         :root {
             --primary: #2563eb;
-            --primary-hover: #1d4ed8;
-            --bg: #f8fafc;
+            --primary-dark: #1d4ed8;
+            --secondary: #0f172a;
+            --accent: #10b981;
+            --bg-light: #f8fafc;
             --card-bg: #ffffff;
-            --text: #0f172a;
+            --text-dark: #0f172a;
             --text-muted: #475569;
             --border: #e2e8f0;
         }
@@ -19,35 +22,98 @@
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
         }
 
         body {
-            background-color: var(--bg);
-            color: var(--text);
+            background-color: var(--bg-light);
+            color: var(--text-dark);
             line-height: 1.6;
-            padding: 20px;
         }
 
-        .container {
+        /* Hero Header */
+        .hero {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #ffffff;
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .hero-content {
             max-width: 800px;
-            margin: 40px auto;
+            margin: 0 auto;
         }
 
-        header {
+        .hero badge {
+            background: rgba(37, 99, 235, 0.2);
+            color: #60a5fa;
+            border: 1px solid rgba(96, 165, 250, 0.3);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: #94a3b8;
+            margin-bottom: 30px;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            background-color: var(--primary);
+            color: #ffffff;
+            font-weight: 600;
+            padding: 14px 28px;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        /* Layout Container */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .section-title {
             text-align: center;
             margin-bottom: 40px;
         }
 
-        h1 {
-            font-size: 2.5rem;
+        .section-title h2 {
+            font-size: 2rem;
+            color: var(--text-dark);
             margin-bottom: 10px;
-            color: var(--text);
         }
 
-        .subtitle {
-            font-size: 1.25rem;
+        .section-title p {
             color: var(--text-muted);
+        }
+
+        /* Grid Layouts */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin-bottom: 60px;
         }
 
         .card {
@@ -55,122 +121,323 @@
             border: 1px solid var(--border);
             border-radius: 12px;
             padding: 30px;
-            margin-bottom: 24px;
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s, box-shadow 0.2s;
         }
 
-        h2 {
-            font-size: 1.5rem;
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-icon {
+            font-size: 2rem;
             margin-bottom: 16px;
-            border-bottom: 2px solid var(--bg);
-            padding-bottom: 8px;
         }
 
-        ul {
-            list-style: none;
-        }
-
-        li {
-            position: relative;
-            padding-left: 28px;
+        .card h3 {
+            font-size: 1.3rem;
             margin-bottom: 12px;
+        }
+
+        .card p {
             color: var(--text-muted);
+            font-size: 0.95rem;
         }
 
-        li::before {
-            content: "✓";
-            position: absolute;
-            left: 0;
-            color: var(--primary);
-            font-weight: bold;
+        /* Reference Showcase Card */
+        .portfolio-card {
+            background: #ffffff;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08);
+            margin-bottom: 60px;
         }
 
-        .reference-link {
-            display: inline-block;
-            margin-top: 10px;
-            color: var(--primary);
-            text-decoration: none;
-            font-weight: 600;
+        .portfolio-content {
+            padding: 40px;
         }
 
-        .reference-link:hover {
-            text-decoration: underline;
+        .portfolio-tag {
+            color: var(--accent);
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
         }
 
-        .contact-box {
-            background: #eff6ff;
-            border: 1px solid #bfdbfe;
-            border-radius: 12px;
-            padding: 30px;
+        .portfolio-title {
+            font-size: 1.8rem;
+            margin-bottom: 16px;
+        }
+
+        .portfolio-desc {
+            color: var(--text-muted);
+            margin-bottom: 24px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            border-top: 1px solid var(--border);
+            padding-top: 20px;
+            margin-bottom: 24px;
+        }
+
+        .stat-item {
             text-align: center;
         }
 
-        .contact-name {
-            font-size: 1.3rem;
-            font-weight: bold;
-            margin-bottom: 5px;
+        .stat-value {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary);
         }
 
-        .btn-email {
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .btn-outline {
             display: inline-block;
-            background-color: var(--primary);
-            color: white;
-            padding: 12px 24px;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            font-weight: 600;
+            padding: 10px 20px;
             border-radius: 8px;
             text-decoration: none;
-            font-weight: 600;
-            margin-top: 15px;
-            transition: background-color 0.2s;
+            transition: all 0.2s;
         }
 
-        .btn-email:hover {
-            background-color: var(--primary-hover);
+        .btn-outline:hover {
+            background: var(--primary);
+            color: #ffffff;
+        }
+
+        /* Pricing Section */
+        .pricing-card {
+            text-align: center;
+            position: relative;
+        }
+
+        .pricing-price {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin: 15px 0;
+            color: var(--text-dark);
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin: 20px 0;
+            text-align: left;
+        }
+
+        .pricing-features li {
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border);
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .pricing-features li::before {
+            content: "✓ ";
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        /* Contact Box */
+        .contact-section {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            color: white;
+            border-radius: 16px;
+            padding: 50px 30px;
+            text-align: center;
+        }
+
+        .contact-section h2 {
+            font-size: 2rem;
+            margin-bottom: 12px;
+        }
+
+        .contact-section p {
+            color: #94a3b8;
+            margin-bottom: 30px;
+        }
+
+        .contact-info {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 20px 30px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+
+        .contact-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .contact-email {
+            font-size: 1.1rem;
+            color: #60a5fa;
+            text-decoration: none;
         }
 
         footer {
             text-align: center;
-            margin-top: 40px;
+            padding: 30px;
             color: var(--text-muted);
             font-size: 0.9rem;
+            border-top: 1px solid var(--border);
+            margin-top: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .stats-grid { grid-template-columns: 1fr; gap: 12px; }
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <header>
-            <h1>Tvorba statických webů</h1>
-            <p class="subtitle">Jednoduché, rychlé a přehledné stránky pro vaše podnikání nebo projekt.</p>
-        </header>
+    <!-- HERO SECTION -->
+    <header class="hero">
+        <div class="hero-content">
+            <span class="badge">Moderní & Rychlé Statické Weby</span>
+            <h1>Perfektní webová prezentace bez měsíčních poplatků</h1>
+            <p>Tvořím čisté, bleskově rychlé a plně responzivní statické stránky pro živnostníky, lokální firmy a gastro podniky.</p>
+            <a href="#kontakt" class="btn-primary">Chci nový web</a>
+        </div>
+    </header>
 
-        <section class="card">
-            <h2>Co nabízím</h2>
-            <ul>
-                <li><strong>Statické prezentace:</strong> Ideální pro živnostníky, malé firmy, restaurace nebo osobní vizitky.</li>
-                <li><strong>Blesková rychlost:</strong> Žádné pomalé načítání ani zbytečné skripty.</li>
-                <li><strong>Optimalizace pro mobily:</strong> Stránky se skvěle zobrazují na mobilu, tabletu i počítači.</li>
-                <li><strong>Bezúdržbový provoz:</strong> Nemusíte řešit aktualizace redakčních systémů ani bezpečnostní rizika.</li>
-            </ul>
+    <main class="container">
+
+        <!-- PROČ STATICKÝ WEB -->
+        <div class="section-title">
+            <h2>Proč zvolit statický web?</h2>
+            <p>Maximální výkon, nulová údržba a bezpečnost bez kompromisů.</p>
+        </div>
+
+        <div class="grid-3">
+            <div class="card">
+                <div class="card-icon">⚡</div>
+                <h3>Bleskové načítání</h3>
+                <p>Žádné pomalé databáze ani náročný WordPress. Stránky se načtou do sekundy na jakémkoliv zařízení.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">📱</div>
+                <h3>100% Mobilní</h3>
+                <p>Web se automaticky přizpůsobí displejům mobilních telefonů, tabletů i velkých monitorů.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">🔒</div>
+                <h3>Bezúdržbový provoz</h3>
+                <p>Nemusíte se starat o aktualizace zásuvných modulů ani řešit bezpečnostní hrozby a hackery.</p>
+            </div>
+        </div>
+
+        <!-- UKÁZKOVÁ REFERENCE -->
+        <div class="section-title">
+            <h2>Vybraná reference</h2>
+            <p>Ukázka reálné prezentace vytvořené pro lokální podnik.</p>
+        </div>
+
+        <div class="portfolio-card">
+            <div class="portfolio-content">
+                <div class="portfolio-tag">Gastro & Lokální Podnik</div>
+                <h3 class="portfolio-title">Kiosek Na Dvorku</h3>
+                <p class="portfolio-desc">Prezentační web pro venkovní občerstvení. Obsahuje přehled nabídky, otevírací dobu, cenovou hladinu a rychlý kontakt s možností provolání jedním kliknutím.</p>
+                
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-value">100 %</div>
+                        <div class="stat-label">Rychlost načítání</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">SEO</div>
+                        <div class="stat-label">Připraveno pro Google</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">0 Kč</div>
+                        <div class="stat-label">Poplatky za systém</div>
+                    </div>
+                </div>
+
+                <a href="https://kioseknadvorku.fun/" target="_blank" rel="noopener" class="btn-outline">Prohlédnout si web kioseknadvorku.fun ↗</a>
+            </div>
+        </div>
+
+        <!-- NABÍDKA & CENÍK -->
+        <div class="section-title">
+            <h2>Nabídka služeb</h2>
+            <p>Transparentní podmínky na míru vašim potřebám.</p>
+        </div>
+
+        <div class="grid-3">
+            <div class="card pricing-card">
+                <h3>Vizitka / Jednostránka</h3>
+                <div class="pricing-price">od 2 500 Kč</div>
+                <p>Ideální pro začínající živnostníky a malé projekty.</p>
+                <ul class="pricing-features">
+                    <li>Jednostránkový responzivní web</li>
+                    <li>Kontaktní informace + mapa</li>
+                    <li>Propojení na sociální sítě</li>
+                    <li>Základní SEO optimalizace</li>
+                </ul>
+            </div>
+
+            <div class="card pricing-card">
+                <h3>Kompletní Prezentace</h3>
+                <div class="pricing-price">od 4 500 Kč</div>
+                <p>Pro firmy a podniky, které chtějí ukázat reference a ceník.</p>
+                <ul class="pricing-features">
+                    <li>Více sekcí / stránek</li>
+                    <li>Prezentace nabídek a ceníku</li>
+                    <li>Mobilní kontaktní tlačítka</li>
+                    <li>Pomoc s výběrem domény a hostingu</li>
+                </ul>
+            </div>
+
+            <div class="card pricing-card">
+                <h3>Úpravy & Redesign</h3>
+                <div class="pricing-price">Individuální</div>
+                <p>Máte starý web a chcete jej zrychlit nebo zmodernizovat?</p>
+                <ul class="pricing-features">
+                    <li>Převod starého webu na statický</li>
+                    <li>Zrychlení načítání obsahu</li>
+                    <li>Grafický úklid a modernizace</li>
+                    <li>Průběžná správa dle dohody</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- KONTAKT -->
+        <section class="contact-section" id="kontakt">
+            <h2>Pojďme vytvořit váš nový web</h2>
+            <p>Napište mi vaši představu a připravím vám nezávazný návrh.</p>
+            
+            <div class="contact-info">
+                <div class="contact-name">Milan "ace321cz" Kortus</div>
+                <p style="margin: 5px 0 10px 0; color: #94a3b8; font-size: 0.9rem;">Tvorba webů & Vývoj</p>
+                <a href="mailto:ace321cz@gmail.com" class="contact-email">ace321cz@gmail.com</a>
+            </div>
+            
+            <div>
+                <a href="mailto:ace321cz@gmail.com" class="btn-primary">Napsat e-mail</a>
+            </div>
         </section>
 
-        <section class="card">
-            <h2>Ukázka mé práce</h2>
-            <p>Podívejte se na ukázkový web vytvořený pro lokální gastronomii:</p>
-            <a href="https://kioseknadvorku.fun/" target="_blank" class="reference-link">→ Kiosek Na Dvorku (kioseknadvorku.fun)</a>
-        </section>
+    </main>
 
-        <section class="contact-box">
-            <h2>Máte zájem o web?</h2>
-            <p>Napište mi a dohodneme se na podrobnostech.</p>
-            <div class="contact-name" style="margin-top: 15px;">Milan "ace321cz" Kortus</div>
-            <a href="mailto:ace321cz@gmail.com" class="btn-email">Napsat e-mail: ace321cz@gmail.com</a>
-        </section>
-
-        <footer>
-            <p>&copy; Milan Kortus. Všechna práva vyhrazena.</p>
-        </footer>
-    </div>
+    <footer>
+        <p>&copy; 2026 Milan Kortus. Všechna práva vyhrazena.</p>
+    </footer>
 
 </body>
 </html>
-
