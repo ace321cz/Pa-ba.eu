@@ -1,1 +1,184 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kiosek Na Dvorku — Bavorovice</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,900&family=Space+Mono:wght@400;700&family=Archivo:wght@400;500;600;700&display=swap');
+
+  :root{
+    --pine:#1e4530;
+    --pine-dark:#122c1e;
+    --wood:#c9a35f;
+    --wood-dark:#8a6a34;
+    --brick:#b0522f;
+    --char:#241c14;
+    --cream:#f6efdf;
+    --chalk:#eef0e4;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--cream);
+    color:var(--char);
+    font-family:'Archivo', sans-serif;
+    line-height:1.5;
+    overflow-x:hidden;
+  }
+  a{color:inherit;}
+  img, video{display:block; max-width:100%; border-radius: 4px;}
+
+  ::selection{background:var(--wood); color:var(--char);}
+
+  /* ---------- NAV ---------- */
+  .nav{
+    position:sticky; top:0; z-index:50;
+    background:var(--pine-dark);
+    border-bottom:3px solid var(--wood);
+    display:flex; align-items:center; justify-content:space-between;
+    padding:0.9rem 1.4rem;
+  }
+  .nav-brand{
+    font-family:'Fraunces', serif;
+    font-weight:700;
+    color:var(--chalk);
+    font-size:1.15rem;
+    letter-spacing:0.02em;
+  }
+  .nav-brand span{color:var(--wood);}
+  .nav a.call{
+    background:var(--wood);
+    color:var(--pine-dark);
+    font-weight:700;
+    font-size:0.85rem;
+    padding:0.5rem 0.9rem;
+    border-radius:2px;
+    text-decoration:none;
+    white-space:nowrap;
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    min-height:78vh;
+    display:flex;
+    align-items:flex-end;
+    background:linear-gradient(180deg, rgba(18,44,30,0.15) 0%, rgba(18,44,30,0.55) 55%, rgba(18,44,30,0.95) 100%), #122c1e;
+    background-size: cover;
+    background-position: center;
+    padding: 3rem 1.5rem;
+  }
+  .hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+    color: var(--chalk);
+    z-index: 2;
+  }
+  .hero h1 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    line-height: 1.1;
+    margin-bottom: 1rem;
+    color: var(--wood);
+  }
+  .hero p {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    opacity: 0.9;
+  }
+
+  /* ---------- SECTIONS ---------- */
+  section {
+    padding: 4rem 1.5rem;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  h2 {
+    font-family: 'Fraunces', serif;
+    font-size: 2rem;
+    color: var(--pine);
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid var(--wood);
+    padding-bottom: 0.5rem;
+  }
+  
+  .video-container {
+    margin: 2rem 0;
+    background: var(--pine-dark);
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  }
+  .video-container video {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+  }
+
+  /* ---------- FOOTER & CREATOR ---------- */
+  footer {
+    background: var(--pine-dark);
+    color: var(--chalk);
+    text-align: center;
+    padding: 3rem 1.5rem;
+    margin-top: 4rem;
+    border-top: 4px solid var(--wood);
+  }
+  .creator-badge {
+    margin-top: 1.5rem;
+    font-size: 0.95rem;
+    opacity: 0.85;
+    border-top: 1px solid rgba(255,255,255,0.15);
+    padding-top: 1.5rem;
+  }
+  .creator-badge a {
+    color: var(--wood);
+    text-decoration: none;
+    font-weight: 600;
+  }
+  .creator-badge a:hover {
+    text-decoration: underline;
+  }
+</style>
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="nav-brand">Kiosek <span>Na Dvorku</span></div>
+    <a href="tel:+420123456789" class="call">Zavolat</a>
+  </nav>
+
+  <header class="hero">
+    <div class="hero-content">
+      <h1>Kiosek Na Dvorku</h1>
+      <p>Příjemné posezení, skvělé občerstvení, káva a domácí dobroty v srdci Bavorovic.</p>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <h2>O nás a atmosféra</h2>
+      <p>Vítejte na našich stránkách! Kiosek Na Dvorku je ideálním místem pro odpočinek během výletu, cyklojízdy nebo jen tak pro radost z dobrého jídla a pití v klidném prostředí.</p>
+      
+      <div class="video-container">
+        <h3 style="color:var(--chalk); margin-bottom:1rem; font-family:'Fraunces', serif;">Prohlídka kiosku a okolí</h3>
+        <!-- Zdroj videa můžete změnit na svůj soubor (např. video.mp4) -->
+        <video controls>
+          <source src="video.mp4" type="video/mp4">
+          Váš prohlížeč nepodporuje přehrávání videa.
+        </video>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Kiosek Na Dvorku — Bavorovice. Všechna práva vyhrazena.</p>
+    <div class="creator-badge">
+      Web vytvořil <a href="mailto:ace321cz@gmail.com">Milan "ace321cz" Kortus</a> (<a href="mailto:ace321cz@gmail.com">ace321cz@gmail.com</a>)
+    </div>
+  </footer>
+
+</body>
+</html>
 
