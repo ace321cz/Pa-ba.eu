@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kiosek Na Dvorku — Bavorovice</title>
+<meta name="description" content="Kiosek Na Dvorku v Bavorovicích — grilovaná klobása, domácí uzeniny a chlazený Samson na dvorku pod slunečníky. Otevřeno St, Pá–Ne 16–22.">
+<meta property="og:title" content="Kiosek Na Dvorku — Bavorovice">
+<meta property="og:description" content="Grilovaná klobása, domácí uzeniny a čepovaný Samson na dvorku v Bavorovicích. St, Pá–Ne 16–22.">
+<meta property="og:type" content="restaurant">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7096840819171094"
+     crossorigin="anonymous"></script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,900&family=Manrope:wght@400;500;600;700;800&display=swap');
+
+  :root{
+    --cream:#fbf3e6;
+    --paper:#fffaf1;
+    --terracotta:#c1502e;
+    --terracotta-dark:#9c3f22;
+    --forest:#2b4735;
+    --forest-dark:#182b1f;
+    --gold:#dda545;
+    --char:#2b2620;
+    --muted:#8a7f6f;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--cream);
+    color:var(--char);
+    font-family:'Manrope', sans-serif;
+    line-height:1.55;
+    overflow-x:hidden;
+  }
+  a{color:inherit;}
+  img{display:block; max-width:100%;}
+  ::selection{background:var(--gold); color:var(--forest-dark);}
+
+  /* ---------- NAV ---------- */
+  .navwrap{
+    position:sticky; top:0; z-index:60;
+    padding:0.9rem 1rem 0;
+  }
+  .nav{
+    max-width:1080px;
+    margin:0 auto;
+    background:rgba(255,250,241,0.88);
+    backdrop-filter:blur(10px);
+    border:1px solid rgba(43,71,53,0.1);
+    border-radius:100px;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:0.55rem 0.6rem 0.55rem 1.2rem;
+    box-shadow:0 2px 10px rgba(43,38,32,0.05);
+    transition:box-shadow 0.25s ease, background 0.25s ease;
+  }
+  .nav.scrolled{
+    box-shadow:0 10px 30px rgba(43,38,32,0.14);
+  }
+  .nav-brand{
+    font-family:'Fraunces', serif;
+    font-weight:700;
+    color:var(--forest-dark);
+    font-size:1.05rem;
+  }
+  .nav-brand span{color:var(--terracotta);}
+  .nav-links{
+    display:flex;
+    gap:1.5rem;
+    align-items:center;
+  }
+  .nav-links a{
+    color:var(--char);
+    text-decoration:none;
+    font-size:0.86rem;
+    font-weight:600;
+    opacity:0.62;
+    padding:0.3rem 0;
+    position:relative;
+    transition:opacity 0.2s ease;
+  }
+  .nav-links a::after{
+    content:'';
+    position:absolute; left:0; right:0; bottom:-3px;
+    height:2px; background:var(--terracotta);
+    transform:scaleX(0); transform-origin:left;
+    transition:transform 0.2s ease;
+  }
+  .nav-links a:hover{opacity:1;}
+  .nav-links a.active{
+    opacity:1; color:var(--terracotta-dark);
+  }
+  .nav-links a.active::after{ transform:scaleX(1); }
+  @media (max-width:820px){
+    .nav-links{display:none;}
+  }
+  .nav a.call{
+    background:var(--forest);
+    color:var(--paper);
+    font-weight:700;
+    font-size:0.83rem;
+    padding:0.6rem 1.1rem;
+    border-radius:100px;
+    text-decoration:none;
+    white-space:nowrap;
+    transition:transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+  }
+  .nav a.call:hover{
+    transform:translateY(-1px);
+    box-shadow:0 6px 16px rgba(43,71,53,0.35);
+    background:var(--forest-dark);
+  }
+
+  /* ---------- STATUS PILL ---------- */
+  .status-wrap{ display:flex; justify-content:center; margin-top:0.85rem; }
+  .status{
+    display:none;
+    align-items:center; gap:0.5rem;
+    background:var(--paper);
+    border:1px solid rgba(43,71,53,0.14);
+    color:var(--forest-dark);
+    font-weight:700;
+    font-size:0.82rem;
+    padding:0.5rem 1rem;
+    border-radius:100px;
+    box-shadow:0 4px 14px rgba(43,38,32,0.06);
+  }
+  .status::before{
+    content:'';
+    width:8px; height:8px;
+    border-radius:50%;
+    background:var(--terracotta);
+    display:inline-block;
+    animation:pulse 1.8s ease-in-out infinite;
+  }
+  .status.closed{ color:var(--muted); }
+  .status.closed::before{ background:var(--muted); animation:none; }
+  @keyframes pulse{
+    0%,100%{ opacity:1; transform:scale(1); }
+    50%{ opacity:0.35; transform:scale(0.7); }
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    max-width:1080px;
+    margin:0 auto;
+    padding:2.6rem 1.2rem 1rem;
+    display:grid;
+    grid-template-columns:1.05fr 0.95fr;
+    gap:2.4rem;
+    align-items:center;
+  }
+  .hero-copy .eyebrow{
+    display:inline-block;
+    font-weight:700;
+    font-size:0.78rem;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--terracotta-dark);
+    background:rgba(193,80,46,0.1);
+    padding:0.4rem 0.85rem;
+    border-radius:100px;
+    margin-bottom:1.1rem;
+  }
+  .hero h1{
+    font-family:'Fraunces', serif;
+    font-weight:900;
+    font-size:clamp(2.5rem, 6vw, 3.6rem);
+    line-height:1.02;
+    letter-spacing:-0.01em;
+    color:var(--forest-dark);
+  }
+  .hero h1 em{
+    font-style:normal;
+    color:var(--terracotta);
+  }
+  .hero-copy p{
+    margin-top:1.1rem;
+    font-size:1.05rem;
+    max-width:46ch;
+    color:#4a4237;
+  }
+  .hero-tags{
+    margin-top:1.5rem;
+    display:flex; gap:0.6rem; flex-wrap:wrap;
+  }
+  .hero-tags span{
+    font-weight:700;
+    font-size:0.78rem;
+    background:var(--paper);
+    border:1px solid rgba(43,71,53,0.14);
+    padding:0.4rem 0.8rem;
+    border-radius:100px;
+    color:var(--forest-dark);
+  }
+  .hero-cta{
+    margin-top:1.8rem;
+    display:flex; gap:0.8rem; flex-wrap:wrap;
+  }
+  .hero-photo{
+    position:relative;
+  }
+  .hero-photo::before{
+    content:'';
+    position:absolute;
+    top:-1.2rem; right:-1.2rem;
+    width:88%; height:88%;
+    background:var(--gold);
+    border-radius:28px;
+    z-index:0;
+    opacity:0.5;
+  }
+  .hero-photo img{
+    position:relative; z-index:1;
+    width:100%; aspect-ratio:4/5; object-fit:cover;
+    border-radius:28px;
+    box-shadow:0 20px 40px rgba(43,38,32,0.22);
+  }
+  @media (max-width:820px){
+    .hero{ grid-template-columns:1fr; padding-top:1.6rem; }
+    .hero-photo{ order:-1; max-width:360px; margin:0 auto; }
+  }
+
+  /* ---------- SECTION WRAPPER ---------- */
+  section{ padding:3.6rem 1.2rem; max-width:1080px; margin:0 auto; }
+  .reveal{
+    opacity:0;
+    transform:translateY(18px);
+    transition:opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.in-view{ opacity:1; transform:translateY(0); }
+  @media (prefers-reduced-motion: reduce){
+    .reveal{ opacity:1; transform:none; transition:none; }
+  }
+  .section-label{
+    font-weight:700;
+    font-size:0.78rem;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--terracotta-dark);
+    margin-bottom:0.6rem;
+  }
+  h2{
+    font-family:'Fraunces', serif;
+    font-weight:700;
+    font-size:clamp(1.7rem, 4vw, 2.3rem);
+    margin-bottom:1.4rem;
+    color:var(--forest-dark);
+  }
+
+  /* ---------- HOURS ---------- */
+  .hours-card{
+    background:var(--forest-dark);
+    border-radius:24px;
+    padding:2rem 1.8rem 2.2rem;
+    color:var(--paper);
+  }
+  .hours-card h2{ color:var(--paper); }
+  .hours-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(120px, 1fr));
+    gap:0.7rem;
+    margin-bottom:1.6rem;
+  }
+  .day-chip{
+    background:rgba(255,255,255,0.06);
+    border:1px solid rgba(255,255,255,0.1);
+    border-radius:14px;
+    padding:0.9rem 0.7rem;
+    text-align:center;
+  }
+  .day-chip .d{ font-size:0.78rem; font-weight:700; text-transform:uppercase; letter-spacing:0.05em; color:#b8c4bb; }
+  .day-chip .h{ margin-top:0.4rem; font-weight:700; font-size:0.92rem; }
+  .day-chip.closed .h{ color:#6f7d73; }
+  .day-chip.open .h{ color:var(--gold); }
+  .day-chip.today{ background:var(--terracotta); border-color:var(--terracotta); }
+  .day-chip.today .d{ color:#f3d9cd; }
+  .day-chip.today .h{ color:#fff; }
+  .info-row{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(190px,1fr));
+    gap:1rem;
+    font-size:0.88rem;
+    border-top:1px solid rgba(255,255,255,0.12);
+    padding-top:1.4rem;
+  }
+  .info-row strong{ display:block; color:var(--gold); font-size:0.75rem; text-transform:uppercase; letter-spacing:0.06em; margin-bottom:0.3rem; }
+  .info-row a{ text-decoration:none; }
+
+  /* ---------- SERVICE CARDS ---------- */
+  .service-grid{
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:1rem;
+  }
+  .service-card{
+    background:var(--paper);
+    border-radius:20px;
+    padding:1.5rem;
+    box-shadow:0 8px 24px rgba(43,38,32,0.06);
+    transition:transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .service-card:hover{
+    transform:translateY(-4px);
+    box-shadow:0 16px 32px rgba(43,38,32,0.12);
+  }
+  .service-icon{
+    width:44px; height:44px;
+    border-radius:12px;
+    background:rgba(193,80,46,0.12);
+    display:flex; align-items:center; justify-content:center;
+    font-size:1.3rem;
+    margin-bottom:0.9rem;
+  }
+  .service-card h3{
+    font-family:'Fraunces', serif;
+    color:var(--forest-dark);
+    font-size:1.15rem;
+    margin-bottom:0.4rem;
+  }
+  .service-card p{ color:var(--muted); font-size:0.92rem; }
+  @media (max-width:600px){ .service-grid{ grid-template-columns:1fr; } }
+
+  /* ---------- MENU ---------- */
+  .menu-card{
+    background:var(--paper);
+    border-radius:24px;
+    padding:2rem 1.9rem;
+    box-shadow:0 8px 24px rgba(43,38,32,0.06);
+  }
+  .menu-groups{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:2.2rem;
+  }
+  .menu-group h3{
+    font-family:'Fraunces', serif;
+    color:var(--terracotta-dark);
+    font-size:1.15rem;
+    margin-bottom:0.9rem;
+    padding-bottom:0.5rem;
+    border-bottom:2px solid rgba(193,80,46,0.15);
+  }
+  .menu-item{
+    display:flex; justify-content:space-between; align-items:baseline;
+    padding:0.55rem 0;
+    font-weight:600;
+    border-bottom:1px dashed rgba(43,38,32,0.1);
+  }
+  .menu-item .price{ color:var(--forest-dark); font-weight:800; }
+  .menu-note{
+    margin-top:0.8rem;
+    font-size:0.84rem;
+    color:var(--muted);
+    font-style:italic;
+  }
+  @media (max-width:600px){ .menu-groups{ grid-template-columns:1fr; } }
+
+  /* ---------- REVIEWS ---------- */
+  .reviews-section{ background:var(--forest); border-radius:32px; margin:2rem auto; }
+  .reviews-inner .section-label{ color:var(--gold); }
+  .reviews-section h2{ color:var(--paper); }
+  .reviews-intro{ color:#c9d6cc; margin-bottom:1.8rem; }
+  .reviews-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(240px,1fr));
+    gap:1.1rem;
+  }
+  .review-card{
+    background:rgba(255,255,255,0.06);
+    border:1px solid rgba(255,255,255,0.1);
+    border-radius:18px;
+    padding:1.4rem;
+  }
+  .review-stars{ color:var(--gold); letter-spacing:0.1em; margin-bottom:0.6rem; }
+  .review-text{ color:#e7ece7; font-size:0.92rem; }
+  .review-author{ margin-top:0.9rem; font-weight:700; font-size:0.82rem; color:#a9bcae; }
+  .google-review-btn{
+    display:inline-block;
+    margin-top:1.8rem;
+    color:var(--gold);
+    font-weight:700;
+    text-decoration:none;
+    border-bottom:1px solid rgba(221,165,69,0.4);
+    padding-bottom:2px;
+  }
+
+  /* ---------- GALLERY ---------- */
+  .gallery{
+    column-count:3;
+    column-gap:0.9rem;
+  }
+  .gallery img{
+    width:100%;
+    margin-bottom:0.9rem;
+    border-radius:18px;
+    box-shadow:0 6px 18px rgba(43,38,32,0.08);
+    break-inside:avoid;
+    transition:transform 0.25s ease;
+  }
+  .gallery img:hover{ transform:scale(1.02); }
+  @media (max-width:820px){ .gallery{ column-count:2; } }
+  @media (max-width:520px){ .gallery{ column-count:1; } }
+
+  /* ---------- LOCATION ---------- */
+  .loc-card{
+    background:var(--paper);
+    border-radius:28px;
+    padding:2rem;
+    display:grid;
+    grid-template-columns:1.1fr 0.9fr;
+    gap:2rem;
+    align-items:center;
+    box-shadow:0 8px 24px rgba(43,38,32,0.06);
+  }
+  .loc-details p{ margin:0.55rem 0; font-size:0.94rem; }
+  .loc-details strong{ display:inline-block; min-width:110px; color:var(--terracotta-dark); font-size:0.78rem; text-transform:uppercase; letter-spacing:0.05em; }
+  .loc-details a{ text-decoration:none; }
+  .loc-details img{ border-radius:18px; }
+  .btn{
+    display:inline-block;
+    margin-top:0.9rem;
+    background:var(--terracotta);
+    color:#fff;
+    text-decoration:none;
+    font-weight:700;
+    font-size:0.9rem;
+    padding:0.75rem 1.3rem;
+    border-radius:100px;
+    transition:transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+  }
+  .btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 10px 22px rgba(193,80,46,0.32);
+    background:var(--terracotta-dark);
+  }
+  .btn.outline{
+    background:transparent;
+    border:1.5px solid var(--forest);
+    color:var(--forest-dark);
+    margin-left:0.5rem;
+  }
+  .btn.outline:hover{ box-shadow:0 10px 22px rgba(43,71,53,0.12); background:transparent; }
+  @media (max-width:760px){
+    .loc-card{ grid-template-columns:1fr; }
+    .loc-card > div:last-child{ order:-1; }
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    background:var(--forest-dark);
+    color:#c7d4c9;
+    text-align:center;
+    padding:3.4rem 1.4rem 2.4rem;
+  }
+  footer .foot-title{
+    font-family:'Fraunces', serif;
+    font-size:1.3rem;
+    color:var(--paper);
+    margin-bottom:0.3rem;
+  }
+  footer .foot-tag{ font-size:0.9rem; color:#9db1a2; margin-bottom:1.8rem; }
+  .ig-btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:64px; height:64px;
+    border-radius:50%;
+    background:linear-gradient(45deg, #f9ce34, #ee2a7b, #6228d7);
+    box-shadow:0 10px 26px rgba(0,0,0,0.35);
+    transition:transform 0.2s ease, box-shadow 0.2s ease;
+    text-decoration:none;
+  }
+  .ig-btn:hover{
+    transform:translateY(-4px) scale(1.05);
+    box-shadow:0 16px 34px rgba(0,0,0,0.45);
+  }
+  .ig-btn svg{ width:30px; height:30px; }
+  .ig-label{
+    margin-top:0.9rem;
+    font-weight:700;
+    font-size:0.92rem;
+    color:var(--paper);
+  }
+  footer .credit{
+    margin-top:2.4rem;
+    font-size:0.72rem;
+    letter-spacing:0.03em;
+    color:#5f7367;
+  }
+  footer .credit a{ color:var(--gold); text-decoration:none; }
+  footer .credit a:hover{ text-decoration:underline; }
+</style>
+</head>
+<body>
+
+<div class="navwrap">
+  <nav class="nav">
+    <div class="nav-brand">Kiosek <span>Na Dvorku</span></div>
+    <div class="nav-links">
+      <a href="#hodiny" data-section="hodiny">Hodiny</a>
+      <a href="#menu" data-section="menu">Menu</a>
+      <a href="#recenze" data-section="recenze">Recenze</a>
+      <a href="#foto" data-section="foto">Foto</a>
+      <a href="#kontakt" data-section="kontakt">Kontakt</a>
+    </div>
+    <a class="call" href="tel:+420739005280">📞 739 005 280</a>
+  </nav>
+  <div class="status-wrap"><div id="status-strip" class="status"></div></div>
+</div>
+
+<div class="hero">
+  <div class="hero-copy">
+    <span class="eyebrow">Bavorovice · Rožnění &amp; grilování</span>
+    <h1>Grilovaná<br><em>klobása</em>,<br>chlazené pivo.</h1>
+    <p>Kiosek na dvorku v Bavorovicích — poctivé masné speciality dle starých receptur, čepovaný Samson a posezení pod slunečníky. Rožnění na přání a maso na objednávku.</p>
+    <div class="hero-tags">
+      <span>St, Pá–Ne 16–22</span>
+      <span>Platba pouze v hotovosti</span>
+      <span>Bez Wi-Fi</span>
+      <span>Bavorovice 74</span>
+    </div>
+    <div class="hero-cta">
+      <a class="btn" href="tel:+420739005280">Zavolat</a>
+      <a class="btn outline" href="#menu">Zobrazit menu</a>
+    </div>
+  </div>
+  <div class="hero-photo">
+    <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAcFBQYFBAcGBgYIBwcICxILCwoKCxYPEA0SGhYbGhkWGRgcICgiHB4mHhgZIzAkJiorLS4tGyIyNTEsNSgsLSz/2wBDAQcICAsJCxULCxUsHRkdLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCz/wAARCASEA4QDASIAAhEBAxEB/8QAHAAAAQUBAQEAAAAAAAAAAAAAAwECBAUGAAcI/8QAQhAAAgEDBAEDAgQEBQMDAwIHAQIDAAQRBRIhMUEGE1EiYRQycYEjQpGhBxVSscEkM9EWYuFDcvAlU4LxNKJEY5L/xAAaAQADAQEBAQ───────────────" alt="Kiosek Na Dvorku">
+  </div>
+</div>
+
+<section id="hodiny" class="reveal">
+  <div class="section-label">Otevírací doba</div>
+  <div class="hours-card">
+    <h2>Kdy máme otevřeno</h2>
+    <div class="hours-grid">
+      <div class="day-chip" data-day="1"><div class="d">Pondělí</div><div class="h">Zavřeno</div></div>
+      <div class="day-chip" data-day="2"><div class="d">Úterý</div><div class="h">Zavřeno</div></div>
+      <div class="day-chip" data-day="3"><div class="d">Středa</div><div class="h">16:00–22:00</div></div>
+      <div class="day-chip" data-day="4"><div class="d">Čtvrtek</div><div class="h">Zavřeno</div></div>
+      <div class="day-chip" data-day="5"><div class="d">Pátek</div><div class="h">16:00–22:00</div></div>
+      <div class="day-chip" data-day="6"><div class="d">Sobota</div><div class="h">16:00–22:00</div></div>
+      <div class="day-chip" data-day="0"><div class="d">Neděle</div><div class="h">16:00–22:00</div></div>
+    </div>
+    <div class="info-row">
+      <div><strong>Platba</strong>Platba pouze v hotovosti</div>
+      <div><strong>Připojení</strong>Bez Wi-Fi (u nás odpočíváte)</div>
+      <div><strong>Rezervace</strong><a href="tel:+420739005280" style="color:var(--paper);">739 005 280</a></div>
+    </div>
+  </div>
+</section>
+
+<section id="menu" class="reveal">
+  <div class="section-label">Naše Nabídka</div>
+  <h2>Něco k jídlu &amp; pití</h2>
+  <div class="menu-card">
+    <div class="menu-groups">
+      <div class="menu-group">
+        <h3>🍖 Z grilu a udírny</h3>
+        <div class="menu-item"><span>Grilovaná klobása</span><span class="price">dle váhy</span></div>
+        <div class="menu-item"><span>Domácí uzeniny</span><span class="price">dle váhy</span></div>
+        <div class="menu-item"><span>Rožněné maso (na objednávku)</span><span class="price">na dotaz</span></div>
+        <p class="menu-note">* Maso a uzeniny připravujeme dle tradičních receptur.</p>
+      </div>
+      <div class="menu-group">
+        <h3>🍺 Na čepu &amp; chladné</h3>
+        <div class="menu-item"><span>Čepovaný Samson</span><span class="price">dle lístku</span></div>
+        <div class="menu-item"><span>Nealkoholické nápoje</span><span class="price">dle lístku</span></div>
+        <div class="menu-item"><span>Něco ostřejšího</span><span class="price">dle lístku</span></div>
+        <p class="menu-note">* Vždy perfektně vychlazené.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="recenze" class="reviews-section reveal">
+  <div class="reviews-inner" style="padding: 2rem;">
+    <div class="section-label">Co o nás říkají</div>
+    <h2>Spokojení hosté</h2>
+    <p class="reviews-intro">Zde je několik ohlasů od našich návštěvníků.</p>
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">„Skvělá klobása, vynikající Samson a bezvadná atmosféra na dvorku!“</p>
+        <div class="review-author">— Petr M.</div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">„Příjemné posezení, poctivé jídlo a skvělá obsluha. Rádi se vracíme.“</p>
+        <div class="review-author">— Jana K.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="kontakt" class="reveal">
+  <div class="section-label">Kde nás najdete</div>
+  <h2>Kontakt &amp; Adresa</h2>
+  <div class="loc-card">
+    <div class="loc-details">
+      <p><strong>Adresa:</strong> Bavorovice 74, Česká republika</p>
+      <p><strong>Telefon:</strong> <a href="tel:+420739005280">739 005 280</a></p>
+      <p><strong>Otevřeno:</strong> St, Pá–Ne 16:00–22:00</p>
+      <p><strong>Informace:</strong> Platba pouze hotově. Wi-Fi připojení a dětský koutek u nás nenajdete – sázíme na poctivé jídlo a odpočinek.</p>
+      <a class="btn" href="tel:+420739005280">Zavolat nám</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-title">Kiosek Na Dvorku</div>
+  <div class="foot-tag">Bavorovice 74</div>
+  <div class="credit">
+    &copy; 2026 Kiosek Na Dvorku. Všechna práva vyhrazena.
+  </div>
+</footer>
+
