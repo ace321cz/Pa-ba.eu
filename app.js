@@ -1814,6 +1814,91 @@
     }).catch(function () {});
   })();
 
+  /* Hlavička používá backdrop-blur (kvůli "sticky, ale průhledné" efektu) a to
+     v CSS bohužel vytváří nový "containing block" pro position:fixed potomky –
+     takže fixed menu uvnitř hlavičky by se nepozicovalo vůči celé obrazovce,
+     ale jen vůči hlavičce samotné (na mobilu s větším zoomem/velikostí písma
+     se tím menu posunulo mimo viditelnou oblast). Řešení: menu přesuneme přímo
+     do <body> (mimo hlavičku) a jeho pozici (top/left/right) dopočítáme v JS
+     podle polohy tlačítka – funguje to stejně spolehlivě na mobilu i PC. */
+  function kpPositionDropdown(btn, menu, desktopWidth) {
+    const vw = document.documentElement.clientWidth;
+    const r = btn.getBoundingClientRect();
+    menu.style.position = 'fixed';
+    menu.style.maxHeight = (window.innerHeight - r.bottom - 16) + 'px';
+    // Na mobilu i na PC chceme kompaktní kartu zarovnanou k pravému okraji
+    // tlačítka (ne nataženou přes celou šířku obrazovky) - jen omezíme
+    // maximální šířku, ať se vždy vejde i na úzký displej.
+    menu.style.left = 'auto';
+    const maxW = vw - 16;
+    const width = Math.min(desktopWidth, maxW);
+    menu.style.width = width + 'px';
+    const right = Math.max(8, Math.min(vw - r.right, vw - width - 8));
+    menu.style.right = right + 'px';
+    menu.style.top = Math.max(8, r.bottom + 8) + 'px';
+  }
+  function kpMountDropdown(id) {
+    // smaž případný starý přesunutý kus z předchozího vykreslení hlavičky, ať
+    // nevznikne duplicitní ID v <body>
+    const stale = document.body.querySelector('[data-kp-portal="' + id + '"]');
+    if (stale) stale.remove();
+    const el = document.getElementById(id);
+    if (!el) return null;
+    el.setAttribute('data-kp-portal', id);
+    document.body.appendChild(el);
+    return el;
+  }
+
+  /* ================= Newsletter (přihlášení k odběru) ================= */
+  (function newsletterWidget() {
+    const form = document.getElementById('kpNewsletterForm');
+    if (!form) return;
+    const isEn = document.documentElement.lang === 'en';
+    const titleEl = document.getElementById('kpNewsletterTitle');
+    const descEl = document.getElementById('kpNewsletterDesc');
+    const labelEl = document.getElementById('kpNewsletterLabel');
+    const emailEl = document.getElementById('kpNewsletterEmail');
+    const submitEl = document.getElementById('kpNewsletterSubmit');
+    const msgEl = document.getElementById('kpNewsletterMsg');
+    if (titleEl) titleEl.textContent = isEn ? "Don't miss new lessons" : 'Nenech si ujít nové lekce';
+    if (descEl) descEl.textContent = isEn ? 'Occasional email, no spam. Unsubscribe with one click.' : 'Občasný e-mail, žádný spam. Odhlásíš se jedním klikem.';
+    if (labelEl) labelEl.textContent = isEn ? 'Email' : 'E-mail';
+    if (emailEl) emailEl.placeholder = isEn ? 'you@email.com' : 'tvuj@email.cz';
+    if (submitEl) submitEl.textContent = isEn ? 'Subscribe' : 'Odebírat';
+    function showMsg(text, ok) {
+      if (!msgEl) return;
+      msgEl.textContent = text;
+      msgEl.className = 'text-xs font-semibold w-full sm:w-auto text-center sm:text-left ' + (ok ? 'text-emerald-400' : 'text-rose-400');
+      msgEl.classList.remove('hidden');
+    }
+    form.addEventListener('submit', function (ev) {
+      ev.preventDefault();
+      const email = (emailEl.value || '').trim();
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        showMsg(isEn ? 'Please enter a valid email.' : 'Zadej prosím platný e-mail.', false);
+        return;
+      }
+      submitEl.disabled = true;
+      kpSbInsert('newsletter_subscribers', { email: email, lang: isEn ? 'en' : 'cs' }, true)
+        .then(function () {
+          showMsg(isEn ? "Thanks! We'll be in touch." : 'Díky! Ozveme se.', true);
+          form.reset();
+        })
+        .catch(function (e) {
+          // 409 = duplicitní e-mail (unique constraint) -- bereme to jako úspěch,
+          // ať uživatel nevidí chybu jen proto, že se už jednou přihlásil.
+          const msg = String((e && e.message) || '');
+          if (msg.indexOf('409') !== -1) {
+            showMsg(isEn ? 'You are already subscribed.' : 'Tenhle e-mail už je přihlášený.', true);
+            form.reset();
+          } else {
+            showMsg(isEn ? 'Could not subscribe, try again later.' : 'Přihlášení se nepodařilo, zkus to prosím později.', false);
+          }
+        })
+        .finally(function () { submitEl.disabled = false; });
+    });
+  })();
+
   /* ================= Hlavička: vidět, jestli jsem přihlášen(a) ================= */
   (function headerAuthWidget() {
     const box = document.getElementById('headerAuthWidget');
@@ -1835,13 +1920,13 @@
       const avatarHtml = (profile && profile.avatar_url)
         ? '<img src="' + kpEscapeHtml(profile.avatar_url) + '" class="w-6 h-6 rounded-full object-cover bg-slate-800">'
         : '<span class="w-6 h-6 rounded-full bg-slate-800 flex items-center justify-center text-slate-500 text-[10px]"><i class="fa-solid fa-user"></i></span>';
-      box.innerHTML = '<div class="relative flex items-center gap-1.5">' +
+      box.innerHTML = '<div class="relative flex items-center gap-1">' +
         '<div class="relative">' +
         '<button type="button" id="headerNotifBtn" aria-haspopup="true" aria-expanded="false" aria-label="' + (isEn ? 'Notifications' : 'Upozornění') + '" class="relative w-8 h-8 rounded-lg border border-brand-border bg-brand-card/80 text-slate-300 hover:text-white flex items-center justify-center transition">' +
         '<i class="fa-solid fa-bell text-sm"></i>' +
         '<span id="headerNotifBadge" class="hidden absolute -top-1 -right-1 min-w-[1.1rem] h-[1.1rem] px-1 rounded-full bg-rose-500 text-white text-[9px] font-black flex items-center justify-center">0</span>' +
         '</button>' +
-        '<div id="headerNotifMenu" class="hidden absolute right-0 mt-2 w-72 sm:w-80 max-h-96 overflow-y-auto rounded-xl bg-brand-card border border-brand-border shadow-xl z-[60]">' +
+        '<div id="headerNotifMenu" class="hidden w-auto max-w-full overflow-y-auto rounded-xl bg-brand-card border border-brand-border shadow-xl z-[60]">' +
         '<div class="px-4 py-2.5 border-b border-brand-border flex items-center justify-between">' +
         '<span class="text-xs font-black text-white">' + (isEn ? 'Notifications' : 'Upozornění') + '</span>' +
         '<button type="button" id="headerNotifMarkAll" class="text-[10px] font-bold text-brand-accent hover:underline">' + (isEn ? 'Mark all read' : 'Vše přečteno') + '</button>' +
@@ -1849,7 +1934,7 @@
         '<div id="headerNotifList" class="divide-y divide-brand-border"><div class="px-4 py-6 text-center text-xs text-slate-500">' + (isEn ? 'Loading…' : 'Načítám…') + '</div></div>' +
         '</div></div>' +
         '<div class="relative">' +
-        '<button type="button" id="headerAuthBtn" aria-haspopup="true" aria-expanded="false" class="relative flex items-center gap-1.5 pl-1 pr-2 sm:pr-3 py-1 rounded-full bg-brand-card border ' +
+        '<button type="button" id="headerAuthBtn" aria-haspopup="true" aria-expanded="false" class="relative flex items-center gap-1 pl-1 pr-1.5 sm:pr-3 py-1 rounded-full bg-brand-card border ' +
         (isAdmin ? 'border-amber-400 ring-2 ring-amber-400' : 'border-brand-border') +
         ' hover:border-brand-accent transition whitespace-nowrap">' + avatarHtml +
         '<span class="hidden min-[480px]:inline text-xs font-bold text-white max-w-[9rem] truncate">' + kpEscapeHtml(label) + '</span>' +
@@ -1857,7 +1942,7 @@
         '<i class="fa-solid fa-chevron-down text-[9px] text-slate-400"></i>' +
         '<span id="headerDotBadge" class="hidden absolute -top-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-rose-500 border-2 border-[#07090e]"></span>' +
         '</button>' +
-        '<div id="headerAuthMenu" class="hidden absolute right-0 mt-2 w-52 rounded-xl bg-brand-card border border-brand-border shadow-xl overflow-hidden z-[60]">' +
+        '<div id="headerAuthMenu" class="hidden w-auto max-w-full rounded-xl bg-brand-card border border-brand-border shadow-xl overflow-hidden z-[60]">' +
         '<a href="ucet.html" class="block px-4 py-2.5 text-xs font-semibold text-slate-200 hover:bg-slate-800 hover:text-white transition"><i class="fa-solid fa-user mr-2 w-4"></i>' + (isEn ? 'My profile' : 'Můj profil') + '</a>' +
         '<a href="zpravy.html" class="flex items-center px-4 py-2.5 text-xs font-semibold text-slate-200 hover:bg-slate-800 hover:text-white transition"><i class="fa-solid fa-envelope mr-2 w-4"></i>' + (isEn ? 'Messages' : 'Zprávy') + '<span id="headerUnreadBadge" class="hidden ml-auto min-w-[1.1rem] h-[1.1rem] px-1 rounded-full bg-rose-500 text-white text-[10px] font-black flex items-center justify-center">0</span></a>' +
         '<a href="clenove.html" class="block px-4 py-2.5 text-xs font-semibold text-slate-200 hover:bg-slate-800 hover:text-white transition"><i class="fa-solid fa-users mr-2 w-4"></i>' + (isEn ? 'Members' : 'Členové') + '</a>' +
@@ -1865,18 +1950,27 @@
         '<button type="button" id="headerAuthLogout" class="w-full text-left px-4 py-2.5 text-xs font-semibold text-rose-400 hover:bg-slate-800 transition border-t border-brand-border"><i class="fa-solid fa-right-from-bracket mr-2 w-4"></i>' + (isEn ? 'Log out' : 'Odhlásit se') + '</button>' +
         '</div></div></div>';
       const btn = document.getElementById('headerAuthBtn');
-      const menu = document.getElementById('headerAuthMenu');
+      const menu = kpMountDropdown('headerAuthMenu');
+      const notifMenuMounted = kpMountDropdown('headerNotifMenu');
       btn.addEventListener('click', function (ev) {
         ev.stopPropagation();
         const open = !menu.classList.contains('hidden');
+        if (!open) kpPositionDropdown(btn, menu, 208);
         menu.classList.toggle('hidden', open);
         btn.setAttribute('aria-expanded', String(!open));
       });
       document.addEventListener('click', function () {
         menu.classList.add('hidden'); btn.setAttribute('aria-expanded', 'false');
-        const nm = document.getElementById('headerNotifMenu');
-        if (nm) nm.classList.add('hidden');
+        if (notifMenuMounted) notifMenuMounted.classList.add('hidden');
       });
+      window.addEventListener('resize', function () {
+        menu.classList.add('hidden'); btn.setAttribute('aria-expanded', 'false');
+        if (notifMenuMounted) notifMenuMounted.classList.add('hidden');
+      });
+      window.addEventListener('scroll', function () {
+        menu.classList.add('hidden'); btn.setAttribute('aria-expanded', 'false');
+        if (notifMenuMounted) notifMenuMounted.classList.add('hidden');
+      }, { passive: true });
       document.getElementById('headerAuthLogout').addEventListener('click', function (ev) {
         ev.stopPropagation();
         kpAuth.signOut().then(function () { location.href = onAccountPage ? location.pathname : 'index.html'; location.reload(); });
@@ -1954,7 +2048,9 @@
       btn.addEventListener('click', function (ev) {
         ev.stopPropagation();
         const willOpen = menu.classList.contains('hidden');
-        document.getElementById('headerAuthMenu').classList.add('hidden');
+        const am = document.getElementById('headerAuthMenu');
+        if (am) am.classList.add('hidden');
+        if (willOpen) kpPositionDropdown(btn, menu, 320);
         menu.classList.toggle('hidden', !willOpen);
         btn.setAttribute('aria-expanded', String(willOpen));
         if (willOpen && !loaded) { loaded = true; loadNotifs(); }
@@ -2085,7 +2181,41 @@
         kpHighlight(isEn ? e.en : e.cs, q) + ' <span class="text-slate-500">&middot; ' + kpEscapeHtml(e.chap) + '</span></a>').join('') + '</div></div>';
     box.classList.remove('hidden');
   }
-  window.__kpRenderGlobalResults = renderGlobalResults;
+  /* Fórum hledáme zvlášť (je to dotaz na server, ne lokální index), s malým
+     zpožděním (debounce), ať nepálíme dotaz při každém stisku klávesy. Na
+     samotné stránce fóra má smysl jen jeho vlastní vyhledávání v tématech,
+     tak tady globální fórový blok nezobrazujeme. */
+  let globalForumSearchTimer = null;
+  let globalForumSearchToken = 0;
+  function renderGlobalForumResults(q) {
+    const box = document.getElementById('globalForumResults');
+    if (!box) return;
+    if (CURRENT_PAGE === 'forum') { box.innerHTML = ''; box.classList.add('hidden'); return; }
+    clearTimeout(globalForumSearchTimer);
+    const myToken = ++globalForumSearchToken;
+    const cleaned = String(q || '').replace(/[*%,()]/g, ' ').replace(/\s+/g, ' ').trim();
+    if (cleaned.length < 2 || typeof kpSbSelect !== 'function') { box.innerHTML = ''; box.classList.add('hidden'); return; }
+    globalForumSearchTimer = setTimeout(function () {
+      const isEn = document.documentElement.lang === 'en';
+      kpSbSelect('forum_topics', 'title=ilike.*' + encodeURIComponent(cleaned) + '*&select=id,title,created_at&order=created_at.desc&limit=6')
+        .then(function (rows) {
+          if (myToken !== globalForumSearchToken) return;
+          if (!rows || !rows.length) { box.innerHTML = ''; box.classList.add('hidden'); return; }
+          const label = isEn ? 'Also found in the forum:' : 'Nalezeno i na fóru:';
+          box.innerHTML = '<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-4">' +
+            '<p class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2"><i class="fa-solid fa-comments mr-1"></i>' + label + '</p>' +
+            '<div class="flex flex-wrap gap-2">' + rows.map(function (t) {
+              return '<a href="forum.html?topic=' + encodeURIComponent(t.id) + '" class="px-3 py-1.5 rounded-full bg-brand-card border border-brand-border hover:border-brand-accent text-xs font-semibold text-slate-200 transition">' +
+                kpHighlight(t.title, q) + '</a>';
+            }).join('') + '</div></div>';
+          box.classList.remove('hidden');
+        }).catch(function () {
+          if (myToken !== globalForumSearchToken) return;
+          box.innerHTML = ''; box.classList.add('hidden');
+        });
+    }, 300);
+  }
+  window.__kpRenderGlobalResults = function (q) { renderGlobalResults(q); renderGlobalForumResults(q); };
   new MutationObserver(() => { const si2 = document.getElementById('searchInput'); if (si2 && si2.value) renderGlobalResults(si2.value.toLowerCase().trim()); })
     .observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
 
@@ -3707,6 +3837,7 @@
     const authBox = document.getElementById('authBox');
     const dash = document.getElementById('accountDash');
     const publicBox = document.getElementById('publicProfileBox');
+    let publicProfileGen = 0;
     const tabs = document.querySelectorAll('.auth-tab');
     const loginForm = document.getElementById('loginForm');
     const registerForm = document.getElementById('registerForm');
@@ -3803,19 +3934,42 @@
       }
     }
 
+    async function fetchProfileByUsername(username) {
+      // ilike = case-insensitive (@zmínka/URL s malým i velkým písmenem musí
+      // najít stejný účet); escapujeme LIKE zvláštní znaky (_, %, \), ať se
+      // podtržítko v přezdívce nechová jako wildcard.
+      const unameEsc = String(username).replace(/\\/g, '\\\\').replace(/%/g, '\\%').replace(/_/g, '\\_');
+      return kpSbSelect('profiles', 'username=ilike.' + encodeURIComponent(unameEsc) + '&select=id,username,bio,avatar_url,created_at,is_admin,banned,instagram,facebook,twitter,website');
+    }
     async function renderPublicProfile(username) {
+      // generační čítač: pokud se mezitím rozjede novější volání (např. druhý
+      // klik, rychlá navigace tam a zpět), starší odpověď už nesmí přepsat
+      // nově vykreslený obsah - jinak hrozí, že se na chvíli mihne "uživatel
+      // neexistuje", i když profil ve skutečnosti existuje.
+      const myGen = ++publicProfileGen;
       authBox.classList.add('hidden');
       dash.classList.add('hidden');
       publicBox.classList.remove('hidden');
       publicBox.innerHTML = '<p class="text-sm text-slate-500 italic">' + (isEn ? 'Loading…' : 'Načítám…') + '</p>';
       let rows;
       try {
-        rows = await kpSbSelect('profiles', 'username=eq.' + encodeURIComponent(username) + '&select=id,username,bio,avatar_url,created_at,is_admin,banned,instagram,facebook,twitter,website');
+        rows = await fetchProfileByUsername(username);
       } catch (e) {
+        if (myGen !== publicProfileGen) return;
         publicBox.innerHTML = '<p class="text-sm text-rose-400">' + (isEn ? 'Could not load this profile.' : 'Tenhle profil se nepodařilo načíst.') + '</p>';
         return;
       }
-      const p = rows && rows[0];
+      if (myGen !== publicProfileGen) return;
+      let p = rows && rows[0];
+      if (!p) {
+        // krátká prodleva a jeden opakovaný pokus - ať nás nenachytá chvilkové
+        // zpoždění (např. těsně po registraci) a nezobrazíme chybu zbytečně
+        await new Promise(function (r) { setTimeout(r, 450); });
+        if (myGen !== publicProfileGen) return;
+        try { rows = await fetchProfileByUsername(username); } catch (e) { rows = null; }
+        if (myGen !== publicProfileGen) return;
+        p = rows && rows[0];
+      }
       if (!p) {
         publicBox.innerHTML = '<p class="text-sm text-slate-400">' + (isEn ? 'No such user.' : 'Takový uživatel neexistuje.') + '</p>';
         return;
@@ -4481,6 +4635,9 @@
     const isEn = document.documentElement.lang === 'en';
     const onlineBox = document.getElementById('membersOnline');
     const boardBox = document.getElementById('membersLeaderboard');
+    const activityBox = document.getElementById('membersActivityBoard');
+    const activityTitleEl = document.getElementById('membersActivityTitle');
+    if (activityTitleEl) activityTitleEl.innerHTML = '<i class="fa-solid fa-trophy mr-1.5"></i>' + (isEn ? 'Forum activity leaderboard' : 'Žebříček aktivity ve fóru');
     const lastSeenBox = document.getElementById('membersLastSeen');
     const ONLINE_WINDOW_MS = 5 * 60 * 1000;
     const lastSeenTitleEl = document.getElementById('membersLastSeenTitle');
@@ -4557,6 +4714,35 @@
     }).catch(function () {
       boardBox.innerHTML = '<p class="text-xs text-slate-500 italic">' + (isEn ? 'Could not load members.' : 'Členy se nepodařilo načíst.') + '</p>';
     });
+
+    // ---------------- Žebříček aktivity ve fóru (kp_forum_leaderboard RPC) ----------------
+    if (activityBox) {
+      activityBox.innerHTML = '<p class="text-xs text-slate-500 italic">' + (isEn ? 'Loading…' : 'Načítám…') + '</p>';
+      kpRpc('kp_forum_leaderboard').then(function (rows) {
+        if (!rows || !rows.length) {
+          activityBox.innerHTML = '<p class="text-xs text-slate-500 italic">' + (isEn ? 'No forum activity yet.' : 'Zatím žádná aktivita ve fóru.') + '</p>';
+          return;
+        }
+        const medal = ['🥇', '🥈', '🥉'];
+        activityBox.innerHTML = rows.map(function (p, i) {
+          const adminBadge = p.is_admin ? ' <span class="text-[9px] font-black text-amber-300 bg-amber-400/10 px-1.5 py-0.5 rounded">ADMIN</span>' : '';
+          const statsLabel = isEn
+            ? (p.topic_count + ' topics · ' + p.post_count + ' posts')
+            : (p.topic_count + ' témat · ' + p.post_count + ' příspěvků');
+          return '<div class="flex items-center gap-3 p-3 rounded-2xl bg-brand-card border ' + (i < 3 ? 'border-brand-purple/50' : 'border-brand-border') + '">' +
+            '<span class="w-6 text-center text-sm">' + (medal[i] || ('<span class="text-xs font-mono text-slate-500">#' + (i + 1) + '</span>')) + '</span>' +
+            '<a href="ucet.html?u=' + encodeURIComponent(p.username) + '" class="flex items-center gap-3 min-w-0 flex-1 hover:opacity-80 transition">' +
+            avatarHtml(p) +
+            '<div class="min-w-0 flex-1"><div class="font-bold text-white text-sm truncate">' + kpEscapeHtml(p.username) + adminBadge + '</div>' +
+            '<div class="text-[11px] text-slate-500">' + statsLabel + '</div></div>' +
+            '</a>' +
+            '<span class="text-xs font-black text-brand-purple shrink-0">' + p.score + ' ' + (isEn ? 'pts' : 'b.') + '</span>' +
+            '</div>';
+        }).join('');
+      }).catch(function () {
+        activityBox.innerHTML = '<p class="text-xs text-slate-500 italic">' + (isEn ? 'Could not load the leaderboard.' : 'Žebříček se nepodařilo načíst.') + '</p>';
+      });
+    }
   })();
 
   /* ================= Fórum ================= */
@@ -4615,6 +4801,61 @@
     if (newBodyInputEl) newBodyInputEl.placeholder = isEn ? 'Describe your question or idea in more detail…' : 'Popiš svůj dotaz nebo námět podrobněji…';
     const replyBodyEl = document.getElementById('forumReplyBody');
     if (replyBodyEl) replyBodyEl.placeholder = isEn ? 'Write a reply…' : 'Napiš odpověď…';
+
+    // ---------------- Nápověda @zmínek při psaní (autocomplete) ----------------
+    function setupMentionAutocomplete(ta, box) {
+      if (!ta || !box) return;
+      let debounceTimer = null;
+      function hide() { box.classList.add('hidden'); box.innerHTML = ''; }
+      function getMentionMatch() {
+        const val = ta.value;
+        const pos = ta.selectionStart;
+        if (pos == null) return null;
+        const before = val.slice(0, pos);
+        const m = before.match(/(^|[\s])@([A-Za-z0-9_]{0,32})$/);
+        if (!m) return null;
+        return { partial: m[2], start: pos - m[2].length - 1 };
+      }
+      ta.addEventListener('input', function () {
+        const match = getMentionMatch();
+        if (!match) { hide(); return; }
+        const partial = match.partial;
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(function () {
+          const esc = partial.replace(/\\/g, '\\\\').replace(/%/g, '\\%').replace(/_/g, '\\_').replace(/\*/g, '\\*');
+          kpSbSelect('profiles', 'username=ilike.' + encodeURIComponent(esc + '*') + '&select=username&limit=6&order=username.asc')
+            .then(function (rows) {
+              if (!rows || !rows.length) { hide(); return; }
+              box.innerHTML = rows.map(function (p) {
+                return '<button type="button" data-username="' + kpEscapeHtml(p.username) + '" class="kp-mention-opt w-full flex items-center gap-2 px-3 py-2 text-left text-xs font-semibold text-slate-200 hover:bg-slate-800 hover:text-white transition">' +
+                  '<span class="w-5 h-5 rounded-full bg-slate-800 flex items-center justify-center text-slate-500 text-[9px]"><i class="fa-solid fa-user"></i></span>@' + kpEscapeHtml(p.username) + '</button>';
+              }).join('');
+              box.classList.remove('hidden');
+            })
+            .catch(function () { hide(); });
+        }, 150);
+      });
+      box.addEventListener('mousedown', function (ev) {
+        const btn = ev.target.closest('.kp-mention-opt');
+        if (!btn) return;
+        ev.preventDefault();
+        const match = getMentionMatch();
+        if (!match) { hide(); return; }
+        const uname = btn.getAttribute('data-username');
+        const val = ta.value;
+        const pos = ta.selectionStart;
+        const newVal = val.slice(0, match.start) + '@' + uname + ' ' + val.slice(pos);
+        ta.value = newVal;
+        const newPos = match.start + 1 + uname.length + 1;
+        ta.focus();
+        ta.setSelectionRange(newPos, newPos);
+        hide();
+      });
+      ta.addEventListener('blur', function () { setTimeout(hide, 150); });
+      ta.addEventListener('keydown', function (ev) { if (ev.key === 'Escape') hide(); });
+    }
+    setupMentionAutocomplete(document.getElementById('forumNewBodyInput'), document.getElementById('forumNewMentionBox'));
+    setupMentionAutocomplete(document.getElementById('forumReplyBody'), document.getElementById('forumReplyMentionBox'));
     const reportReasonEl = document.getElementById('forumReportReason');
     if (reportReasonEl) reportReasonEl.placeholder = isEn ? 'Why are you reporting this post?' : 'Proč tento příspěvek nahlašuješ?';
     const searchInputEl = document.getElementById('forumSearchInput');
@@ -4651,7 +4892,7 @@
       html = html.replace(/\*\*([^\n*]+)\*\*/g, '<b>$1</b>');
       // @zmínka uživatele -- odkaz na profil, bez ověření existence (ucet.html
       // si poradí i s neexistující přezdívkou).
-      html = html.replace(/(^|[^\w@])@([A-Za-z0-9_]{2,32})/g, function (m, pre, handle) {
+      html = html.replace(/(^|[^\w@])@([A-Za-z0-9_]{1,32})/g, function (m, pre, handle) {
         return pre + '<a href="ucet.html?u=' + encodeURIComponent(handle) + '" class="font-bold text-brand-accent hover:underline">@' + handle + '</a>';
       });
       html = kpLinkifyEscaped(html);
@@ -4870,7 +5111,9 @@
         '<a href="forum.html?cat=' + encodeURIComponent(c.slug) + '" data-kp-nav data-cat="' + kpEscapeHtml(c.slug) + '" class="block p-4">' +
         '<div class="flex items-center gap-3">' +
         '<span class="w-11 h-11 shrink-0 rounded-xl bg-slate-900 border border-brand-border flex items-center justify-center text-brand-accent text-lg"><i class="fa-solid ' + kpEscapeHtml(c.icon || 'fa-comments') + '"></i></span>' +
-        '<div class="min-w-0 flex-1"><div class="font-bold text-white">' + kpEscapeHtml(catName(c)) + '</div><p class="text-xs text-slate-500 truncate">' + kpEscapeHtml(catDesc(c)) + '</p></div>' +
+        '<div class="min-w-0 flex-1"><div class="font-bold text-white flex items-center gap-1.5">' + kpEscapeHtml(catName(c)) +
+        (c.members_only ? '<span class="text-[10px] font-black text-amber-300 bg-amber-400/10 px-1.5 py-0.5 rounded"><i class="fa-solid fa-lock"></i> ' + (isEn ? 'Members' : 'Jen členové') + '</span>' : '') +
+        '</div><p class="text-xs text-slate-500 truncate">' + kpEscapeHtml(catDesc(c)) + '</p></div>' +
         '<div class="shrink-0 text-right text-xs text-slate-500"><div class="font-bold text-slate-300">' + c._topics + '</div><div>' + (isEn ? 'topics' : 'témat') + '</div></div>' +
         '<div class="shrink-0 text-right text-xs text-slate-500 hidden sm:block w-16"><div class="font-bold text-slate-300">' + c._posts + '</div><div>' + (isEn ? 'posts' : 'příspěvků') + '</div></div>' +
         '<i class="fa-solid fa-chevron-right text-slate-600 text-xs hidden sm:block"></i>' +
@@ -4919,7 +5162,15 @@
       const cleaned = term.replace(/[*%,()]/g, ' ').replace(/\s+/g, ' ').trim();
       return column + '=ilike.*' + encodeURIComponent(cleaned) + '*';
     }
-    function searchResultRowHtml(t) {
+    function postSnippetHtml(body, q) {
+      const plain = String(body || '').replace(/\s+/g, ' ').trim();
+      const idx = plain.toLowerCase().indexOf(q.toLowerCase());
+      let snippet;
+      if (idx === -1) snippet = plain.slice(0, 140);
+      else snippet = (idx > 40 ? '…' : '') + plain.slice(Math.max(0, idx - 40), idx + q.length + 80) + (idx + q.length + 80 < plain.length ? '…' : '');
+      return kpEscapeHtml(snippet);
+    }
+    function searchResultRowHtml(t, matchSnippet) {
       const author = prof(t.author_id);
       const cat = categoriesCache ? Object.keys(categoriesCache).map(function (k) { return categoriesCache[k]; }).find(function (c) { return c.id === t.category_id; }) : null;
       const badges = topicTypeBadge(t) +
@@ -4932,6 +5183,7 @@
         '<div class="flex items-center gap-1.5 flex-wrap">' +
         (badges ? badges + ' ' : '') + '<span class="font-bold text-white break-words">' + kpEscapeHtml(t.title) + '</span></div>' +
         '<p class="text-xs text-slate-500 mt-0.5">' + (cat ? kpEscapeHtml(catName(cat)) + ' · ' : '') + kpEscapeHtml(author.username) + ' · ' + fmtAgo(t.created_at) + '</p>' +
+        (matchSnippet ? '<p class="text-xs text-slate-400 mt-1 italic forum-search-snippet">' + (isEn ? 'Match in post: ' : 'Nalezeno v příspěvku: ') + '“' + matchSnippet + '”</p>' : '') +
         '</div>' +
         '<div class="shrink-0 text-right text-xs text-slate-500 w-20 hidden sm:block">' +
         '<div class="font-bold text-slate-300">' + t.reply_count + '</div><div>' + (isEn ? 'replies' : 'odpovědí') + '</div>' +
@@ -4952,24 +5204,44 @@
       emptyEl.classList.add('hidden');
       pagerEl.innerHTML = '';
       const offset = (page - 1) * PAGE_SIZE;
-      const pattern = ilikeParam('title', q);
+      const titlePattern = ilikeParam('title', q);
+      const bodyPattern = ilikeParam('body', q);
       ensureCategoriesCache().then(function () {
+        // Plnotextové hledání: hledáme jak v titulcích témat, tak v těle
+        // příspěvků (odpovědí), a výsledky sjednotíme podle id tématu.
         return Promise.all([
-          kpSbSelect('forum_topics', pattern + '&select=id'),
-          kpSbSelect('forum_topics', pattern + '&select=id,title,category_id,author_id,is_pinned,is_locked,topic_type,reply_count,last_post_at,created_at&order=last_post_at.desc&limit=' + PAGE_SIZE + '&offset=' + offset),
+          kpSbSelect('forum_topics', titlePattern + '&select=id'),
+          kpSbSelect('forum_posts', bodyPattern + '&select=topic_id,body&limit=200&order=created_at.desc'),
         ]);
       }).then(function (res) {
-        const total = res[0].length;
-        const rows = res[1];
-        return ensureProfiles(rows.map(function (t) { return t.author_id; })).then(function () {
-          if (!rows.length) {
-            resultsBox.innerHTML = '';
-            emptyEl.classList.remove('hidden');
-          } else {
-            resultsBox.innerHTML = rows.map(searchResultRowHtml).join('');
-          }
-          pagerEl.innerHTML = pagerHtml(total, page, PAGE_SIZE, { q: q });
-        });
+        const titleMatchIds = res[0].map(function (t) { return t.id; });
+        const postMatches = res[1];
+        const snippetByTopic = {};
+        postMatches.forEach(function (p) { if (!snippetByTopic[p.topic_id]) snippetByTopic[p.topic_id] = postSnippetHtml(p.body, q); });
+        const candidateIds = Array.from(new Set(titleMatchIds.concat(postMatches.map(function (p) { return p.topic_id; }))));
+        const total = candidateIds.length;
+        if (!total) {
+          resultsBox.innerHTML = '';
+          emptyEl.classList.remove('hidden');
+          pagerEl.innerHTML = '';
+          return;
+        }
+        return kpSbSelect('forum_topics', 'id=in.(' + candidateIds.join(',') + ')&select=id,title,category_id,author_id,is_pinned,is_locked,topic_type,reply_count,last_post_at,created_at&order=last_post_at.desc&limit=' + PAGE_SIZE + '&offset=' + offset)
+          .then(function (rows) {
+            return ensureProfiles(rows.map(function (t) { return t.author_id; })).then(function () {
+              if (!rows.length) {
+                resultsBox.innerHTML = '';
+                emptyEl.classList.remove('hidden');
+              } else {
+                // u témat, kde zápas nebyl v titulku, ukážeme úryvek z příspěvku
+                resultsBox.innerHTML = rows.map(function (t) {
+                  const snippet = titleMatchIds.includes(t.id) ? null : snippetByTopic[t.id];
+                  return searchResultRowHtml(t, snippet);
+                }).join('');
+              }
+              pagerEl.innerHTML = pagerHtml(total, page, PAGE_SIZE, { q: q });
+            });
+          });
       }).catch(function () {
         resultsBox.innerHTML = '<p class="text-sm text-rose-400">' + (isEn ? 'Search failed.' : 'Hledání se nepodařilo.') + '</p>';
       });
@@ -5808,6 +6080,64 @@
       )).join('');
     }
 
+    function renderNewsletter(rows) {
+      const list = document.getElementById('modList');
+      const countEl = document.getElementById('modNewsletterCount');
+      if (countEl) countEl.textContent = rows.length ? '(' + rows.length + ')' : '';
+      const emails = rows.map(function (r) { return r.email; });
+      const composerHtml =
+        '<div class="p-4 rounded-2xl bg-brand-card border border-brand-border mb-4 space-y-3">' +
+        '<div class="flex items-center justify-between gap-2 flex-wrap">' +
+        '<p class="text-sm font-bold text-white"><i class="fa-solid fa-paper-plane mr-1.5 text-brand-accent"></i>Napsat newsletter (' + emails.length + ' odběratelů)</p>' +
+        '<div class="flex gap-2">' +
+        '<button type="button" id="modNlCopyEmails" class="px-3 py-1.5 rounded-lg bg-slate-900 border border-brand-border text-slate-300 text-xs font-bold hover:text-white transition"><i class="fa-regular fa-copy mr-1"></i>Kopírovat e-maily</button>' +
+        '<button type="button" id="modNlDownloadCsv" class="px-3 py-1.5 rounded-lg bg-slate-900 border border-brand-border text-slate-300 text-xs font-bold hover:text-white transition"><i class="fa-solid fa-file-csv mr-1"></i>Stáhnout CSV</button>' +
+        '</div></div>' +
+        '<input type="text" id="modNlSubject" placeholder="Předmět e-mailu" class="w-full bg-slate-900 border border-brand-border rounded-xl px-3 py-2.5 text-white text-sm focus:border-brand-accent outline-none">' +
+        '<textarea id="modNlBody" rows="6" placeholder="Text newsletteru…" class="w-full bg-slate-900 border border-brand-border rounded-xl px-3 py-2.5 text-white text-sm focus:border-brand-accent outline-none"></textarea>' +
+        '<div class="flex items-center justify-between gap-2 flex-wrap">' +
+        '<p class="text-[11px] text-slate-500 max-w-md">Tlačítko otevře tvůj e-mailový klient (Gmail, Outlook…) s předvyplněným předmětem, textem a všemi e-maily ve skryté kopii (BCC) – odešleš přímo odtud, bez třetí strany.</p>' +
+        '<button type="button" id="modNlSend" class="px-4 py-2.5 rounded-xl bg-brand-accent text-white text-sm font-bold hover:opacity-90 transition shrink-0"' + (emails.length ? '' : ' disabled') + '><i class="fa-solid fa-envelope mr-1.5"></i>Otevřít e-mail pro všechny</button>' +
+        '</div></div>';
+      if (!rows.length) {
+        list.innerHTML = composerHtml + '<div class="text-xs text-slate-500 italic">Zatím žádní odběratelé.</div>';
+      } else {
+        list.innerHTML = composerHtml + '<div class="space-y-2">' + rows.map(function (r) {
+          return '<div class="p-3 rounded-xl bg-brand-card border border-brand-border flex items-center justify-between gap-3 flex-wrap">' +
+            '<span class="font-mono text-sm text-white">' + kpEscapeHtml(r.email) + '</span>' +
+            '<span class="text-[10px] text-slate-500">' + fmtDateTime(r.created_at) + '</span>' +
+            '</div>';
+        }).join('') + '</div>';
+      }
+      const copyBtn = document.getElementById('modNlCopyEmails');
+      if (copyBtn) copyBtn.addEventListener('click', function () {
+        navigator.clipboard.writeText(emails.join(', ')).then(function () {
+          copyBtn.innerHTML = '<i class="fa-solid fa-check mr-1"></i>Zkopírováno!';
+          setTimeout(function () { copyBtn.innerHTML = '<i class="fa-regular fa-copy mr-1"></i>Kopírovat e-maily'; }, 1800);
+        }).catch(function () {});
+      });
+      const csvBtn = document.getElementById('modNlDownloadCsv');
+      if (csvBtn) csvBtn.addEventListener('click', function () {
+        const csv = 'email,lang,created_at\n' + rows.map(function (r) {
+          return [r.email, r.lang || '', r.created_at].map(function (v) { return '"' + String(v || '').replace(/"/g, '""') + '"'; }).join(',');
+        }).join('\n');
+        const blob = new Blob([csv], { type: 'text/csv;charset=utf-8' });
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = 'newsletter-odberatele.csv';
+        a.click();
+        setTimeout(function () { URL.revokeObjectURL(a.href); }, 2000);
+      });
+      const sendBtn = document.getElementById('modNlSend');
+      if (sendBtn) sendBtn.addEventListener('click', function () {
+        const subject = (document.getElementById('modNlSubject').value || '').trim();
+        const body = (document.getElementById('modNlBody').value || '').trim();
+        if (!subject || !body) { alert('Vyplň prosím předmět i text zprávy.'); return; }
+        const mailto = 'mailto:?bcc=' + encodeURIComponent(emails.join(',')) + '&subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+        window.location.href = mailto;
+      });
+    }
+
     async function refreshPendingCount() {
       try {
         const rows = await authSelect('comments', 'approved=eq.false&select=id');
@@ -5871,6 +6201,7 @@
         '<div><label class="block text-slate-400 mb-1">Description (EN)</label><input type="text" class="cat-f-desc-en w-full bg-slate-900 border border-brand-border rounded-lg px-2 py-1.5 text-white" value="' + kpEscapeHtml(c.desc_en || '') + '"></div>' +
         '<div><label class="block text-slate-400 mb-1">Pořadí (číslo, menší = výš)</label><input type="number" class="cat-f-sort w-full bg-slate-900 border border-brand-border rounded-lg px-2 py-1.5 text-white" value="' + (c.sort_order != null ? c.sort_order : 0) + '"></div>' +
         '<div><label class="block text-slate-400 mb-1">Rodičovská kategorie (subfórum pod…)</label><select class="cat-f-parent w-full bg-slate-900 border border-brand-border rounded-lg px-2 py-1.5 text-white">' + optsWithSelection + '</select></div>' +
+        '<div class="sm:col-span-2 flex items-center gap-2"><label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="cat-f-members-only w-4 h-4 rounded"' + (c.members_only ? ' checked' : '') + '><span class="text-slate-300"><i class="fa-solid fa-lock mr-1 text-amber-400"></i>Jen pro přihlášené členy (skryté pro anonymní návštěvníky)</span></label></div>' +
         '</div>' +
         '<div class="mt-3 flex items-center gap-2">' +
         '<button type="button" class="cat-save-btn px-4 py-2 rounded-lg bg-brand-accent text-white text-xs font-bold hover:opacity-90 transition" data-mode="' + mode + '">' + (mode === 'new' ? 'Vytvořit kategorii' : 'Uložit změny') + '</button>' +
@@ -5977,6 +6308,9 @@
         } else if (tab === 'forum-cats') {
           const cats = await authSelect('forum_categories', 'select=*&order=sort_order.asc');
           renderForumCategories(cats);
+        } else if (tab === 'newsletter') {
+          const subs = await authSelect('newsletter_subscribers', 'select=email,lang,created_at&order=created_at.desc');
+          renderNewsletter(subs);
         }
       } catch (e) {
         list.innerHTML = '<div class="text-xs text-rose-400">Nepodařilo se načíst data. Zkus se prosím znovu přihlásit.</div>';
@@ -6151,6 +6485,8 @@
           const icon = get('.cat-f-icon') || 'fa-comments';
           const sortOrder = parseInt(get('.cat-f-sort'), 10) || 0;
           const parentId = get('.cat-f-parent') || null;
+          const membersOnlyEl = wrap.querySelector('.cat-f-members-only');
+          const membersOnly = !!(membersOnlyEl && membersOnlyEl.checked);
           if (!nameCs || !nameEn) {
             if (errEl) errEl.textContent = 'Vyplň aspoň název CZ a EN.';
             return;
@@ -6165,7 +6501,7 @@
             }
             authInsert('forum_categories', {
               slug: slug, name_cs: nameCs, name_en: nameEn, desc_cs: descCs, desc_en: descEn,
-              icon: icon, sort_order: sortOrder, parent_id: parentId,
+              icon: icon, sort_order: sortOrder, parent_id: parentId, members_only: membersOnly,
             }).then(function (row) {
               if (row) { loadTab('forum-cats'); }
               else { if (errEl) errEl.textContent = 'Nepodařilo se vytvořit (slug už možná existuje).'; catSaveBtn.disabled = false; }
@@ -6173,7 +6509,7 @@
           } else {
             authPatch('forum_categories', 'id=eq.' + mode, {
               name_cs: nameCs, name_en: nameEn, desc_cs: descCs, desc_en: descEn,
-              icon: icon, sort_order: sortOrder, parent_id: parentId,
+              icon: icon, sort_order: sortOrder, parent_id: parentId, members_only: membersOnly,
             }).then(function (ok) {
               if (ok) { loadTab('forum-cats'); }
               else { if (errEl) errEl.textContent = 'Uložení se nepodařilo.'; catSaveBtn.disabled = false; }
